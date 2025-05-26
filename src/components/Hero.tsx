@@ -3,6 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Shield, Gavel } from "lucide-react";
 
 const Hero = () => {
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center">
       <div className="absolute inset-0 bg-black/20"></div>
@@ -24,10 +31,19 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-8 py-4 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-8 py-4 text-lg"
+              onClick={() => scrollToSection('#contact')}
+            >
               Schedule Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-lg"
+              onClick={() => scrollToSection('#practice-areas')}
+            >
               Our Practice Areas
             </Button>
           </div>
