@@ -34,16 +34,14 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-white/80 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <Scale className={`h-8 w-8 ${isScrolled ? 'text-amber-600' : 'text-amber-400'}`} />
-            <span className={`text-xl font-bold ${
-              isScrolled ? 'text-slate-900' : 'text-white'
-            }`}>
+            <Scale className="h-8 w-8 text-blue-600" />
+            <span className="text-xl font-bold text-slate-700">
               LegalPro
             </span>
           </div>
@@ -54,16 +52,14 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`text-sm font-medium transition-colors hover:text-amber-500 ${
-                  isScrolled ? 'text-slate-700' : 'text-gray-300'
-                }`}
+                className="text-sm font-medium transition-colors hover:text-blue-600 text-slate-600"
               >
                 {item.name}
               </button>
             ))}
             <Button 
               size="sm" 
-              className="bg-amber-500 hover:bg-amber-600 text-black font-semibold"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
               onClick={() => scrollToSection('#contact')}
             >
               Free Consultation
@@ -76,9 +72,9 @@ const Navigation = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className={`h-6 w-6 ${isScrolled ? 'text-slate-900' : 'text-white'}`} />
+              <X className="h-6 w-6 text-slate-700" />
             ) : (
-              <Menu className={`h-6 w-6 ${isScrolled ? 'text-slate-900' : 'text-white'}`} />
+              <Menu className="h-6 w-6 text-slate-700" />
             )}
           </button>
         </div>
@@ -91,7 +87,7 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-3 py-2 text-slate-700 hover:bg-gray-100 transition-colors"
+                  className="block w-full text-left px-3 py-2 text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                 >
                   {item.name}
                 </button>
@@ -99,7 +95,7 @@ const Navigation = () => {
               <div className="px-3 py-2">
                 <Button 
                   size="sm" 
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold"
                   onClick={() => scrollToSection('#contact')}
                 >
                   Free Consultation
