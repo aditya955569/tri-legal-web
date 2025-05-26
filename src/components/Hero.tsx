@@ -1,8 +1,37 @@
-
-import { Button } from "@/components/ui/button";
 import { Shield, Gavel } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { Button } from "@/components/ui/button";
 
 const Hero = () => {
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const subRef = useRef<HTMLParagraphElement>(null);
+  const btnRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (headlineRef.current) {
+      gsap.fromTo(
+        headlineRef.current,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+      );
+    }
+    if (subRef.current) {
+      gsap.fromTo(
+        subRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: "power3.out" }
+      );
+    }
+    if (btnRef.current) {
+      gsap.fromTo(
+        btnRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, delay: 1, ease: "power3.out" }
+      );
+    }
+  }, []);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -20,20 +49,26 @@ const Hero = () => {
             <span className="text-blue-600 font-semibold tracking-wide">TRUSTED LEGAL COUNSEL</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-slate-700 mb-6 leading-tight">
+          <h1
+            ref={headlineRef}
+            className="text-5xl md:text-7xl font-extrabold text-slate-700 mb-6 leading-tight tracking-tight drop-shadow-lg font-serif"
+          >
             Excellence in
-            <span className="text-blue-600 block">Legal Representation</span>
+            <span className="text-blue-600 block font-sans">Legal Representation</span>
           </h1>
           
-          <p className="text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed">
-            With over two decades of experience, we provide comprehensive legal solutions 
+          <p
+            ref={subRef}
+            className="text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed prose prose-slate prose-lg font-light"
+          >
+            With over two decades of experience, we provide <b>comprehensive legal solutions</b> 
             tailored to protect your interests and secure your future.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div ref={btnRef} className="flex flex-col sm:flex-row gap-4">
             <Button 
               size="lg" 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 text-lg shadow-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 text-lg shadow-xl transition-transform duration-300 hover:scale-105"
               onClick={() => scrollToSection('#contact')}
             >
               Schedule Consultation
@@ -41,7 +76,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-slate-400 text-slate-600 hover:bg-slate-100 px-8 py-4 text-lg"
+              className="border-slate-400 text-slate-600 hover:bg-slate-100 px-8 py-4 text-lg transition-transform duration-300 hover:scale-105"
               onClick={() => scrollToSection('#practice-areas')}
             >
               Our Practice Areas
