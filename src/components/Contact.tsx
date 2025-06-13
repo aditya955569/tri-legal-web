@@ -1,78 +1,156 @@
-
+import { useState } from "react";
+import emailjs from "emailjs-com";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    setStatus("");
+
+    try {
+      const result = await emailjs.send(
+        "YOUR_SERVICE_ID", // replace with EmailJS service ID
+        "YOUR_TEMPLATE_ID", // replace with your template ID
+        {
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          from_email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          to_email: "ahzamnaseem.kidwai@gmail.com",
+        },
+        "YOUR_USER_ID" // public key (EmailJS user ID)
+      );
+
+      setStatus("Message sent successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setStatus("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-700 mb-4">
+    <section className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-700 mb-4">
             Schedule Your Consultation
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Ready to discuss your legal needs? Contact us today for a confidential 
-            consultation with one of our experienced attorneys.
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+            Ready to discuss your legal needs? Contact us today for a
+            confidential consultation with one of our experienced attorneys.
           </p>
         </div>
-        
-        <div className="grid lg:grid-cols-2 gap-16">
+
+        {/* Grid Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {/* Contact Form Card */}
           <Card className="border-0 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl text-slate-700">Get In Touch</CardTitle>
+              <CardTitle className="text-2xl text-slate-700">
+                Get In Touch
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <Input placeholder="First Name" className="border-slate-300" />
-                <Input placeholder="Last Name" className="border-slate-300" />
-              </div>
-              <Input placeholder="Email Address" type="email" className="border-slate-300" />
-              <Input placeholder="Phone Number" type="tel" className="border-slate-300" />
-              <Textarea 
-                placeholder="Tell us about your legal matter..." 
-                className="border-slate-300 min-h-32"
-              />
-              <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md">
-                Schedule Consultation
-              </Button>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <Input
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    placeholder="First Name"
+                    className="border-slate-300"
+                    required
+                  />
+                  <Input
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    placeholder="Last Name"
+                    className="border-slate-300"
+                    required
+                  />
+                </div>
+                <Input
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email Address"
+                  className="border-slate-300"
+                  required
+                />
+                <Input
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Phone Number"
+                  className="border-slate-300"
+                />
+                <Textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your legal matter..."
+                  className="border-slate-300 min-h-32"
+                  required
+                />
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
+                  disabled={sending}
+                >
+                  {sending ? "Sending..." : "Schedule Consultation"}
+                </Button>
+              </form>
+              {status && (
+                <p className="text-center text-sm text-gray-500">{status}</p>
+              )}
             </CardContent>
           </Card>
-          
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-700 mb-4">Office Information</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-slate-700">Address</h4>
-                  <p className="text-slate-600">123 Legal Plaza, Suite 500<br />Downtown District, NY 10001</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-700">Phone</h4>
-                  <p className="text-slate-600">(555) 123-4567</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-700">Email</h4>
-                  <p className="text-slate-600">contact@lawfirm.com</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-700">Office Hours</h4>
-                  <p className="text-slate-600">Monday - Friday: 8:00 AM - 6:00 PM<br />Saturday: 9:00 AM - 2:00 PM</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
-              <h4 className="font-bold text-slate-700 mb-2">Emergency Contact</h4>
-              <p className="text-slate-600 mb-4">
-                For urgent legal matters requiring immediate attention, 
-                call our emergency hotline.
-              </p>
-              <Button variant="outline" className="border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white">
-                (555) 999-HELP
-              </Button>
-            </div>
+
+          {/* Google Map */}
+          <div className="w-full h-[300px] sm:h-[400px] lg:h-auto rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d392.6962701265033!2d80.95103768216521!3d26.870655947951146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd72fa2eae05%3A0x76513c6666d645e5!2sLal%20Kothi!5e0!3m2!1sen!2sin!4v1749842249358!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>
