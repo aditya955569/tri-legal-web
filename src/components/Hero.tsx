@@ -1,15 +1,19 @@
 import { Shield, Gavel, Handshake } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
-import { ThemeColors } from "@/styles/global";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Entry animations
     if (headlineRef.current) {
       gsap.fromTo(
         headlineRef.current,
@@ -31,6 +35,20 @@ const Hero = () => {
         { y: 0, opacity: 1, duration: 0.8, delay: 1, ease: "power3.out" }
       );
     }
+
+    // Fade out entire hero section on scroll
+    if (sectionRef.current) {
+      gsap.to(sectionRef.current, {
+        opacity: 0,
+        y: -50,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -41,7 +59,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center"
+    >
       <div className="absolute inset-0 bg-white/30"></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl">
@@ -56,10 +77,8 @@ const Hero = () => {
             ref={headlineRef}
             className="text-5xl md:text-7xl font-extrabold text-slate-700 mb-6 leading-tight tracking-tight drop-shadow-lg font-serif"
           >
-            {/* Excellence in */}
             VidhiVidh
             <span className="text-blue-600 block font-sans">
-              {/* Legal Representation */}
               Empowering Justice with Experience and Integrity.
             </span>
           </h1>
@@ -68,9 +87,6 @@ const Hero = () => {
             ref={subRef}
             className="text-xl text-slate-600 mb-8 max-w-2xl leading-relaxed prose prose-slate prose-lg font-light"
           >
-            {/* With over two decades of experience, we provide{" "}
-            <b>comprehensive legal solutions</b>
-            tailored to protect your interests and secure your future. */}
             With over 20 years of experience and a legacy rooted in legal
             excellence, we deliver strategic, commercial, and client-focused
             solutions across diverse sectors.
