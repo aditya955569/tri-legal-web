@@ -114,7 +114,7 @@ export const practiceAreaDetails = {
             "Mediation and counseling in marital disputes",
         ],
         experienceHighlight:
-            "With over 280 matrimonial cases handled, we have developed a deep understanding of family laws and the emotional intricacies involved. Our firm has helped individuals, especially women, achieve justice in maintenance, custody, and domestic violence matters through compassionate and legally sound representation.",
+            "With over 280 matrimonial cases handled we have developed a deep understanding of family laws and the emotional intricacies involved. Our firm has helped individuals, especially women, achieve justice in maintenance, custody, and domestic violence matters through compassionate and legally sound representation.",
     },
 
     "Intellectual Property Rights": {
