@@ -74,7 +74,7 @@ const About = () => {
               for our clients.
             </p>
 
-            <div className="grid grid-cols-3 gap-6 mb-8">
+            {/* <div className="grid grid-cols-3 gap-6 mb-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">20+</div>
                 <div className="text-slate-600 font-medium">
@@ -91,14 +91,14 @@ const About = () => {
                 <div className="text-3xl font-bold text-blue-600 mb-2">95%</div>
                 <div className="text-slate-600 font-medium">Success Rate</div>
               </div>
-            </div>
+            </div> */}
 
-            <Button
+            {/* <Button
               size="lg"
               className="bg-slate-700 hover:bg-slate-800 text-white px-8 shadow-md"
             >
               Learn More About Us
-            </Button>
+            </Button> */}
           </div>
 
           {/* Right Image Block */}
