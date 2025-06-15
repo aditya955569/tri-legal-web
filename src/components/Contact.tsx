@@ -25,25 +25,64 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onlyDigits = e.target.value.replace(/\D/g, "");
+    e.target.value = onlyDigits.slice(0, 10); // Limit to 10 digits
+  };
+
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/;
+
+    if (
+      !formData.firstName.trim() ||
+      !formData.lastName.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.message.trim()
+    ) {
+      toast.error("Please fill in all required fields.");
+      return false;
+    }
+
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address.");
+      return false;
+    }
+
+    if (!phoneRegex.test(formData.phone)) {
+      toast.error("Phone number must be exactly 10 digits.");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setStatus("");
+
+    if (!validateForm()) return;
+
     setSending(true);
 
     try {
-      throw new Error("Simulated error for testing");
-      // const result = await emailjs.send(
-      //   import.meta.env.VITE_EMAILJS_SERVICE_KEY!,
-      //   import.meta.env.VITE_EMAILJS_TEMPLATE_KEY!,
-      //   {
-      //     from_name: `${formData.firstName} ${formData.lastName}`,
-      //     from_email: formData.email,
-      //     phone: formData.phone,
-      //     message: formData.message,
-      //     to_email: "ahzamnaseem@gmail.com",
-      //   },
-      //   import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
-      // );
-      // console.log("RESULT RESULT RESULT : ", result);
+      // Simulate error (remove in production)
+      // throw new Error("Simulated error for testing");
+
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_KEY!,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_KEY!,
+        {
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          from_email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          to_email: "ahzamnaseem@gmail.com",
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+      );
+
       toast.success("Message sent successfully!");
       setFormData({
         firstName: "",
@@ -86,48 +125,102 @@ const Contact = () => {
             <CardContent className="space-y-6">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="firstName"
+                      className="block mb-1 text-sm text-slate-600"
+                    >
+                      First Name
+                    </label>
+                    <Input
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      placeholder="First Name"
+                      className="border-slate-300"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="lastName"
+                      className="block mb-1 text-sm text-slate-600"
+                    >
+                      Last Name
+                    </label>
+                    <Input
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      placeholder="Last Name"
+                      className="border-slate-300"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-1 text-sm text-slate-600"
+                  >
+                    Email Address
+                  </label>
                   <Input
-                    name="firstName"
-                    value={formData.firstName}
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
                     onChange={handleChange}
-                    placeholder="First Name"
-                    className="border-slate-300"
-                    required
-                  />
-                  <Input
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    placeholder="Last Name"
+                    placeholder="Email Address"
                     className="border-slate-300"
                     required
                   />
                 </div>
-                <Input
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  className="border-slate-300"
-                  required
-                />
-                <Input
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  className="border-slate-300"
-                />
-                <Textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your legal matter..."
-                  className="border-slate-300 min-h-32"
-                  required
-                />
+
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block mb-1 text-sm text-slate-600"
+                  >
+                    Phone Number
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={10}
+                    value={formData.phone}
+                    onInput={handlePhoneInput}
+                    onChange={handleChange}
+                    placeholder="Phone Number"
+                    className="border-slate-300"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block mb-1 text-sm text-slate-600"
+                  >
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your legal matter..."
+                    className="border-slate-300 min-h-32"
+                    required
+                  />
+                </div>
+
                 <Button
                   type="submit"
                   size="lg"
