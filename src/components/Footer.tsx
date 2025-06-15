@@ -1,5 +1,5 @@
 import { practiceAreas } from "@/utils/practiceAreas";
-import OfficeInformation from "./officeInformation";
+import OfficeInformation from "./OfficeInformation";
 
 const Footer = () => {
   return (

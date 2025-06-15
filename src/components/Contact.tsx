@@ -1,9 +1,12 @@
+"use client";
+
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,31 +20,31 @@ const Contact = () => {
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setSending(true);
-    setStatus("");
 
     try {
-      const result = await emailjs.send(
-        "YOUR_SERVICE_ID", // replace with EmailJS service ID
-        "YOUR_TEMPLATE_ID", // replace with your template ID
-        {
-          from_name: `${formData.firstName} ${formData.lastName}`,
-          from_email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          to_email: "ahzamnaseem.kidwai@gmail.com",
-        },
-        "YOUR_USER_ID" // public key (EmailJS user ID)
-      );
-
-      setStatus("Message sent successfully!");
+      throw new Error("Simulated error for testing");
+      // const result = await emailjs.send(
+      //   import.meta.env.VITE_EMAILJS_SERVICE_KEY!,
+      //   import.meta.env.VITE_EMAILJS_TEMPLATE_KEY!,
+      //   {
+      //     from_name: `${formData.firstName} ${formData.lastName}`,
+      //     from_email: formData.email,
+      //     phone: formData.phone,
+      //     message: formData.message,
+      //     to_email: "ahzamnaseem@gmail.com",
+      //   },
+      //   import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+      // );
+      // console.log("RESULT RESULT RESULT : ", result);
+      toast.success("Message sent successfully!");
       setFormData({
         firstName: "",
         lastName: "",
@@ -51,7 +54,7 @@ const Contact = () => {
       });
     } catch (error) {
       console.error(error);
-      setStatus("Failed to send message. Please try again.");
+      toast.error("Failed to send message. Please try again.");
     } finally {
       setSending(false);
     }
