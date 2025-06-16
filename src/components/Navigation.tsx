@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Only if you're using React Router
 import { Button } from "@/components/ui/button";
-import { Menu, X, Scale, Gavel } from "lucide-react";
+import { Menu, X, Gavel } from "lucide-react";
 import { ThemeColors } from "@/styles/global";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate(); // Only for React Router navigation
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,7 @@ const Navigation = () => {
     { name: "Attorneys", href: "#attorneys" },
     { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
+    { name: "Blogs", path: "/blogs" }, // ✅ New route
   ];
 
   const scrollToSection = (href: string) => {
@@ -30,6 +33,14 @@ const Navigation = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMenuOpen(false);
+  };
+
+  const handleNavClick = (item: any) => {
+    if (item.path) {
+      navigate(item.path);
+    } else {
+      scrollToSection(item.href);
+    }
   };
 
   return (
@@ -53,7 +64,7 @@ const Navigation = () => {
             {navItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavClick(item)}
                 className="text-sm font-medium text-textLight hover:text-highlight transition-colors"
               >
                 {item.name}
@@ -88,7 +99,7 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavClick(item)}
                   className="block w-full text-left px-3 py-2 text-textLight hover:text-highlight hover:bg-backgroundDarkSoft transition-colors"
                 >
                   {item.name}

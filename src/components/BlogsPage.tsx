@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Footer from "./Footer";
@@ -19,6 +19,10 @@ const BlogsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageGroupStart, setPageGroupStart] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // ✅ Scroll to top on mount
+  }, []);
 
   const filteredBlogs = useMemo(() => {
     if (!searchQuery.trim()) return dummyBlogs;
