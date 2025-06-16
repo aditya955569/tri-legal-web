@@ -1,5 +1,5 @@
 import { practiceAreas } from "@/mockData/practiceAreas";
-import OfficeInformation from "./OfficeInformation";
+import OfficeInformation from "./officeInformation";
 
 const Footer = () => {
   return (
