@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { testimonials } from "@/utils/testimonials";
+import { testimonials } from "@/mockData/testimonials";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
