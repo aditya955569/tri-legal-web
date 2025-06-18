@@ -449,5 +449,50 @@ export const dummyBlogs: BlogPost[] = [
             "Corporate Law",
             "IBC"
         ]
-    }
+    },
+    {
+        id: "42",
+        title: "Corporate Insolvency Process",
+        description: "Step-by-step guide to IBC proceedings in India.",
+        image: "https://source.unsplash.com/600x400/?bankruptcy,business",
+        author: "Adv. Rohan Mehta",
+        date: "2023-04-15",
+        tags: [
+            "Corporate Law",
+            "IBC"
+        ]
+    }, {
+        id: "43",
+        title: "Corporate Insolvency Process",
+        description: "Step-by-step guide to IBC proceedings in India.",
+        image: "https://source.unsplash.com/600x400/?bankruptcy,business",
+        author: "Adv. Rohan Mehta",
+        date: "2023-04-15",
+        tags: [
+            "Corporate Law",
+            "IBC"
+        ]
+    }, {
+        id: "44",
+        title: "Corporate Insolvency Process",
+        description: "Step-by-step guide to IBC proceedings in India.",
+        image: "https://source.unsplash.com/600x400/?bankruptcy,business",
+        author: "Adv. Rohan Mehta",
+        date: "2023-04-15",
+        tags: [
+            "Corporate Law",
+            "IBC"
+        ]
+    }, {
+        id: "45",
+        title: "Corporate Insolvency Process",
+        description: "Step-by-step guide to IBC proceedings in India.",
+        image: "https://source.unsplash.com/600x400/?bankruptcy,business",
+        author: "Adv. Rohan Mehta",
+        date: "2023-04-15",
+        tags: [
+            "Corporate Law",
+            "IBC"
+        ]
+    },
 ];

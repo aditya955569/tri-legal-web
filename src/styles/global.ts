@@ -1,6 +1,6 @@
 export const Colors = {
     // Primary (Blue Theme)
-    PrimaryColor: "red",           // blue-600
+    PrimaryColor: "#2563EB",           // blue-600
     PrimaryColorLight: "#3B82F6",      // blue-500
     PrimaryColorHover: "#1D4ED8",      // blue-700
 

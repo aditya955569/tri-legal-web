@@ -31,11 +31,18 @@ const CustomizedNavigation = () => {
   };
 
   const handleNavClick = (item: any) => {
+    const currentPath = window.location.pathname;
+
     if (item.path) {
-      navigate(item.path);
+      if (item.path === currentPath) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate(item.path);
+      }
     } else {
       scrollToSection(item.href);
     }
+    setIsMenuOpen(false);
   };
 
   return (
