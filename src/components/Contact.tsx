@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { Colors } from "@/styles/global"; // ✅ Import colors
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,14 +21,16 @@ const Contact = () => {
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const onlyDigits = e.target.value.replace(/\D/g, "");
-    e.target.value = onlyDigits.slice(0, 10); // Limit to 10 digits
+    e.target.value = onlyDigits.slice(0, 10);
   };
 
   const validateForm = () => {
@@ -58,7 +61,7 @@ const Contact = () => {
     return true;
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("");
 
@@ -67,10 +70,7 @@ const Contact = () => {
     setSending(true);
 
     try {
-      // Simulate error (remove in production)
-      // throw new Error("Simulated error for testing");
-
-      const result = await emailjs.send(
+      await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_KEY!,
         import.meta.env.VITE_EMAILJS_TEMPLATE_KEY!,
         {
@@ -100,14 +100,20 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16" style={{ backgroundColor: Colors.White }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-700 mb-4">
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: Colors.Slate700 }}
+          >
             Schedule Your Consultation
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+          <p
+            className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto"
+            style={{ color: Colors.Slate600 }}
+          >
             Ready to discuss your legal needs? Contact us today for a
             confidential consultation with one of our experienced attorneys.
           </p>
@@ -118,7 +124,10 @@ const Contact = () => {
           {/* Contact Form Card */}
           <Card className="border-0 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl text-slate-700">
+              <CardTitle
+                className="text-2xl"
+                style={{ color: Colors.Slate700 }}
+              >
                 Get In Touch
               </CardTitle>
             </CardHeader>
@@ -128,7 +137,8 @@ const Contact = () => {
                   <div>
                     <label
                       htmlFor="firstName"
-                      className="block mb-1 text-sm text-slate-600"
+                      className="block mb-1 text-sm"
+                      style={{ color: Colors.Slate600 }}
                     >
                       First Name
                     </label>
@@ -138,14 +148,16 @@ const Contact = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       placeholder="First Name"
-                      className="border-slate-300"
+                      className="border"
+                      style={{ borderColor: Colors.Slate400 }}
                       required
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="lastName"
-                      className="block mb-1 text-sm text-slate-600"
+                      className="block mb-1 text-sm"
+                      style={{ color: Colors.Slate600 }}
                     >
                       Last Name
                     </label>
@@ -155,7 +167,8 @@ const Contact = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       placeholder="Last Name"
-                      className="border-slate-300"
+                      className="border"
+                      style={{ borderColor: Colors.Slate400 }}
                       required
                     />
                   </div>
@@ -164,7 +177,8 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-1 text-sm text-slate-600"
+                    className="block mb-1 text-sm"
+                    style={{ color: Colors.Slate600 }}
                   >
                     Email Address
                   </label>
@@ -175,7 +189,8 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Email Address"
-                    className="border-slate-300"
+                    className="border"
+                    style={{ borderColor: Colors.Slate400 }}
                     required
                   />
                 </div>
@@ -183,7 +198,8 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block mb-1 text-sm text-slate-600"
+                    className="block mb-1 text-sm"
+                    style={{ color: Colors.Slate600 }}
                   >
                     Phone Number
                   </label>
@@ -198,7 +214,8 @@ const Contact = () => {
                     onInput={handlePhoneInput}
                     onChange={handleChange}
                     placeholder="Phone Number"
-                    className="border-slate-300"
+                    className="border"
+                    style={{ borderColor: Colors.Slate400 }}
                     required
                   />
                 </div>
@@ -206,7 +223,8 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block mb-1 text-sm text-slate-600"
+                    className="block mb-1 text-sm"
+                    style={{ color: Colors.Slate600 }}
                   >
                     Message
                   </label>
@@ -216,7 +234,8 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell us about your legal matter..."
-                    className="border-slate-300 min-h-32"
+                    className="border min-h-32"
+                    style={{ borderColor: Colors.Slate400 }}
                     required
                   />
                 </div>
@@ -224,12 +243,25 @@ const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
                   disabled={sending}
+                  className="w-full font-semibold shadow-md"
+                  style={{
+                    backgroundColor: Colors.PrimaryColor,
+                    color: Colors.White,
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor =
+                      Colors.PrimaryColorHover)
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor =
+                      Colors.PrimaryColor)
+                  }
                 >
                   {sending ? "Sending..." : "Schedule Consultation"}
                 </Button>
               </form>
+
               {status && (
                 <p className="text-center text-sm text-gray-500">{status}</p>
               )}

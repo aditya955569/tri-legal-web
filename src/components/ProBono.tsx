@@ -4,12 +4,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Footer from "./Footer";
-import Navigation from "./Navigation";
 import CustomizedNavigation from "./CustomizedNavigation";
+import { Colors } from "@/styles/global";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Define Pro Bono Data
 const proBonoData = [
   {
     icon: HeartHandshake,
@@ -81,14 +80,23 @@ const ProBono = () => {
       <CustomizedNavigation />
       <section
         ref={sectionRef}
-        className="py-20 bg-gradient-to-br from-indigo-50 via-white to-slate-50"
+        className="py-20"
+        style={{
+          background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}11, ${Colors.White}, ${Colors.Slate400}11)`,
+        }}
       >
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-700 mb-4">
+            <h2
+              className="text-4xl md:text-5xl font-bold mb-4"
+              style={{ color: Colors.Slate700 }}
+            >
               Pro Bono Commitment
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p
+              className="text-xl max-w-3xl mx-auto"
+              style={{ color: Colors.Slate600 }}
+            >
               At VidhiVidh, we believe justice should be accessible to everyone.
               Our Pro Bono initiatives serve those in need and reflect our
               dedication to social responsibility.
@@ -102,18 +110,34 @@ const ProBono = () => {
                 <Card
                   key={index}
                   ref={(el) => (cardsRef.current[index] = el)}
-                  className="group bg-white hover:shadow-lg border-0 hover:-translate-y-1 transition-all duration-300"
+                  className="group bg-white border-0 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                   <CardHeader className="text-center pb-4">
-                    <div className="mx-auto w-16 h-16 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="h-8 w-8 text-white" />
+                    <div
+                      className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                      style={{
+                        background: `linear-gradient(to bottom right, ${Colors.PrimaryColor}, ${Colors.PrimaryColorLight})`,
+                      }}
+                    >
+                      <Icon
+                        className="h-8 w-8"
+                        style={{ color: Colors.White }}
+                      />
                     </div>
-                    <CardTitle className="text-xl font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                    <CardTitle
+                      className="text-xl font-bold group-hover:transition-colors"
+                      style={{
+                        color: Colors.Slate700,
+                      }}
+                    >
                       {item.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
-                    <p className="text-slate-600 leading-relaxed">
+                    <p
+                      style={{ color: Colors.Slate600 }}
+                      className="leading-relaxed"
+                    >
                       {item.description}
                     </p>
                   </CardContent>

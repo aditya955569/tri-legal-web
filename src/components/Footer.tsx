@@ -1,11 +1,15 @@
 import { practiceAreas } from "@/mockData/practiceAreas";
 import OfficeInformation from "./officeInformation";
+import { Colors } from "@/styles/global";
 
 const quickLinks = ["About Us", "Our Team", "Contact Us"];
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-700 text-white py-16">
+    <footer
+      style={{ backgroundColor: Colors.Slate700 }}
+      className="text-white py-16"
+    >
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-2">
@@ -13,14 +17,24 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 font-serif tracking-tight">
+            <h4 className="text-lg font-semibold mb-4 font-serif tracking-tight text-white">
               Practice Areas
             </h4>
-            <ul className="space-y-2 text-slate-300 text-sm">
+            <ul
+              className="space-y-2 text-sm"
+              style={{ color: Colors.Slate400 }}
+            >
               {practiceAreas.map((item, index) => (
                 <li
                   key={index}
-                  className="hover:text-blue-400 cursor-pointer transition-colors"
+                  className="cursor-pointer transition-colors"
+                  style={{ color: Colors.Slate400 }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.color = Colors.PrimaryColorLight)
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.color = Colors.Slate400)
+                  }
                 >
                   {item.title}
                 </li>
@@ -29,14 +43,24 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 font-serif tracking-tight">
+            <h4 className="text-lg font-semibold mb-4 font-serif tracking-tight text-white">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-slate-300 text-sm">
+            <ul
+              className="space-y-2 text-sm"
+              style={{ color: Colors.Slate400 }}
+            >
               {quickLinks.map((link, index) => (
                 <li
                   key={index}
-                  className="hover:text-blue-400 cursor-pointer transition-colors"
+                  className="cursor-pointer transition-colors"
+                  style={{ color: Colors.Slate400 }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.color = Colors.PrimaryColorLight)
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.color = Colors.Slate400)
+                  }
                 >
                   {link}
                 </li>
@@ -45,9 +69,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-600 pt-8">
+        <div className="pt-8 border-t" style={{ borderColor: Colors.Slate600 }}>
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-400 text-sm font-light">
+            <p
+              style={{ color: Colors.Slate400 }}
+              className="text-sm font-light"
+            >
               © 2024 VidhiVidh Law Firm. All rights reserved.
             </p>
             <div className="flex gap-6 mt-4 md:mt-0">
@@ -55,7 +82,14 @@ const Footer = () => {
                 (item, index) => (
                   <span
                     key={index}
-                    className="text-slate-400 text-sm hover:text-blue-400 cursor-pointer transition-colors"
+                    className="text-sm cursor-pointer transition-colors"
+                    style={{ color: Colors.Slate400 }}
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.color = Colors.PrimaryColorLight)
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = Colors.Slate400)
+                    }
                   >
                     {item}
                   </span>

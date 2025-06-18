@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Phone, Plus, X, MessageCircle } from "lucide-react";
+import { Colors } from "@/styles/global";
 
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,6 @@ const Index = () => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const phoneNumber = "919876543210"; // Replace with actual number
 
-  // Auto-close after 4 seconds
   useEffect(() => {
     if (isOpen) {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -28,7 +28,6 @@ const Index = () => {
     };
   }, [isOpen]);
 
-  // Close if clicked outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (fabRef.current && !fabRef.current.contains(event.target as Node)) {
@@ -76,7 +75,8 @@ const Index = () => {
               href={`https://wa.me/${phoneNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-md transition-transform hover:scale-110"
+              style={{ backgroundColor: Colors.WhatsAppColor }}
+              className="hover:scale-110 hover:brightness-90 text-white p-4 rounded-full shadow-md transition-transform"
               title="Chat on WhatsApp"
             >
               <MessageCircle className="w-5 h-5" />
@@ -85,7 +85,8 @@ const Index = () => {
             {/* Phone Call */}
             <a
               href={`tel:+${phoneNumber}`}
-              className="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-full shadow-md transition-transform hover:scale-110"
+              style={{ backgroundColor: Colors.PrimaryColorLight }}
+              className="hover:scale-110 hover:brightness-90 text-white p-4 rounded-full shadow-md transition-transform"
               title="Call Us"
             >
               <Phone className="w-5 h-5" />
@@ -96,7 +97,8 @@ const Index = () => {
         {/* Main Toggle Button */}
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="bg-gray-800 hover:bg-gray-900 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110"
+          style={{ backgroundColor: Colors.DarkGray }}
+          className="hover:scale-110 hover:brightness-90 text-white p-4 rounded-full shadow-lg transition-transform"
           title="Contact Options"
         >
           {isOpen ? <X className="w-5 h-5" /> : <Plus className="w-5 h-5" />}

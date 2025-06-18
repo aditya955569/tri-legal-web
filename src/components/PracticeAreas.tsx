@@ -3,6 +3,7 @@ import { practiceAreas } from "@/mockData/practiceAreas";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Colors } from "@/styles/global";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,12 +20,12 @@ const PracticeAreas = () => {
             y: 0,
             opacity: 1,
             duration: 0.8,
-            delay: index * 0.1, // stagger manually for cascade effect
+            delay: index * 0.1,
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
               start: "top 85%",
-              toggleActions: "play none none reset", // animate on scroll down/up
+              toggleActions: "play none none reset",
             },
           }
         );
@@ -33,13 +34,22 @@ const PracticeAreas = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section
+      className="py-20"
+      style={{ backgroundColor: Colors.LightGrayBackground }}
+    >
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-700 mb-4">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: Colors.Slate700 }}
+          >
             Practice Areas
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p
+            className="text-xl max-w-3xl mx-auto"
+            style={{ color: Colors.Slate600 }}
+          >
             Our firm provides comprehensive legal services across multiple
             practice areas, ensuring expert representation for all your legal
             needs.
@@ -50,19 +60,30 @@ const PracticeAreas = () => {
           {practiceAreas.map((area, index) => (
             <Card
               key={index}
-              ref={(el) => (cardsRef.current[index] = el)} // assign each card to ref array
+              ref={(el) => (cardsRef.current[index] = el)}
               className="group hover:shadow-lg transition-all duration-300 border-0 bg-white hover:-translate-y-1"
             >
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div
+                  className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}, ${Colors.PrimaryColor})`,
+                  }}
+                >
                   <area.icon className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                <CardTitle
+                  className="text-xl font-bold transition-colors"
+                  style={{ color: Colors.Slate700 }}
+                >
                   {area.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-slate-600 mb-4 leading-relaxed">
+                <p
+                  className="mb-4 leading-relaxed"
+                  style={{ color: Colors.Slate600 }}
+                >
                   {area.description}
                 </p>
               </CardContent>

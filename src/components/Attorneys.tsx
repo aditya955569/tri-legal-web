@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Card, CardContent } from "@/components/ui/card";
+import { Colors } from "@/styles/global";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,33 +37,7 @@ const Attorneys = () => {
   const cardsRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   if (cardsRef.current) {
-  //     const cards = gsap.utils.toArray<HTMLDivElement>(
-  //       cardsRef.current.querySelectorAll(".attorney-card")
-  //     );
-
-  //     gsap.fromTo(
-  //       cards,
-  //       { y: 50, opacity: 0 },
-  //       {
-  //         y: 0,
-  //         opacity: 1,
-  //         duration: 0.8,
-  //         ease: "power3.out",
-  //         stagger: 0.2,
-  //         scrollTrigger: {
-  //           trigger: cardsRef.current,
-  //           start: "top 85%",
-  //           toggleActions: "play none none reset",
-  //         },
-  //       }
-  //     );
-  //   }
-  // }, []);
-
   useEffect(() => {
-    // Animate heading and subheading
     if (titleRef.current) {
       const [heading, paragraph] = titleRef.current.children;
 
@@ -100,7 +75,6 @@ const Attorneys = () => {
       );
     }
 
-    // Animate cards as before...
     if (cardsRef.current) {
       const cards = gsap.utils.toArray<HTMLDivElement>(
         cardsRef.current.querySelectorAll(".attorney-card")
@@ -126,13 +100,22 @@ const Attorneys = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-slate-100">
+    <section
+      className="py-20"
+      style={{ backgroundColor: Colors.LightGrayBackground }}
+    >
       <div className="container mx-auto px-6">
         <div ref={titleRef} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-700 mb-4">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: Colors.Slate700 }}
+          >
             Our Legal Team
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p
+            className="text-xl max-w-3xl mx-auto"
+            style={{ color: Colors.Slate600 }}
+          >
             Meet our experienced attorneys who bring decades of combined
             expertise to every case, ensuring the highest quality legal
             representation.
@@ -143,7 +126,8 @@ const Attorneys = () => {
           {attorneys.map((attorney, index) => (
             <Card
               key={index}
-              className="attorney-card bg-white border-0 overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="attorney-card border-0 overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              style={{ backgroundColor: Colors.White }}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -151,18 +135,32 @@ const Attorneys = () => {
                   alt={attorney.name}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold text-slate-700 mb-2">
+                <h3
+                  className="text-xl font-bold mb-2"
+                  style={{ color: Colors.Slate700 }}
+                >
                   {attorney.name}
                 </h3>
-                <p className="text-blue-600 font-semibold mb-2">
+                <p
+                  className="font-semibold mb-2"
+                  style={{ color: Colors.PrimaryColor }}
+                >
                   {attorney.title}
                 </p>
-                <p className="text-slate-600 mb-3">{attorney.specialization}</p>
-                <div className="bg-slate-100 rounded-full px-4 py-2 inline-block">
-                  <span className="text-sm font-medium text-slate-600">
+                <p className="mb-3" style={{ color: Colors.Slate600 }}>
+                  {attorney.specialization}
+                </p>
+                <div
+                  className="rounded-full px-4 py-2 inline-block"
+                  style={{ backgroundColor: Colors.LightGrayBackground }}
+                >
+                  <span
+                    className="text-sm font-medium"
+                    style={{ color: Colors.Slate600 }}
+                  >
                     {attorney.experience} Experience
                   </span>
                 </div>

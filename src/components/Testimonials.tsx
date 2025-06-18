@@ -4,6 +4,7 @@ import { testimonials } from "@/mockData/testimonials";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Colors } from "@/styles/global";
 
 const Testimonials = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -14,7 +15,6 @@ const Testimonials = () => {
     threshold: 0.1,
   });
 
-  // Check scroll position to toggle arrow visibility
   const checkScrollPosition = () => {
     const container = sliderRef.current;
     if (container) {
@@ -48,7 +48,6 @@ const Testimonials = () => {
     }
   };
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -77,52 +76,72 @@ const Testimonials = () => {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="py-20 bg-gray-50 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
+      style={{ backgroundColor: Colors.LightGrayBackground }}
     >
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjIwIiBjeT0iMjAiIHI9IjEiLz48L2c+PC9zdmc+')]"></div>
+      {/* Background pattern */}
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjIwIiBjeT0iMjAiIHI9IjEiLz48L2c+PC9zdmc+")`,
+        }}
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: Colors.Slate700 }}
+          >
             Client Testimonials
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p
+            className="text-xl max-w-3xl mx-auto"
+            style={{ color: Colors.Slate600 }}
+          >
             Don't just take our word for it. Here's what our clients say about
             their experience working with our legal team.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Left Scroll Button */}
+          {/* Left Button */}
           {showLeftArrow && (
             <motion.button
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full z-10 hover:bg-gray-100 transition-all duration-300 hover:shadow-xl active:scale-95"
+              className="absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: Colors.White }}
               aria-label="Scroll testimonials left"
             >
-              <ChevronLeft className="h-6 w-6 text-gray-700" />
+              <ChevronLeft
+                className="h-6 w-6"
+                style={{ color: Colors.Slate700 }}
+              />
             </motion.button>
           )}
 
-          {/* Right Scroll Button */}
+          {/* Right Button */}
           {showRightArrow && (
             <motion.button
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full z-10 hover:bg-gray-100 transition-all duration-300 hover:shadow-xl active:scale-95"
+              className="absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: Colors.White }}
               aria-label="Scroll testimonials right"
             >
-              <ChevronRight className="h-6 w-6 text-gray-700" />
+              <ChevronRight
+                className="h-6 w-6"
+                style={{ color: Colors.Slate700 }}
+              />
             </motion.button>
           )}
 
-          {/* Scrollable Testimonial Cards */}
+          {/* Testimonial Cards */}
           <div
             ref={sliderRef}
             className="flex gap-8 overflow-x-auto scroll-smooth px-4 pb-6 no-scrollbar"
@@ -135,7 +154,10 @@ const Testimonials = () => {
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Card className="w-[300px] sm:w-[350px] h-full bg-white shadow-md hover:shadow-xl transition-all duration-300 group">
+                <Card
+                  className="w-[300px] sm:w-[350px] h-full transition-all duration-300 group shadow-md hover:shadow-xl"
+                  style={{ backgroundColor: Colors.White }}
+                >
                   <CardContent className="p-8 h-full flex flex-col">
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
@@ -145,15 +167,21 @@ const Testimonials = () => {
                       ))}
                     </div>
 
-                    <blockquote className="text-gray-700 mb-6 leading-relaxed italic flex-grow">
+                    <blockquote
+                      className="mb-6 leading-relaxed italic flex-grow"
+                      style={{ color: Colors.Slate600 }}
+                    >
                       "{testimonial.quote}"
                     </blockquote>
 
                     <div className="border-t pt-4">
-                      <h4 className="font-bold text-slate-900">
+                      <h4
+                        className="font-bold"
+                        style={{ color: Colors.Slate700 }}
+                      >
                         {testimonial.client}
                       </h4>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-sm" style={{ color: Colors.Slate600 }}>
                         {testimonial.position}
                       </p>
                     </div>
