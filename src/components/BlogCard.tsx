@@ -1,4 +1,5 @@
 import { Colors } from "@/styles/global";
+
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const BlogCard = ({ blog }) => {
