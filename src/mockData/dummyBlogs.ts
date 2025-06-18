@@ -1,5 +1,5 @@
 interface BlogPost {
-    id: string;
+    id: string | number;
     title: string;
     description: string;
     image: string;
@@ -11,7 +11,7 @@ interface BlogPost {
 
 export const dummyBlogs: BlogPost[] = [
     {
-        id: "1",
+        id: 1,
         title: "Understanding Civil Litigation in India",
         description:
             "Explore the various stages of civil litigation and how our firm helps navigate the complex legal system efficiently.",

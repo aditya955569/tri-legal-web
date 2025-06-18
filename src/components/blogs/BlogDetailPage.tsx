@@ -1,44 +1,72 @@
-import { useRouter } from "next/router";
-import { dummyBlogs } from "@/mockData/dummyBlogs"; // or fetch via API
+import { useParams } from "react-router-dom";
+import { dummyBlogs } from "@/mockData/dummyBlogs";
 import { Colors } from "@/styles/global";
+import CustomizedNavigation from "../CustomizedNavigation";
+import Footer from "../Footer";
 
 const BlogDetailPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
+  const { id } = useParams();
   const blog = dummyBlogs.find((b) => b.id == id);
 
   if (!blog) {
     return (
-      <div className="text-center py-20">
-        <h2 className="text-xl text-slate-600">Blog not found</h2>
+      <div className="text-center py-24 bg-slate-100 min-h-[60vh]">
+        <h2 className="text-2xl font-semibold text-slate-500">
+          Blog not found
+        </h2>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto py-10 px-4 sm:px-6">
-      <h1
-        className="text-3xl sm:text-5xl font-bold mb-6"
-        style={{ color: Colors.Slate700 }}
+    <>
+      <CustomizedNavigation />
+      <section
+        className="py-20"
+        style={{
+          background: `linear-gradient(to bottom right, ${Colors.LightGrayBackground}, ${Colors.White}, ${Colors.Slate400}11)`,
+        }}
       >
-        {blog.title}
-      </h1>
-      <div className="mb-4 text-sm text-slate-500">
-        By {blog.author} · {blog.date}
-      </div>
-      <img
-        src={blog.image}
-        alt={blog.title}
-        className="w-full max-h-[400px] object-cover rounded-md mb-6"
-      />
-      <p
-        className="text-base leading-relaxed"
-        style={{ color: Colors.Slate700 }}
-      >
-        {blog.description}
-      </p>
-    </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Title */}
+            <h1
+              className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-4"
+              style={{ color: Colors.Slate700 }}
+            >
+              {blog.title}
+            </h1>
+
+            {/* Author and Date */}
+            <div className="text-sm sm:text-base text-slate-500 flex flex-wrap items-center gap-2 mb-6">
+              <span>
+                By{" "}
+                <span className="font-medium text-slate-600">
+                  {blog.author}
+                </span>
+              </span>
+              <span className="mx-2">•</span>
+              <span>{blog.date}</span>
+            </div>
+
+            {/* Divider */}
+            <hr className="border-t border-slate-300 mb-8" />
+
+            {/* Blog Content */}
+            <article
+              className="prose prose-lg sm:prose-xl max-w-none"
+              style={{ color: Colors.Slate700 }}
+            >
+              <p>{blog.description}</p>
+            </article>
+
+            {/* Bottom Divider */}
+            <hr className="border-t border-slate-200 mt-12" />
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </>
   );
 };
 

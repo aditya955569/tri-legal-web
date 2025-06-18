@@ -1,12 +1,17 @@
 import { Colors } from "@/styles/global";
-
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const BlogCard = ({ blog }) => {
+  const navigate = useNavigate();
   const shortDescription =
     blog.description.length > 20
       ? blog.description.slice(0, 20) + "..."
       : blog.description;
+
+  const handleClick = () => {
+    navigate(`/blogPost/${blog.id}`);
+  };
 
   return (
     <div className="relative">
@@ -55,6 +60,7 @@ const BlogCard = ({ blog }) => {
           <div className="absolute bottom-6 right-6">
             <button
               className="text-sm font-medium px-4 py-2 rounded-md shadow hover:shadow-md transition-all duration-300"
+              onClick={handleClick}
               style={{
                 backgroundColor: Colors.PrimaryColor,
                 color: Colors.White,

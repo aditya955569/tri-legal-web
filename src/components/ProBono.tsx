@@ -6,29 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Footer from "./Footer";
 import CustomizedNavigation from "./CustomizedNavigation";
 import { Colors } from "@/styles/global";
+import { proBonoData } from "@/mockData/probono";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const proBonoData = [
-  {
-    icon: HeartHandshake,
-    title: "Access to Justice",
-    description:
-      "We offer legal aid to underserved communities, ensuring that no one is denied legal support due to financial constraints.",
-  },
-  {
-    icon: HelpingHand,
-    title: "Community Impact",
-    description:
-      "Our lawyers actively volunteer for NGOs, helping with legal frameworks, training, and representation to amplify their missions.",
-  },
-  {
-    icon: Globe,
-    title: "Legal Literacy",
-    description:
-      "We conduct awareness drives, workshops, and seminars to educate citizens about their legal rights and responsibilities.",
-  },
-];
 
 const ProBono = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
