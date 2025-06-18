@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Footer from "./Footer";
 import { dummyBlogs } from "@/mockData/dummyBlogs";
+import CustomizedNavigation from "./CustomizedNavigation";
 
 interface Blog {
   id: string;
@@ -181,15 +182,19 @@ const BlogsPage = () => {
 
   return (
     <>
+      <CustomizedNavigation />
       <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
               VidhiVidhan Legal Insights
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Expert legal analysis and commentary on important cases and
-              legislation
+            <p className="text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Stay updated with the latest legal developments, expert case
+              breakdowns, and thoughtful insights on evolving laws. Our blog
+              covers crucial court decisions, legislative reforms, and key
+              topics from legal professionals to help you stay informed and
+              empowered.
             </p>
           </div>
 

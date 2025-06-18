@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; // Only if you're using React Ro
 import { Button } from "@/components/ui/button";
 import { Menu, X, Gavel } from "lucide-react";
 
-const Navigation = () => {
+const CustomizedNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate(); // Only for React Router navigation
@@ -17,12 +17,7 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Practice Areas", href: "#practice-areas" },
-    { name: "About", href: "#about" },
-    { name: "Attorneys", href: "#attorneys" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", path: "/" },
     { name: "Blogs", path: "/blogs" },
     { name: "Probono", path: "/probono" },
   ];
@@ -70,13 +65,6 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <Button
-              size="sm"
-              className="bg-highlight hover:bg-highlightHover text-backgroundDark font-semibold shadow-md"
-              onClick={() => scrollToSection("#contact")}
-            >
-              Free Consultation
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,15 +93,6 @@ const Navigation = () => {
                   {item.name}
                 </button>
               ))}
-              <div className="px-3 py-2">
-                <Button
-                  size="sm"
-                  className="w-full bg-highlight hover:bg-highlightHover text-backgroundDark font-semibold"
-                  onClick={() => scrollToSection("#contact")}
-                >
-                  Free Consultation
-                </Button>
-              </div>
             </div>
           </div>
         )}
@@ -122,4 +101,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default CustomizedNavigation;
