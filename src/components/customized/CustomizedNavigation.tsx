@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Only if you're using React Router
-import { Button } from "@/components/ui/button";
 import { Menu, X, Gavel } from "lucide-react";
 
 const CustomizedNavigation = () => {
@@ -56,7 +55,10 @@ const CustomizedNavigation = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <Gavel className="h-8 w-8 text-highlight" />
             <span className="text-xl font-bold text-textLight">VidhiVidh</span>
           </div>
