@@ -10,7 +10,8 @@ const BlogCard = ({ blog }) => {
       : blog.description;
 
   const handleClick = () => {
-    navigate(`/blogPost/${blog.id}`);
+    // navigate(`/blogPost/${blog.id}`);
+    navigate(`/blogPost/${blog.id}`, { state: blog });
   };
 
   return (
