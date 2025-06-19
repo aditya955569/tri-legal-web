@@ -70,9 +70,19 @@ const Contact = () => {
     setSending(true);
 
     try {
+      if (
+        !import.meta.env.VITE_EMAILJS_SERVICE_KEY ||
+        !import.meta.env.VITE_EMAILJS_TEMPLATE_KEY ||
+        !import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      ) {
+        toast.error("Email service is not configured correctly.");
+        setSending(false);
+        return;
+      }
+
       await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_KEY!,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_KEY!,
+        import.meta.env.VITE_EMAILJS_SERVICE_KEY,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_KEY,
         {
           from_name: `${formData.firstName} ${formData.lastName}`,
           from_email: formData.email,
@@ -80,7 +90,7 @@ const Contact = () => {
           message: formData.message,
           to_email: "ahzamnaseem@gmail.com",
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       toast.success("Message sent successfully!");
@@ -92,7 +102,7 @@ const Contact = () => {
         message: "",
       });
     } catch (error) {
-      console.error(error);
+      console.error("EmailJS error:", error);
       toast.error("Failed to send message. Please try again.");
     } finally {
       setSending(false);
