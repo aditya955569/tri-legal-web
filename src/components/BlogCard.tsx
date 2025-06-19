@@ -15,40 +15,41 @@ const BlogCard = ({ blog }) => {
   };
 
   return (
-    <div className="relative group">
+    <div className="relative group w-full">
       <Card
         className="h-full flex flex-col bg-white border transition-all duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1 rounded-2xl overflow-hidden"
-        style={{
-          borderColor: Colors.Slate300,
-        }}
+        style={{ borderColor: Colors.Slate300 }}
       >
+        {/* Image Section */}
         <CardHeader className="p-0">
           <div className="overflow-hidden">
             <img
               src={blog.image || "/default-blog.jpg"}
               alt={blog.title}
-              className="w-full h-44 sm:h-52 object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-44 sm:h-52 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </CardHeader>
 
-        <CardContent className="p-6 flex-grow flex flex-col relative">
+        {/* Content Section */}
+        <CardContent className="p-4 sm:p-6 flex-grow flex flex-col relative">
           <CardTitle
-            className="text-xl font-bold mb-2 leading-tight"
+            className="text-lg sm:text-xl font-bold mb-2 leading-snug"
             style={{ color: Colors.Slate800 }}
           >
             {blog.title}
           </CardTitle>
 
           <p
-            className="text-sm mb-10 text-justify"
+            className="text-sm sm:text-base text-justify mb-10"
             style={{ color: Colors.Slate600 }}
           >
             {shortDescription}
           </p>
 
+          {/* Author Info */}
           <div
-            className="text-sm pt-2 mt-auto"
+            className="text-xs sm:text-sm pt-2 mt-auto"
             style={{ color: Colors.Slate500 }}
           >
             <span className="block font-medium">{blog.authorName}</span>
@@ -62,10 +63,10 @@ const BlogCard = ({ blog }) => {
           </div>
 
           {/* Read More Button */}
-          <div className="absolute bottom-6 right-6">
+          <div className="absolute bottom-4 right-4">
             <button
               onClick={handleClick}
-              className="text-sm font-semibold px-4 py-2 rounded-lg shadow-md transition-all duration-300 border"
+              className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-md border transition-all duration-300"
               style={{
                 backgroundColor: Colors.PrimaryColor,
                 color: Colors.White,
