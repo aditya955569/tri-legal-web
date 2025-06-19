@@ -1,31 +1,57 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
-import { Input } from "@/components/ui/input";
 import Footer from "./Footer";
 import BlogCard from "./BlogCard";
 import CustomizedNavigation from "./customized/CustomizedNavigation";
-import { dummyBlogs } from "@/mockData/dummyBlogs";
 import { Colors } from "@/styles/global";
 import EmptySearchResult from "./blogs/EmptySearchResult";
 import BlogsSearchBar from "./blogs/BlogsSearchBar";
+import { getAllBlogs } from "@/services/blogs";
 
 interface Blog {
   id: string;
   title: string;
-  description: string;
+  description?: string;
+  content?: string;
   author: string;
   date: string;
-  image: string;
+  image?: string;
   tags?: string[];
 }
 
 const BlogsPage = () => {
   const blogsPerPage = 9;
-  const visiblePages = Math.ceil(dummyBlogs.length / blogsPerPage);
 
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageGroupStart, setPageGroupStart] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const apiBlogs = await getAllBlogs();
+        console.log("Fetched blogs from API:", apiBlogs);
+
+        const mappedBlogs: Blog[] = apiBlogs.map((blog) => ({
+          id: blog._id,
+          title: blog.title,
+          content: blog.content,
+          description: blog.content.slice(0, 150) + "...",
+          author: blog.authorName,
+          date: new Date(blog.createdAt).toLocaleDateString(),
+          image: "", // Placeholder or default image URL if needed
+          tags: [],
+        }));
+
+        setBlogs(mappedBlogs);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,18 +61,20 @@ const BlogsPage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const visiblePages = Math.ceil(blogs.length / blogsPerPage);
+
   const filteredBlogs = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
-    if (!query) return dummyBlogs;
+    if (!query) return blogs;
 
     const words = query.split(/\s+/);
-    return dummyBlogs.filter((blog) => {
+    return blogs.filter((blog) => {
       const text = `${blog.title} ${blog.description} ${blog.author} ${(
         blog.tags || []
       ).join(" ")}`.toLowerCase();
       return words.every((word) => text.includes(word));
     });
-  }, [searchQuery]);
+  }, [searchQuery, blogs]);
 
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
 
@@ -63,7 +91,7 @@ const BlogsPage = () => {
       else if (page >= pageGroupStart + visiblePages)
         setPageGroupStart(Math.min(totalPages - visiblePages + 1, page - 2));
     },
-    [pageGroupStart, totalPages]
+    [pageGroupStart, totalPages, visiblePages]
   );
 
   const pageButtonClass = (active: boolean) =>
@@ -101,7 +129,9 @@ const BlogsPage = () => {
         );
     }
 
-    for (let i = pageGroupStart; i <= groupEnd; i++) buttons.push(addButton(i));
+    for (let i = pageGroupStart; i <= groupEnd; i++) {
+      buttons.push(addButton(i));
+    }
 
     if (groupEnd < totalPages) {
       if (groupEnd < totalPages - 1)
@@ -155,28 +185,13 @@ const BlogsPage = () => {
     return (
       <div className="flex sm:hidden items-center justify-center mt-8 space-x-1 text-sm">
         {[
-          <button
-            key="prev"
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className={pageButtonClass(false)}
-            style={{
-              backgroundColor:
-                currentPage === 1 ? Colors.LightGrayBackground : "white",
-              color: currentPage === 1 ? Colors.Slate400 : Colors.Slate600,
-              cursor: currentPage === 1 ? "not-allowed" : "pointer",
-            }}
-          >
-            Previous
-          </button>,
-          currentPage > 2 && (
+          currentPage > 1 && (
             <button
-              key="prev-num"
+              key="prev"
               onClick={() => handlePageChange(currentPage - 1)}
               className={pageButtonClass(false)}
-              style={{ color: Colors.Slate700 }}
             >
-              {currentPage - 1}
+              Previous
             </button>
           ),
           <button
@@ -186,38 +201,15 @@ const BlogsPage = () => {
           >
             {currentPage}
           </button>,
-          currentPage < totalPages - 1 && (
+          currentPage < totalPages && (
             <button
-              key="next-num"
+              key="next"
               onClick={() => handlePageChange(currentPage + 1)}
               className={pageButtonClass(false)}
-              style={{ color: Colors.Slate700 }}
             >
-              {currentPage + 1}
+              Next
             </button>
           ),
-          currentPage < totalPages - 2 && (
-            <span key="ellipsis" className="px-1 text-slate-500">
-              ...
-            </span>
-          ),
-          <button
-            key="next"
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className={pageButtonClass(false)}
-            style={{
-              backgroundColor:
-                currentPage === totalPages
-                  ? Colors.LightGrayBackground
-                  : "white",
-              color:
-                currentPage === totalPages ? Colors.Slate400 : Colors.Slate600,
-              cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-            }}
-          >
-            Next
-          </button>,
         ]}
       </div>
     );
