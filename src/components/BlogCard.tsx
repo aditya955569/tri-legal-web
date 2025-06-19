@@ -5,9 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 const BlogCard = ({ blog }) => {
   const navigate = useNavigate();
   const shortDescription =
-    blog.description.length > 20
-      ? blog.description.slice(0, 20) + "..."
-      : blog.description;
+    blog.content.length > 20 ? blog.content.slice(0, 20) + "..." : blog.content;
 
   const handleClick = () => {
     // navigate(`/blogPost/${blog.id}`);
@@ -47,7 +45,7 @@ const BlogCard = ({ blog }) => {
             className="text-sm pt-2 mt-auto"
             style={{ color: Colors.Slate600 }}
           >
-            <span className="block font-medium">{blog.author}</span>
+            <span className="block font-medium">{blog.authorName}</span>
             <span>
               {new Date(blog.date).toLocaleDateString("en-US", {
                 year: "numeric",

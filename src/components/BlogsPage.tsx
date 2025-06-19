@@ -10,9 +10,8 @@ import { getAllBlogs } from "@/services/blogs";
 interface Blog {
   id: string;
   title: string;
-  description?: string;
   content?: string;
-  author: string;
+  authorName: string;
   date: string;
   image?: string;
   tags?: string[];
@@ -22,6 +21,7 @@ const BlogsPage = () => {
   const blogsPerPage = 9;
 
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageGroupStart, setPageGroupStart] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,22 +31,20 @@ const BlogsPage = () => {
     const fetchBlogs = async () => {
       try {
         const apiBlogs = await getAllBlogs();
-        console.log("Fetched blogs from API:", apiBlogs);
-
         const mappedBlogs: Blog[] = apiBlogs.map((blog) => ({
           id: blog._id,
           title: blog.title,
           content: blog.content,
-          description: blog.content.slice(0, 150) + "...",
-          author: blog.authorName,
+          authorName: blog.authorName,
           date: new Date(blog.createdAt).toLocaleDateString(),
-          image: "", // Placeholder or default image URL if needed
+          image: "", // Replace with actual image if available
           tags: [],
         }));
-
         setBlogs(mappedBlogs);
       } catch (error) {
         console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -61,15 +59,13 @@ const BlogsPage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const visiblePages = Math.ceil(blogs.length / blogsPerPage);
-
   const filteredBlogs = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
     if (!query) return blogs;
 
     const words = query.split(/\s+/);
     return blogs.filter((blog) => {
-      const text = `${blog.title} ${blog.description} ${blog.author} ${(
+      const text = `${blog.title} ${blog.content} ${blog.authorName} ${(
         blog.tags || []
       ).join(" ")}`.toLowerCase();
       return words.every((word) => text.includes(word));
@@ -77,6 +73,7 @@ const BlogsPage = () => {
   }, [searchQuery, blogs]);
 
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+  const visiblePages = Math.min(totalPages, 5);
 
   const currentBlogs = useMemo(() => {
     const start = (currentPage - 1) * blogsPerPage;
@@ -87,9 +84,11 @@ const BlogsPage = () => {
     (page: number) => {
       setCurrentPage(page);
       window.scrollTo({ top: 0, behavior: "smooth" });
-      if (page < pageGroupStart) setPageGroupStart(Math.max(1, page - 2));
-      else if (page >= pageGroupStart + visiblePages)
+      if (page < pageGroupStart) {
+        setPageGroupStart(Math.max(1, page - 2));
+      } else if (page >= pageGroupStart + visiblePages) {
         setPageGroupStart(Math.min(totalPages - visiblePages + 1, page - 2));
+      }
     },
     [pageGroupStart, totalPages, visiblePages]
   );
@@ -184,36 +183,49 @@ const BlogsPage = () => {
     if (totalPages <= 1) return null;
     return (
       <div className="flex sm:hidden items-center justify-center mt-8 space-x-1 text-sm">
-        {[
-          currentPage > 1 && (
-            <button
-              key="prev"
-              onClick={() => handlePageChange(currentPage - 1)}
-              className={pageButtonClass(false)}
-            >
-              Previous
-            </button>
-          ),
+        {currentPage > 1 && (
           <button
-            key="current"
-            className={pageButtonClass(true)}
-            style={{ backgroundColor: Colors.PrimaryColor }}
+            key="prev"
+            onClick={() => handlePageChange(currentPage - 1)}
+            className={pageButtonClass(false)}
           >
-            {currentPage}
-          </button>,
-          currentPage < totalPages && (
-            <button
-              key="next"
-              onClick={() => handlePageChange(currentPage + 1)}
-              className={pageButtonClass(false)}
-            >
-              Next
-            </button>
-          ),
-        ]}
+            Previous
+          </button>
+        )}
+        <button
+          key="current"
+          className={pageButtonClass(true)}
+          style={{ backgroundColor: Colors.PrimaryColor }}
+        >
+          {currentPage}
+        </button>
+        {currentPage < totalPages && (
+          <button
+            key="next"
+            onClick={() => handlePageChange(currentPage + 1)}
+            className={pageButtonClass(false)}
+          >
+            Next
+          </button>
+        )}
       </div>
     );
   };
+
+  const renderSkeletons = () => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {Array.from({ length: blogsPerPage }).map((_, i) => (
+        <div
+          key={i}
+          className="animate-pulse bg-white shadow-md rounded-lg p-4 space-y-4"
+        >
+          <div className="h-40 bg-gray-200 rounded-md" />
+          <div className="h-4 bg-gray-200 rounded w-3/4" />
+          <div className="h-4 bg-gray-200 rounded w-1/2" />
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className="relative overflow-x-hidden">
@@ -248,7 +260,9 @@ const BlogsPage = () => {
             setPageGroupStart={setPageGroupStart}
           />
 
-          {currentBlogs.length > 0 ? (
+          {loading ? (
+            renderSkeletons()
+          ) : currentBlogs.length > 0 ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {currentBlogs.map((blog) => (

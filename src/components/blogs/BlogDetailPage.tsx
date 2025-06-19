@@ -11,6 +11,8 @@ const BlogDetailPage = () => {
   const [blog, setBlog] = useState(location.state || null);
   const [loading, setLoading] = useState(!location.state);
 
+  console.log("blog blog blog : ", blog);
+
   useEffect(() => {
     if (location.state) return; // Blog was already passed from navigation
 
@@ -78,7 +80,7 @@ const BlogDetailPage = () => {
               <span>
                 By{" "}
                 <span className="font-medium text-slate-600">
-                  {blog.author}
+                  {blog.authorName}
                 </span>
               </span>
               <span className="mx-2">•</span>
