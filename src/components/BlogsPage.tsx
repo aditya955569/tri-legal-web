@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import Footer from "./Footer";
 import BlogCard from "./BlogCard";
-import CustomizedNavigation from "./CustomizedNavigation";
+import CustomizedNavigation from "./customized/CustomizedNavigation";
 import { dummyBlogs } from "@/mockData/dummyBlogs";
 import { Colors } from "@/styles/global";
 import EmptySearchResult from "./blogs/EmptySearchResult";

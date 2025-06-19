@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { dummyBlogs } from "@/mockData/dummyBlogs";
 import { Colors } from "@/styles/global";
-import CustomizedNavigation from "../CustomizedNavigation";
-import Footer from "../Footer";
+import CustomizedNavigation from "../customized/CustomizedNavigation";
+import CustomizedFooter from "../customized/CustomizedFooter";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
@@ -65,7 +65,7 @@ const BlogDetailPage = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      <CustomizedFooter />
     </>
   );
 };

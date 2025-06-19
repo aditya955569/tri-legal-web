@@ -1,5 +1,3 @@
-import { Button } from "./ui/button";
-
 const OfficeInformation = () => {
   return (
     <div className="space-y-6 text-sm text-slate-300">
