@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import BlogsPage from "./components/BlogsPage";
 import ProBono from "./components/ProBono";
 import ScrollToTop from "./components/ScrollToTop";
+import BlogDetailPage from "./components/blogs/BlogDetailPage";
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/probono" element={<ProBono />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/blogPost/:id" element={<BlogDetailPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
