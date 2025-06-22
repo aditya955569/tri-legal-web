@@ -3,10 +3,15 @@ import OfficeInformation from "./officeInformation";
 import { Colors } from "@/styles/global";
 import { useNavigate } from "react-router-dom";
 
-const quickLinks = ["About Us", "Our Team", "Contact Us"];
+const quickLinks = [
+  { title: "About Us", path: "/about-us" },
+  { title: "Our Team", path: "/team" },
+  { title: "Contact Us", path: "/contact" },
+];
 
 const Footer = () => {
   const navigate = useNavigate();
+
   return (
     <footer
       style={{ backgroundColor: Colors.Slate700 }}
@@ -58,6 +63,7 @@ const Footer = () => {
                   key={index}
                   className="cursor-pointer transition-colors"
                   style={{ color: Colors.Slate400 }}
+                  onClick={() => navigate(link.path)}
                   onMouseOver={(e) =>
                     (e.currentTarget.style.color = Colors.PrimaryColorLight)
                   }
@@ -65,7 +71,7 @@ const Footer = () => {
                     (e.currentTarget.style.color = Colors.Slate400)
                   }
                 >
-                  {link}
+                  {link.title}
                 </li>
               ))}
             </ul>

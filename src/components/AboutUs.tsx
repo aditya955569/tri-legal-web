@@ -10,20 +10,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (cardRef.current) {
+    if (contentRef.current) {
       gsap.fromTo(
-        cardRef.current,
-        { y: 40, opacity: 0 },
+        contentRef.current,
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: cardRef.current,
+            trigger: contentRef.current,
             start: "top 85%",
             toggleActions: "play none none reset",
           },
@@ -53,6 +53,31 @@ const AboutUs = () => {
   return (
     <>
       <CustomizedNavigation />
+
+      {/* Hero Section */}
+      {/* <section
+        className="relative py-24"
+        style={{
+          background: `linear-gradient(to right, ${Colors.PrimaryColorLight}, ${Colors.White})`,
+        }}
+      >
+        <div className="container mx-auto px-6 text-center">
+          <h1
+            className="text-5xl md:text-6xl font-bold leading-tight"
+            style={{ color: Colors.Slate800 }}
+          >
+            About VidhiVidh
+          </h1>
+          <p
+            className="mt-6 text-xl max-w-3xl mx-auto leading-relaxed"
+            style={{ color: Colors.Slate600 }}
+          >
+            Two decades of justice, integrity, and unwavering legal commitment.
+          </p>
+        </div>
+      </section> */}
+
+      {/* About Content Section */}
       <section
         ref={sectionRef}
         className="py-20"
@@ -60,61 +85,72 @@ const AboutUs = () => {
           background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}11, ${Colors.White}, ${Colors.Slate400}11)`,
         }}
       >
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
-              style={{ color: Colors.Slate700 }}
-            >
-              About Us
-            </h2>
-            <p
-              className="text-xl max-w-3xl mx-auto"
-              style={{ color: Colors.Slate600 }}
-            >
-              Learn more about our legacy and commitment to legal excellence.
-            </p>
-          </div>
-
-          <Card
-            ref={cardRef}
-            className="bg-white border-0 shadow-md transition-all duration-300 hover:shadow-lg"
+        <div className="text-center mb-16">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: Colors.Slate700 }}
           >
-            <CardHeader className="text-center pb-4">
-              <CardTitle
-                className="text-2xl font-semibold"
-                style={{ color: Colors.Slate700 }}
-              >
-                Our Journey
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-center px-6 pb-6">
-              <p
-                className="mb-4 text-lg leading-relaxed"
-                style={{ color: Colors.Slate600 }}
-              >
-                Founded in the historic and culturally rich city of Lucknow two
-                decades ago, VidhiVidh has become a trusted name in legal
-                counsel across Uttar Pradesh and beyond. Built on the principles
-                of integrity, diligence, and accessibility, our firm has
-                consistently provided high-quality legal services with a
-                human-centric approach.
-              </p>
-              <p
-                className="text-lg leading-relaxed"
-                style={{ color: Colors.Slate600 }}
-              >
-                With deep roots in the community and a vision for progress,
-                VidhiVidh blends traditional values with modern legal practices.
-                Our experienced team is committed to empowering individuals,
-                businesses, and institutions by offering reliable solutions
-                tailored to each client’s unique needs. We don't just practice
-                law—we uphold justice.
-              </p>
-            </CardContent>
+            About Us
+          </h2>
+          <p
+            className="text-xl max-w-3xl mx-auto"
+            style={{ color: Colors.Slate600 }}
+          >
+            Learn more about our legacy and commitment to legal excellence.
+          </p>
+        </div>
+
+        <div className="container mx-auto px-6">
+          <Card
+            ref={contentRef}
+            className="bg-white border-0 shadow-lg transition-all duration-300"
+          >
+            <div className="grid md:grid-cols-2 gap-10 items-center px-8 py-10">
+              {/* Image Section */}
+              <div className="w-full">
+                <img
+                  src="/images/about-vidhividh.jpg"
+                  alt="VidhiVidh Office"
+                  className="rounded-xl shadow-md w-full object-cover h-72 md:h-full"
+                />
+              </div>
+
+              {/* Text Section */}
+              <div>
+                <CardHeader className="pb-4">
+                  <CardTitle
+                    className="text-3xl font-semibold mb-4"
+                    style={{ color: Colors.Slate700 }}
+                  >
+                    Our Journey
+                  </CardTitle>
+                </CardHeader>
+                <CardContent
+                  className="px-0 text-lg space-y-5"
+                  style={{ color: Colors.Slate600 }}
+                >
+                  <p>
+                    Established 20 years ago in the culturally vibrant city of
+                    Lucknow, VidhiVidh has evolved into a renowned legal
+                    institution known for its deep-rooted values and
+                    client-first approach. From a modest beginning, we have
+                    grown to serve individuals, businesses, and institutions
+                    with steadfast dedication.
+                  </p>
+                  <p>
+                    Our philosophy blends traditional ethics with modern legal
+                    strategy. Whether it’s resolving complex disputes or
+                    offering proactive legal advice, we bring clarity,
+                    compassion, and competence to every case. We don’t just
+                    provide legal service — we stand as pillars of justice.
+                  </p>
+                </CardContent>
+              </div>
+            </div>
           </Card>
         </div>
       </section>
+
       <Footer />
     </>
   );
