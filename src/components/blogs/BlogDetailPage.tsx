@@ -4,6 +4,7 @@ import { Colors } from "@/styles/global";
 import CustomizedNavigation from "../customized/CustomizedNavigation";
 import CustomizedFooter from "../customized/CustomizedFooter";
 import { getAllBlogs } from "@/services/blogs";
+import Footer from "../Footer";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
@@ -99,7 +100,7 @@ const BlogDetailPage = () => {
           </div>
         </div>
       </section>
-      <CustomizedFooter />
+      <Footer />
     </>
   );
 };
