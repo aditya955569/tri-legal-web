@@ -5,7 +5,7 @@ import { Menu, X, Gavel } from "lucide-react";
 const CustomizedNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate(); // Only for React Router navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {

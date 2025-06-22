@@ -1,10 +1,12 @@
 import { practiceAreas } from "@/mockData/practiceAreas";
 import OfficeInformation from "./officeInformation";
 import { Colors } from "@/styles/global";
+import { useNavigate } from "react-router-dom";
 
 const quickLinks = ["About Us", "Our Team", "Contact Us"];
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer
       style={{ backgroundColor: Colors.Slate700 }}
@@ -29,6 +31,7 @@ const Footer = () => {
                   key={index}
                   className="cursor-pointer transition-colors"
                   style={{ color: Colors.Slate400 }}
+                  onClick={() => navigate(item.href)}
                   onMouseOver={(e) =>
                     (e.currentTarget.style.color = Colors.PrimaryColorLight)
                   }
