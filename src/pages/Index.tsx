@@ -14,7 +14,7 @@ const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
   const fabRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const phoneNumber = "9450411390";
+  const phoneNumber = "919450411390";
 
   useEffect(() => {
     if (isOpen) {
