@@ -10,7 +10,7 @@ export interface Blog {
 
 // Updated return type: just an array of Blog, not wrapped in { success, data }
 export const getAllBlogs = async (): Promise<Blog[]> => {
-    const API_URL = import.meta.env.VITE_API_URL || "https://blogs-ooi1.onrender.com";
+    const API_URL = "https://blogs-ooi1.onrender.com";
     try {
         const response = await fetch(`${API_URL}/api/v1/blogs`, {
             method: "GET",

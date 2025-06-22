@@ -4,12 +4,13 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Colors } from "@/styles/global";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PracticeAreas = () => {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     cardsRef.current.forEach((card, index) => {
       if (card) {
@@ -61,8 +62,9 @@ const PracticeAreas = () => {
             <Card
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="group relative bg-white border border-slate-200 rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
+              className="group relative bg-white border border-slate-200 rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-2xl hover:scale-[1.025] cursor-pointer"
               style={{ zIndex: 1 }}
+              onClick={() => navigate(area.href)}
             >
               {/* Gradient glow effect on hover */}
               <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-blue-300 opacity-0 group-hover:opacity-30 blur-xl rounded-xl transition-opacity duration-500 z-0"></div>

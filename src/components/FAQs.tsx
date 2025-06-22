@@ -87,7 +87,7 @@ const FAQs = () => {
             className="mt-2 text-base md:text-lg"
             style={{ color: Colors.Slate600 }}
           >
-            Clear answers to common civil law questions.
+            Clear answers to commonly asked legal and service-related questions.
           </p>
         </div>
 
