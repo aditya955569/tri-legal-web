@@ -9,6 +9,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Phone, Plus, X, MessageCircle } from "lucide-react";
 import { Colors } from "@/styles/global";
+import FAQs from "@/components/FAQs";
 
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +62,7 @@ const Index = () => {
       <section id="contact">
         <Contact />
       </section>
+      <FAQs />
       <Footer />
 
       {/* Floating Action Buttons */}

@@ -61,32 +61,38 @@ const PracticeAreas = () => {
             <Card
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="group hover:shadow-lg transition-all duration-300 border-0 bg-white hover:-translate-y-1"
+              className="group relative bg-white border border-slate-200 rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
+              style={{ zIndex: 1 }}
             >
-              <CardHeader className="text-center pb-4">
-                <div
-                  className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
-                  style={{
-                    background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}, ${Colors.PrimaryColor})`,
-                  }}
-                >
-                  <area.icon className="h-8 w-8 text-white" />
-                </div>
-                <CardTitle
-                  className="text-xl font-bold transition-colors"
-                  style={{ color: Colors.Slate700 }}
-                >
-                  {area.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p
-                  className="mb-4 leading-relaxed"
-                  style={{ color: Colors.Slate600 }}
-                >
-                  {area.description}
-                </p>
-              </CardContent>
+              {/* Gradient glow effect on hover */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-blue-300 opacity-0 group-hover:opacity-30 blur-xl rounded-xl transition-opacity duration-500 z-0"></div>
+
+              <div className="relative z-10">
+                <CardHeader className="text-center pb-4">
+                  <div
+                    className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}, ${Colors.PrimaryColor})`,
+                    }}
+                  >
+                    <area.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle
+                    className="text-xl font-bold group-hover:transition-colors"
+                    style={{ color: Colors.Slate700 }}
+                  >
+                    {area.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center px-4 pb-6">
+                  <p
+                    className="leading-relaxed"
+                    style={{ color: Colors.Slate600 }}
+                  >
+                    {area.description}
+                  </p>
+                </CardContent>
+              </div>
             </Card>
           ))}
         </div>

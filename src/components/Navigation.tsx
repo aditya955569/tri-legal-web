@@ -75,7 +75,8 @@ const Navigation = () => {
               className="bg-highlight hover:bg-highlightHover text-backgroundDark font-semibold shadow-md"
               onClick={() => scrollToSection("#contact")}
             >
-              Free Consultation
+              {/* Free Consultation */}
+              Schedule a Consultation
             </Button>
           </div>
 
@@ -111,7 +112,8 @@ const Navigation = () => {
                   className="w-full bg-highlight hover:bg-highlightHover text-backgroundDark font-semibold"
                   onClick={() => scrollToSection("#contact")}
                 >
-                  Free Consultation
+                  {/* Free Consultation */}
+                  Schedule a Consultation
                 </Button>
               </div>
             </div>

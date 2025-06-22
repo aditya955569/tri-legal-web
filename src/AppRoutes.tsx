@@ -12,6 +12,7 @@ import MatrimonialLaw from "./components/practiceAreas/MatrimonialLaw";
 import IntellectualPropertyRights from "./components/practiceAreas/IntellectualPropertyRights";
 import LabourAndIndustrialLaw from "./components/practiceAreas/LabourAndIndustriallaw";
 import ServiceLaw from "./components/practiceAreas/ServiceLaw";
+import AboutUs from "./components/AboutUs";
 
 const AppRoutes = () => (
   <Routes>
@@ -33,6 +34,7 @@ const AppRoutes = () => (
       element={<IntellectualPropertyRights />}
     />
     <Route path="/blogPost/:id" element={<BlogDetailPage />} />
+    <Route path="/about-us" element={<AboutUs />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
