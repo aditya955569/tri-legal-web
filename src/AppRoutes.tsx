@@ -13,6 +13,9 @@ import IntellectualPropertyRights from "./components/practiceAreas/IntellectualP
 import LabourAndIndustrialLaw from "./components/practiceAreas/LabourAndIndustriallaw";
 import ServiceLaw from "./components/practiceAreas/ServiceLaw";
 import AboutUs from "./components/AboutUs";
+import TermsAndConditions from "./components/TermsAndConditions";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import LegalDisclaimer from "./components/LegalDisclaimer";
 
 const AppRoutes = () => (
   <Routes>
@@ -35,6 +38,11 @@ const AppRoutes = () => (
     />
     <Route path="/blogPost/:id" element={<BlogDetailPage />} />
     <Route path="/about-us" element={<AboutUs />} />
+
+    <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+    <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
+
     <Route path="*" element={<NotFound />} />
   </Routes>
 );

@@ -87,7 +87,8 @@ const FAQs = () => {
             className="mt-2 text-base md:text-lg"
             style={{ color: Colors.Slate600 }}
           >
-            Clear answers to commonly asked legal and service-related questions.
+            {/* Clear answers to commonly asked legal and service-related questions. */}
+            Brief answer to common queries.
           </p>
         </div>
 

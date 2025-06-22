@@ -59,10 +59,10 @@ const Index = () => {
       <section id="testimonials">
         <Testimonials />
       </section>
+      <FAQs />
       <section id="contact">
         <Contact />
       </section>
-      <FAQs />
       <Footer />
 
       {/* Floating Action Buttons */}

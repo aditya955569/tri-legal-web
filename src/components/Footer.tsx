@@ -87,23 +87,28 @@ const Footer = () => {
               © 2024 VidhiVidh Law Firm. All rights reserved.
             </p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              {["Privacy Policy", "Terms of Service", "Legal Disclaimer"].map(
-                (item, index) => (
-                  <span
-                    key={index}
-                    className="text-sm cursor-pointer transition-colors"
-                    style={{ color: Colors.Slate400 }}
-                    onMouseOver={(e) =>
-                      (e.currentTarget.style.color = Colors.PrimaryColorLight)
-                    }
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = Colors.Slate400)
-                    }
-                  >
-                    {item}
-                  </span>
-                )
-              )}
+              {[
+                { label: "Privacy Policy", to: "/privacy-policy" },
+                { label: "Terms of Service", to: "/terms-and-conditions" },
+                { label: "Legal Disclaimer", to: "/legal-disclaimer" },
+              ].map((item, index) => (
+                <span
+                  key={index}
+                  className="text-sm cursor-pointer transition-colors"
+                  style={{ color: Colors.Slate400 }}
+                  onClick={() => {
+                    navigate(item.to);
+                  }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.color = Colors.PrimaryColorLight)
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.color = Colors.Slate400)
+                  }
+                >
+                  {item.label}
+                </span>
+              ))}
             </div>
           </div>
         </div>

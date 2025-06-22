@@ -1,4 +1,3 @@
-import { HeartHandshake, HelpingHand, Globe } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
