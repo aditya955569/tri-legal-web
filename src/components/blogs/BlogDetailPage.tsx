@@ -2,10 +2,9 @@ import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Colors } from "@/styles/global";
 import CustomizedNavigation from "../customized/CustomizedNavigation";
-import CustomizedFooter from "../customized/CustomizedFooter";
 import { getAllBlogs } from "@/services/blogs";
 import Footer from "../Footer";
-import { marked } from 'marked';
+import { marked } from "marked";
 const BlogDetailPage = () => {
   const { id } = useParams();
   const location = useLocation();

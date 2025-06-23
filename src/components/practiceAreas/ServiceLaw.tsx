@@ -14,19 +14,19 @@ const serviceLawHighlights = [
     icon: Briefcase,
     title: "Government Employment Matters",
     description:
-      "We handle disputes and litigation involving promotions, transfers, suspensions, and service termination across central and state government services.",
+      "We handle disputes and litigation involving promotions, transfers, suspensions, and service termination across Central and State Government services.",
   },
   {
     icon: Building2,
     title: "Departmental Inquiries",
     description:
-      "Our legal experts represent individuals facing departmental actions, including disciplinary proceedings and internal inquiries in public sector undertakings.",
+      "Our legal experts represent individuals facing departmental actions, including disciplinary proceedings and internal inquiries in Public Sector Undertakings (PSUs).",
   },
   {
     icon: FileCheck2,
     title: "Pension & Retirement Benefits",
     description:
-      "We provide legal support for delayed pensions, gratuity disputes, and rightful benefits claims post-retirement from government or PSU service.",
+      "We provide legal support for delayed pensions, gratuity disputes, and rightful benefits claims post-retirement from government or Public Sector Undertaking (PSU) service.",
   },
 ];
 
@@ -149,7 +149,8 @@ const ServiceLaw = () => {
                 Whether you’re contesting a transfer, facing departmental
                 action, or seeking pension dues, our experienced legal team
                 ensures your rights are defended with precision and legal
-                authority across tribunals, CAT, and courts.
+                authority across tribunals, the Central Administrative Tribunal
+                (CAT), and courts.
               </p>
             </div>
           </div>

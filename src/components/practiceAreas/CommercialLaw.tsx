@@ -20,13 +20,13 @@ const commercialLawHighlights = [
     icon: FileText,
     title: "Contract Drafting & Review",
     description:
-      "Our team ensures every commercial agreement—be it vendor contracts, NDAs, or partnership deeds—is precise, enforceable, and protects your interests.",
+      "Our team ensures every commercial agreement—be it vendor contracts, Non-Disclosure Agreements (NDAs), or partnership deeds—is precise, enforceable, and protects your interests.",
   },
   {
     icon: Handshake,
     title: "Transactional Support",
     description:
-      "From M&A to joint ventures, we guide businesses through critical transactions with strategic advice, due diligence, and full-cycle legal support.",
+      "From Mergers & Acquisitions (M&A) to joint ventures (JVs), we guide businesses through critical transactions with strategic advice, due diligence, and full-cycle legal support.",
   },
 ];
 

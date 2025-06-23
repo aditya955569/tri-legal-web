@@ -14,7 +14,7 @@ const labourLawHighlights = [
     icon: Users,
     title: "Employment & HR Compliance",
     description:
-      "We help companies stay compliant with Indian labour laws, offering legal guidance on contracts, working conditions, employee benefits, and HR policies.",
+      "We help companies stay compliant with Indian labour laws, offering legal guidance on contracts, working conditions, employee benefits, and Human Resources (HR) policies.",
   },
   {
     icon: ClipboardList,
@@ -26,7 +26,7 @@ const labourLawHighlights = [
     icon: BadgeCheck,
     title: "Regulatory Filings & Audits",
     description:
-      "We assist with PF, ESI, gratuity, maternity, and wage filings. Our team also ensures readiness for statutory audits and inspections.",
+      "We assist with Provident Fund (PF), Employees' State Insurance (ESI), gratuity, maternity, and wage filings. Our team also ensures readiness for statutory audits and inspections.",
   },
 ];
 

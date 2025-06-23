@@ -18,9 +18,9 @@ const criminalLawHighlights = [
   },
   {
     icon: Gavel,
-    title: "Trial Expertise",
+    title: "Comprehensive Legal Guidance",
     description:
-      "Our seasoned criminal defense lawyers are experienced litigators who prepare every case as if it will go to trial, ensuring that our clients are always a step ahead in the courtroom.",
+      "From arrest to resolution, we guide you through every stage of the criminal justice process. Our team ensures you understand your options, your rights, and the potential outcomes at every step.",
   },
   {
     icon: Scale,
