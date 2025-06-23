@@ -26,7 +26,7 @@ const BlogCard = ({ blog }) => {
             <img
               src={blog.image || "/default-blog.jpg"}
               alt={blog.title}
-              className="w-full h-44 sm:h-52 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full object-scale-down sm:h-52 md:h-56 transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </CardHeader>

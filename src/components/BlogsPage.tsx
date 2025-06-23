@@ -31,13 +31,14 @@ const BlogsPage = () => {
     const fetchBlogs = async () => {
       try {
         const apiBlogs = await getAllBlogs();
+        console.log(apiBlogs)
         const mappedBlogs: Blog[] = apiBlogs.map((blog) => ({
           id: blog._id,
           title: blog.title,
           content: blog.content,
           authorName: blog.authorName,
           date: new Date(blog.createdAt).toLocaleDateString(),
-          image: "", // Replace with actual image if available
+          image: blog.imageURL, // Replace with actual image if available
           tags: [],
         }));
         setBlogs(mappedBlogs);

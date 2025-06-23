@@ -6,6 +6,7 @@ export interface Blog {
     authorName: string;
     createdAt: string;
     __v?: number;
+    imageURL?:string
 }
 
 // Updated return type: just an array of Blog, not wrapped in { success, data }
