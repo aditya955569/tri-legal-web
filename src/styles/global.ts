@@ -34,7 +34,7 @@ export const Colors = {
 
 
 // export const Colors = {
-//     // Primary (Unique Theme)
+//     / Primary (Unique Theme)
 //     PrimaryColor: "#FF6B6B",         // Coral red
 //     PrimaryColorLight: "#FFA8A8",    // Light coral
 //     PrimaryColorHover: "#E63946",    // Stronger coral
