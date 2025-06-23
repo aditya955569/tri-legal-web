@@ -5,7 +5,7 @@ import CustomizedNavigation from "../customized/CustomizedNavigation";
 import CustomizedFooter from "../customized/CustomizedFooter";
 import { getAllBlogs } from "@/services/blogs";
 import Footer from "../Footer";
-
+import { marked } from 'marked';
 const BlogDetailPage = () => {
   const { id } = useParams();
   const location = useLocation();
@@ -93,7 +93,7 @@ const BlogDetailPage = () => {
             <article
               className="prose prose-lg sm:prose-xl max-w-none"
               style={{ color: Colors.Slate700 }}
-              dangerouslySetInnerHTML={{ __html: blog.content }}
+              dangerouslySetInnerHTML={{ __html: marked(blog.content) }}
             />
 
             <hr className="border-t border-slate-200 mt-12" />
