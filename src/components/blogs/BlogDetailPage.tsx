@@ -11,7 +11,7 @@ const BlogDetailPage = () => {
   const [blog, setBlog] = useState(location.state || null);
   const [loading, setLoading] = useState(!location.state);
 
-  console.log("blog blog blog : ", blog);
+  console.log("blog blog blog: ", blog);
 
   useEffect(() => {
     if (location.state) return; // Blog was already passed from navigation
