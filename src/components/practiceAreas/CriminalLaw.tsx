@@ -20,7 +20,7 @@ const criminalLawHighlights = [
     icon: Gavel,
     title: "Comprehensive Legal Guidance",
     description:
-      "From arrest to resolution, we guide you through every stage of the criminal justice process. Our team ensures you understand your options, your rights, and the potential outcomes at every step.",
+      "From the very beginning of your case through to its conclusion, we’re by your side every step of the way. Our team is dedicated to helping you understand your rights, explore your options, and stay informed about what to expect throughout the entire legal process.",
   },
   {
     icon: Scale,
