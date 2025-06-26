@@ -138,34 +138,22 @@ const BlogDetailPage = () => {
               {blog.title}
             </h1>
 
-            {/* <div className="text-sm sm:text-base text-slate-500 flex flex-wrap items-center gap-2 mb-6">
-              <span>
-                By{" "}
-                <span className="font-medium text-slate-600">
-                  {blog.authorName}
-                </span>
-              </span>
-              <span className="mx-2">•</span>
-              <span>{blog.date}</span>
-            </div> */}
-
+            {/* Author and Share Row */}
             <div className="flex items-center justify-between flex-wrap mb-6">
-              {/* Left: Author and Date */}
               <div className="text-sm sm:text-base text-slate-500 flex items-center gap-2">
                 <span>
-                  By <span className="font-medium  ">{blog.authorName}</span>
+                  By <span className="font-medium">{blog.authorName}</span>
                 </span>
                 <span className="mx-2">•</span>
                 <span>{blog.date}</span>
               </div>
 
-              {/* Right: Share Button */}
               <div className="relative mt-2 sm:mt-0" ref={shareRef}>
                 <button
                   onClick={() => setShowShareMenu(!showShareMenu)}
                   className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium border rounded-md shadow bg-white hover:bg-gray-100 transition"
                 >
-                  <FaShareAlt size={14} color={"text-slate-600"} />
+                  <FaShareAlt size={14} />
                 </button>
 
                 {showShareMenu && (
@@ -203,43 +191,6 @@ const BlogDetailPage = () => {
               style={{ color: Colors.Slate700 }}
               dangerouslySetInnerHTML={{ __html: marked(blog.content) }}
             />
-
-            {/* ✅ Share Button Section */}
-            <div className="relative mt-10 flex justify-end" ref={shareRef}>
-              <button
-                onClick={() => setShowShareMenu(!showShareMenu)}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium border rounded-lg shadow bg-white hover:bg-gray-100 transition"
-              >
-                <FaShareAlt />
-                Share
-              </button>
-
-              {showShareMenu && (
-                <div className="absolute top-12 right-0 bg-white border rounded-md shadow-md z-30 p-2 min-w-[160px]">
-                  <div
-                    onClick={handleShare.whatsapp}
-                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    <FaWhatsapp size={16} color="#25D366" />
-                    <span>WhatsApp</span>
-                  </div>
-                  <div
-                    onClick={handleShare.facebook}
-                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    <FaFacebook size={16} color="#1877F2" />
-                    <span>Facebook</span>
-                  </div>
-                  <div
-                    onClick={handleShare.copy}
-                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    <FaRegCopy size={16} color="#555" />
-                    <span>Copy URL</span>
-                  </div>
-                </div>
-              )}
-            </div>
 
             <hr className="border-t border-slate-200 mt-12" />
           </div>

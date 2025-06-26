@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Colors } from "@/styles/global"; // ✅ Import colors
+import { Colors } from "@/styles/global";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -109,6 +109,45 @@ const Contact = () => {
     }
   };
 
+  const inputFields = [
+    {
+      id: "firstName",
+      name: "firstName",
+      label: "First Name",
+      type: "text",
+      placeholder: "First Name",
+      required: true,
+      colSpan: "sm:col-span-1",
+    },
+    {
+      id: "lastName",
+      name: "lastName",
+      label: "Last Name",
+      type: "text",
+      placeholder: "Last Name",
+      required: true,
+      colSpan: "sm:col-span-1",
+    },
+    {
+      id: "email",
+      name: "email",
+      label: "Email Address",
+      type: "email",
+      placeholder: "Email Address",
+      required: true,
+      colSpan: "sm:col-span-2",
+    },
+    {
+      id: "phone",
+      name: "phone",
+      label: "Phone Number",
+      type: "tel",
+      placeholder: "Phone Number",
+      required: true,
+      colSpan: "sm:col-span-2",
+    },
+  ];
+
   return (
     <section className="py-16" style={{ backgroundColor: Colors.White }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -144,90 +183,36 @@ const Contact = () => {
             <CardContent className="space-y-6">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="firstName"
-                      className="block mb-1 text-sm"
-                      style={{ color: Colors.Slate600 }}
-                    >
-                      First Name
-                    </label>
-                    <Input
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      placeholder="First Name"
-                      className="border"
-                      style={{ borderColor: Colors.Slate400 }}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="lastName"
-                      className="block mb-1 text-sm"
-                      style={{ color: Colors.Slate600 }}
-                    >
-                      Last Name
-                    </label>
-                    <Input
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Last Name"
-                      className="border"
-                      style={{ borderColor: Colors.Slate400 }}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-1 text-sm"
-                    style={{ color: Colors.Slate600 }}
-                  >
-                    Email Address
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Email Address"
-                    className="border"
-                    style={{ borderColor: Colors.Slate400 }}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block mb-1 text-sm"
-                    style={{ color: Colors.Slate600 }}
-                  >
-                    Phone Number
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    maxLength={10}
-                    value={formData.phone}
-                    onInput={handlePhoneInput}
-                    onChange={handleChange}
-                    placeholder="Phone Number"
-                    className="border"
-                    style={{ borderColor: Colors.Slate400 }}
-                    required
-                  />
+                  {inputFields.map((field) => (
+                    <div key={field.id} className={field.colSpan}>
+                      <label
+                        htmlFor={field.id}
+                        className="block mb-1 text-sm"
+                        style={{ color: Colors.Slate600 }}
+                      >
+                        {field.label}
+                      </label>
+                      <Input
+                        id={field.id}
+                        name={field.name}
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        value={formData[field.name as keyof typeof formData]}
+                        onChange={handleChange}
+                        onInput={
+                          field.name === "phone" ? handlePhoneInput : undefined
+                        }
+                        className="border"
+                        style={{ borderColor: Colors.Slate400 }}
+                        required={field.required}
+                        inputMode={
+                          field.name === "phone" ? "numeric" : undefined
+                        }
+                        pattern={field.name === "phone" ? "[0-9]*" : undefined}
+                        maxLength={field.name === "phone" ? 10 : undefined}
+                      />
+                    </div>
+                  ))}
                 </div>
 
                 <div>

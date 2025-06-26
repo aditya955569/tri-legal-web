@@ -16,6 +16,8 @@ import AboutUs from "./components/AboutUs";
 import TermsAndConditions from "./components/TermsAndConditions";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import LegalDisclaimer from "./components/LegalDisclaimer";
+import TeamWithUs from "./components/TeamWithUs";
+import Internship from "./components/Internship";
 
 const AppRoutes = () => (
   <Routes>
@@ -42,6 +44,9 @@ const AppRoutes = () => (
     <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
     <Route path="/legal-disclaimer" element={<LegalDisclaimer />} />
+
+    <Route path="/team-with-us" element={<TeamWithUs />} />
+    <Route path="/careers-internship" element={<Internship />} />
 
     <Route path="*" element={<NotFound />} />
   </Routes>

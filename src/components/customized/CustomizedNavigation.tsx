@@ -19,6 +19,8 @@ const CustomizedNavigation = () => {
     { name: "Home", path: "/" },
     { name: "Blogs", path: "/blogs" },
     { name: "Probono", path: "/probono" },
+    { name: "Internship", path: "/careers-internship" },
+    { name: "Team with Us", path: "/team-with-us" },
   ];
 
   const scrollToSection = (href: string) => {

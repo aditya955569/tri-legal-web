@@ -23,17 +23,30 @@ const BlogCard = ({ blog }) => {
 
   const handleShare = {
     whatsapp: () => {
-      window.open(
-        `https://wa.me/?text=${encodeURIComponent(blogUrl)}`,
-        "_blank"
-      );
+      // Create a more engaging share message
+      const shareMessage = `Check out this blog post: *${blog.title}*\n\n${shortDescription}\n\nRead more: ${blogUrl}`;
+
+      // Detect if mobile or desktop
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // For mobile devices - opens directly in WhatsApp app
+        window.open(`whatsapp://send?text=${encodeURIComponent(shareMessage)}`);
+      } else {
+        // For desktop - opens web.whatsapp.com
+        window.open(
+          `https://web.whatsapp.com/send?text=${encodeURIComponent(
+            shareMessage
+          )}`
+        );
+      }
       setShowShareMenu(false);
     },
     facebook: () => {
       window.open(
         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
           blogUrl
-        )}`,
+        )}&quote=${encodeURIComponent(blog.title)}`,
         "_blank"
       );
       setShowShareMenu(false);
@@ -44,12 +57,13 @@ const BlogCard = ({ blog }) => {
         toast.success("URL copied to clipboard!");
       } catch (err) {
         console.error("Failed to copy:", err);
+        toast.error("Failed to copy URL");
       }
       setShowShareMenu(false);
     },
   };
 
-  // ✅ Close share menu on outside click
+  // Close share menu on outside click
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (shareRef.current && !shareRef.current.contains(e.target)) {
@@ -66,53 +80,7 @@ const BlogCard = ({ blog }) => {
         className="h-full flex flex-col bg-white border transition-all duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1 rounded-2xl overflow-hidden"
         style={{ borderColor: Colors.Slate300 }}
       >
-        {/* Image Section */}
-        {/* <CardHeader className="p-0 relative">
-          <div className="overflow-hidden relative">
-            <img
-              src={blog.image || "/default-blog.jpg"}
-              alt={blog.title}
-              className="w-full object-scale-down sm:h-52 md:h-56 transition-transform duration-500 group-hover:scale-105"
-            />
-
-            <div className="absolute top-2 right-2 z-20" ref={shareRef}>
-              <button
-                onClick={() => setShowShareMenu(!showShareMenu)}
-                className="p-2 rounded-full bg-white hover:bg-gray-100 shadow"
-                aria-label="Share"
-              >
-                <Share2 size={18} />
-              </button>
-
-              {showShareMenu && (
-                <div className="absolute top-10 right-0 bg-white border rounded-md shadow-md z-30 p-2 min-w-[160px]">
-                  <div
-                    onClick={handleShare.whatsapp}
-                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    <FaWhatsapp size={16} color="#25D366" />
-                    <span>WhatsApp</span>
-                  </div>
-                  <div
-                    onClick={handleShare.facebook}
-                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    <FaFacebook size={16} color="#1877F2" />
-                    <span>Facebook</span>
-                  </div>
-                  <div
-                    onClick={handleShare.copy}
-                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                  >
-                    <FaRegCopy size={16} color="#555" />
-                    <span>Copy URL</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </CardHeader> */}
-
+        {/* Image Section with Share Button */}
         <CardHeader className="p-0 relative">
           <div className="relative w-full h-52 sm:h-60 md:h-64 overflow-hidden">
             <img
@@ -121,34 +89,47 @@ const BlogCard = ({ blog }) => {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
 
-            {/* ✅ Share Button at top-right of image */}
+            {/* Share Button */}
             <div className="absolute top-2 right-2 z-20" ref={shareRef}>
               <button
-                onClick={() => setShowShareMenu(!showShareMenu)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowShareMenu(!showShareMenu);
+                }}
                 className="p-2 rounded-full bg-white hover:bg-gray-100 shadow"
                 aria-label="Share"
               >
                 <FaShareAlt size={18} color="#6366F1" />
               </button>
 
+              {/* Share Menu */}
               {showShareMenu && (
                 <div className="absolute top-10 right-0 bg-white border rounded-md shadow-md z-30 p-2 min-w-[160px]">
                   <div
-                    onClick={handleShare.whatsapp}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShare.whatsapp();
+                    }}
                     className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
                   >
                     <FaWhatsapp size={16} color="#25D366" />
                     <span>WhatsApp</span>
                   </div>
                   <div
-                    onClick={handleShare.facebook}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShare.facebook();
+                    }}
                     className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
                   >
                     <FaFacebook size={16} color="#1877F2" />
                     <span>Facebook</span>
                   </div>
                   <div
-                    onClick={handleShare.copy}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShare.copy();
+                    }}
                     className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
                   >
                     <FaRegCopy size={16} color="#555" />
@@ -194,7 +175,10 @@ const BlogCard = ({ blog }) => {
           {/* Read More Button */}
           <div className="absolute bottom-4 right-4">
             <button
-              onClick={handleClick}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClick();
+              }}
               className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-md border transition-all duration-300"
               style={{
                 backgroundColor: Colors.PrimaryColor,
