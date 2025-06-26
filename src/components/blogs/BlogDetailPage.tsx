@@ -1,20 +1,24 @@
 import { useParams, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Colors } from "@/styles/global";
 import CustomizedNavigation from "../customized/CustomizedNavigation";
 import { getAllBlogs } from "@/services/blogs";
 import Footer from "../Footer";
 import { marked } from "marked";
+import { Helmet } from "react-helmet-async";
+import { FaWhatsapp, FaFacebook, FaRegCopy, FaShareAlt } from "react-icons/fa";
+import { toast } from "sonner";
+
 const BlogDetailPage = () => {
   const { id } = useParams();
   const location = useLocation();
   const [blog, setBlog] = useState(location.state || null);
   const [loading, setLoading] = useState(!location.state);
-
-  console.log("blog blog blog: ", blog);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const shareRef = useRef(null);
 
   useEffect(() => {
-    if (location.state) return; // Blog was already passed from navigation
+    if (location.state) return;
 
     const fetchBlog = async () => {
       try {
@@ -26,7 +30,8 @@ const BlogDetailPage = () => {
             id: foundBlog._id,
             title: foundBlog.title,
             content: foundBlog.content,
-            author: foundBlog.authorName,
+            image: foundBlog.image ?? "",
+            authorName: foundBlog.authorName,
             date: new Date(foundBlog.createdAt).toLocaleDateString(),
           });
         }
@@ -39,6 +44,16 @@ const BlogDetailPage = () => {
 
     fetchBlog();
   }, [id, location.state]);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (shareRef.current && !shareRef.current.contains(e.target)) {
+        setShowShareMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
 
   if (loading) {
     return (
@@ -58,9 +73,56 @@ const BlogDetailPage = () => {
     );
   }
 
+  const blogUrl = `${window.location.origin}/blogPost/${blog.id}`;
+
+  const handleShare = {
+    whatsapp: () => {
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(blogUrl)}`,
+        "_blank"
+      );
+      setShowShareMenu(false);
+    },
+    facebook: () => {
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          blogUrl
+        )}`,
+        "_blank"
+      );
+      setShowShareMenu(false);
+    },
+    copy: async () => {
+      try {
+        await navigator.clipboard.writeText(blogUrl);
+        toast.success("URL copied to clipboard!");
+      } catch (err) {
+        console.error("Failed to copy:", err);
+      }
+      setShowShareMenu(false);
+    },
+  };
+
   return (
     <>
+      <Helmet>
+        <title>{blog.title}</title>
+        <meta property="og:title" content={blog.title} />
+        <meta property="og:description" content={blog.content.slice(0, 100)} />
+        <meta property="og:image" content={blog.image || "/default-blog.jpg"} />
+        <meta property="og:url" content={blogUrl} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={blog.title} />
+        <meta name="twitter:description" content={blog.content.slice(0, 100)} />
+        <meta
+          name="twitter:image"
+          content={blog.image || "/default-blog.jpg"}
+        />
+      </Helmet>
+
       <CustomizedNavigation />
+
       <section
         className="py-20"
         style={{
@@ -76,7 +138,7 @@ const BlogDetailPage = () => {
               {blog.title}
             </h1>
 
-            <div className="text-sm sm:text-base text-slate-500 flex flex-wrap items-center gap-2 mb-6">
+            {/* <div className="text-sm sm:text-base text-slate-500 flex flex-wrap items-center gap-2 mb-6">
               <span>
                 By{" "}
                 <span className="font-medium text-slate-600">
@@ -85,6 +147,53 @@ const BlogDetailPage = () => {
               </span>
               <span className="mx-2">•</span>
               <span>{blog.date}</span>
+            </div> */}
+
+            <div className="flex items-center justify-between flex-wrap mb-6">
+              {/* Left: Author and Date */}
+              <div className="text-sm sm:text-base text-slate-500 flex items-center gap-2">
+                <span>
+                  By <span className="font-medium  ">{blog.authorName}</span>
+                </span>
+                <span className="mx-2">•</span>
+                <span>{blog.date}</span>
+              </div>
+
+              {/* Right: Share Button */}
+              <div className="relative mt-2 sm:mt-0" ref={shareRef}>
+                <button
+                  onClick={() => setShowShareMenu(!showShareMenu)}
+                  className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium border rounded-md shadow bg-white hover:bg-gray-100 transition"
+                >
+                  <FaShareAlt size={14} color={"text-slate-600"} />
+                </button>
+
+                {showShareMenu && (
+                  <div className="absolute top-10 right-0 bg-white border rounded-md shadow-md z-30 p-2 min-w-[160px]">
+                    <div
+                      onClick={handleShare.whatsapp}
+                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                    >
+                      <FaWhatsapp size={16} color="#25D366" />
+                      <span>WhatsApp</span>
+                    </div>
+                    <div
+                      onClick={handleShare.facebook}
+                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                    >
+                      <FaFacebook size={16} color="#1877F2" />
+                      <span>Facebook</span>
+                    </div>
+                    <div
+                      onClick={handleShare.copy}
+                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                    >
+                      <FaRegCopy size={16} color="#555" />
+                      <span>Copy URL</span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             <hr className="border-t border-slate-300 mb-8" />
@@ -95,10 +204,48 @@ const BlogDetailPage = () => {
               dangerouslySetInnerHTML={{ __html: marked(blog.content) }}
             />
 
+            {/* ✅ Share Button Section */}
+            <div className="relative mt-10 flex justify-end" ref={shareRef}>
+              <button
+                onClick={() => setShowShareMenu(!showShareMenu)}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium border rounded-lg shadow bg-white hover:bg-gray-100 transition"
+              >
+                <FaShareAlt />
+                Share
+              </button>
+
+              {showShareMenu && (
+                <div className="absolute top-12 right-0 bg-white border rounded-md shadow-md z-30 p-2 min-w-[160px]">
+                  <div
+                    onClick={handleShare.whatsapp}
+                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    <FaWhatsapp size={16} color="#25D366" />
+                    <span>WhatsApp</span>
+                  </div>
+                  <div
+                    onClick={handleShare.facebook}
+                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    <FaFacebook size={16} color="#1877F2" />
+                    <span>Facebook</span>
+                  </div>
+                  <div
+                    onClick={handleShare.copy}
+                    className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    <FaRegCopy size={16} color="#555" />
+                    <span>Copy URL</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <hr className="border-t border-slate-200 mt-12" />
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );

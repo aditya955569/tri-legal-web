@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { FaShareAlt, FaFacebook, FaWhatsapp, FaRegCopy } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
-import { Share2 } from "lucide-react";
 import { toast } from "sonner";
 
 const BlogCard = ({ blog }) => {

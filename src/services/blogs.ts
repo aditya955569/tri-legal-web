@@ -1,12 +1,13 @@
 // Define Blog type based on actual response
 export interface Blog {
+    image: string;
     _id: string;
     title: string;
     content: string;
     authorName: string;
     createdAt: string;
     __v?: number;
-    imageURL?:string
+    imageURL?: string
 }
 
 // Updated return type: just an array of Blog, not wrapped in { success, data }

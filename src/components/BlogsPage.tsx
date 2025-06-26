@@ -31,7 +31,7 @@ const BlogsPage = () => {
     const fetchBlogs = async () => {
       try {
         const apiBlogs = await getAllBlogs();
-        console.log(apiBlogs)
+        console.log(apiBlogs);
         const mappedBlogs: Blog[] = apiBlogs.map((blog) => ({
           id: blog._id,
           title: blog.title,
@@ -156,27 +156,29 @@ const BlogsPage = () => {
     });
 
     return (
-      <div className="flex items-center justify-center mt-8">
-        <div className="flex flex-wrap sm:flex-nowrap items-center justify-center overflow-x-auto">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="min-w-[70px] h-9 px-2 py-1 text-xs sm:text-sm rounded-l-md border mr-1"
-            style={navButtonStyle(currentPage === 1)}
-          >
-            Previous
-          </button>
-          <div className="flex items-center">{renderPaginationButtons()}</div>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="min-w-[70px] h-9 px-2 py-1 text-xs sm:text-sm rounded-r-md border ml-1"
-            style={navButtonStyle(currentPage === totalPages)}
-          >
-            Next
-          </button>
+      <>
+        <div className="flex items-center justify-center mt-8">
+          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center overflow-x-auto">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="min-w-[70px] h-9 px-2 py-1 text-xs sm:text-sm rounded-l-md border mr-1"
+              style={navButtonStyle(currentPage === 1)}
+            >
+              Previous
+            </button>
+            <div className="flex items-center">{renderPaginationButtons()}</div>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="min-w-[70px] h-9 px-2 py-1 text-xs sm:text-sm rounded-r-md border ml-1"
+              style={navButtonStyle(currentPage === totalPages)}
+            >
+              Next
+            </button>
+          </div>
         </div>
-      </div>
+      </>
     );
   };
 
