@@ -21,7 +21,19 @@ const Internship = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const studyYears = [
+    "First Year",
+    "Second Year",
+    "Third Year",
+    "Fourth Year",
+    "Fifth Year",
+    "Graduate (LLB)",
+    "Post Graduate (LLM)",
+  ];
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -60,7 +72,6 @@ const Internship = () => {
     try {
       console.log("Internship application submitted:", formData);
       toast.success("Application submitted successfully!");
-
       setFormData({
         name: "",
         email: "",
@@ -81,7 +92,6 @@ const Internship = () => {
     { name: "email", label: "Email", placeholder: "example@domain.com" },
     { name: "college", label: "College Name", placeholder: "Your college" },
     { name: "location", label: "Location", placeholder: "City, State" },
-    { name: "year", label: "Year of Study", placeholder: "e.g., 3rd Year" },
     {
       name: "resume",
       label: "Resume (Google Drive link)",
@@ -111,28 +121,11 @@ const Internship = () => {
 
             <p className="text-base" style={{ color: Colors.Slate600 }}>
               At <strong>VidhiVidh</strong>, we are committed to mentoring and
-              developing future legal professionals. Interns at our Lucknow
-              office are offered real responsibilities and close mentorship from
-              our experienced attorneys.
+              developing future legal professionals...
             </p>
 
             <p className="text-base" style={{ color: Colors.Slate600 }}>
-              Each intern is paired with a mentor who guides their learning,
-              answers their queries, and tracks their growth throughout the
-              internship. Interns are expected to complete a{" "}
-              <strong>minimum one-month program</strong> and must deliver a
-              project presentation at the end, on a topic assigned by their
-              mentor.
-            </p>
-
-            <p className="text-base" style={{ color: Colors.Slate600 }}>
-              The goal of the program is to foster understanding of{" "}
-              <strong>legal practice, intellectual property rights</strong>, and
-              professional ethics through{" "}
-              <strong>
-                research, client exposure, and documentation tasks
-              </strong>
-              .
+              Each intern is paired with a mentor who guides their learning...
             </p>
 
             <h4
@@ -162,17 +155,9 @@ const Internship = () => {
               className="list-disc pl-6 text-sm"
               style={{ color: Colors.Slate600 }}
             >
-              <li>
-                Females: Semi-formal western or Indian wear (no loud
-                colors/prints)
-              </li>
-              <li>
-                Males: Trousers, collared shirts, and jackets (no stubble or
-                earrings)
-              </li>
-              <li>
-                No jeans or casual wear, except on second/fourth Saturdays
-              </li>
+              <li>Females: Semi-formal western or Indian wear</li>
+              <li>Males: Trousers, collared shirts, and jackets</li>
+              <li>No jeans or casual wear except on 2nd/4th Saturdays</li>
             </ul>
 
             <h4
@@ -208,12 +193,12 @@ const Internship = () => {
             </h4>
             <p className="text-sm" style={{ color: Colors.Slate600 }}>
               This is an unpaid internship. However, exceptional performance may
-              lead to future job opportunities at VidhiVidh.
+              lead to job opportunities at VidhiVidh.
             </p>
           </div>
 
           {/* RIGHT FORM */}
-          <div className="w-full lg:w-1/2 flex justify-center items-start ">
+          <div className="w-full lg:w-1/2 flex justify-center items-start">
             <Card className="w-full max-w-lg border-0 shadow-xl">
               <CardHeader className="text-center">
                 <CardTitle
@@ -229,6 +214,7 @@ const Internship = () => {
                   Submit your application for a chance to intern with us.
                 </p>
               </CardHeader>
+
               <CardContent className="space-y-6">
                 <form onSubmit={handleSubmit} className="space-y-5">
                   {fields.map((field) => (
@@ -252,6 +238,37 @@ const Internship = () => {
                       />
                     </div>
                   ))}
+
+                  {/* Year of Study Dropdown */}
+                  <div>
+                    <label
+                      htmlFor="year"
+                      className="block text-sm font-medium mb-1"
+                      style={{ color: Colors.Slate600 }}
+                    >
+                      Year of Study
+                    </label>
+                    <select
+                      id="year"
+                      name="year"
+                      value={formData.year}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-3 py-[0.625rem] rounded-md bg-white text-sm font-normal border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200"
+                      style={{
+                        color: Colors.Slate700,
+                        borderColor: Colors.Slate400,
+                      }}
+                    >
+                      <option value="">-- Select Year --</option>
+                      {studyYears.map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
                   <Button
                     type="submit"
                     size="lg"
