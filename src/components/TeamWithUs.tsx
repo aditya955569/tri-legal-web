@@ -178,7 +178,7 @@ const TeamWithUs = () => {
       <CustomizedNavigation />
 
       <section
-        className="min-h-screen px-6 py-20 flex items-center justify-center"
+        className="min-h-screen px-6 py-28 flex items-center justify-center"
         style={{
           background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}11, ${Colors.White})`,
         }}

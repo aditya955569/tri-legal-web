@@ -118,11 +118,11 @@ const Internship = () => {
   ];
 
   return (
-    <>
+    <div>
       <CustomizedNavigation />
 
       <section
-        className="min-h-screen px-6 py-20 flex items-center justify-center"
+        className="min-h-screen px-6 py-28 flex items-center justify-center"
         style={{
           background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}11, ${Colors.White})`,
         }}
@@ -213,6 +213,48 @@ const Internship = () => {
               This is an unpaid internship. However, exceptional performance may
               lead to job opportunities at VidhiVidh.
             </p>
+
+            <h4
+              className="font-semibold text-lg mt-4"
+              style={{ color: Colors.Slate700 }}
+            >
+              What We Offer at VidhiVidh
+            </h4>
+            <ul
+              className="list-disc pl-6 text-sm"
+              style={{ color: Colors.Slate600 }}
+            >
+              <li>
+                <span
+                  className="font-semibold text-sm mt-4"
+                  style={{ color: Colors.Slate700 }}
+                >
+                  Certificate of Completion:
+                </span>{" "}
+                Issued to all interns upon successful completion of the program.
+              </li>
+              <li>
+                <span
+                  className="font-semibold text-sm mt-4"
+                  style={{ color: Colors.Slate700 }}
+                >
+                  Practical Exposure:{" "}
+                </span>
+                Hands-on legal experience through active participation in
+                real-world assignments.
+              </li>
+              <li>
+                <span
+                  className="font-semibold text-sm mt-4"
+                  style={{ color: Colors.Slate700 }}
+                >
+                  Freedom to Choose:
+                </span>{" "}
+                Interns have the autonomy to select their preferred area of
+                legal practice and collaborate with relevant professionals at
+                VidhiVidh.
+              </li>
+            </ul>
           </div>
 
           {/* RIGHT FORM */}
@@ -315,7 +357,7 @@ const Internship = () => {
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
