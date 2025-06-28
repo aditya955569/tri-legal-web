@@ -9,6 +9,7 @@ import { Colors } from "@/styles/global";
 import CustomizedNavigation from "./customized/CustomizedNavigation";
 import Footer from "./Footer";
 import { domains, upDistricts } from "@/mockData/teamWithUs";
+import { createAdvocateDetails } from "@/services/joinUs";
 
 const TeamWithUs = () => {
   const [formData, setFormData] = useState({
@@ -142,8 +143,16 @@ const TeamWithUs = () => {
 
     setSubmitting(true);
     try {
-      console.log("TeamWithUs form submitted:", finalData);
-      toast.success("Thank you for joining the network!");
+      console.log("formData is : ", formData);
+      const response = await createAdvocateDetails(finalData);
+      console.log("response after submitting details : ", response);
+      if (response.success) {
+        toast.success("Thank you for joining the network!");
+      } else {
+        toast.error(
+          "Submission failed. Please try again later or contact support if the issue persists."
+        );
+      }
 
       setFormData({
         name: "",

@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Colors } from "@/styles/global";
 import CustomizedNavigation from "./customized/CustomizedNavigation";
 import Footer from "./Footer";
+import { postInternshipDetails } from "@/services/internship";
 
 const Internship = () => {
   const [formData, setFormData] = useState({
@@ -70,16 +71,33 @@ const Internship = () => {
 
     setSubmitting(true);
     try {
-      console.log("Internship application submitted:", formData);
-      toast.success("Application submitted successfully!");
-      setFormData({
-        name: "",
-        email: "",
-        college: "",
-        location: "",
-        year: "",
-        resume: "",
-      });
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        college: formData.college,
+        location: formData.location,
+        year: formData.year,
+        resume: formData.resume,
+      };
+      const response = await postInternshipDetails(payload);
+
+      if (response.success) {
+        toast.success(
+          "Thank you! Your internship application has been received."
+        );
+        setFormData({
+          name: "",
+          email: "",
+          college: "",
+          location: "",
+          year: "",
+          resume: "",
+        });
+      } else {
+        toast.error(
+          response.message || "Failed to submit application. Try again later."
+        );
+      }
     } catch (error) {
       toast.error("There was an error submitting your application.");
     } finally {

@@ -7,7 +7,7 @@ const quickLinks = [
   { title: "About Us", path: "/about-us" },
   { title: "Our Team", path: "/team" },
   { title: "Contact Us", path: "/contact" },
-  { title: "Team With Us", path: "/team-with-us" },
+  { title: "Join Us", path: "/join-us" },
   { title: "Internship", path: "/careers-internship" },
 ];
 
