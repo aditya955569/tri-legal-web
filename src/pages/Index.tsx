@@ -17,18 +17,16 @@ const Index = () => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const phoneNumber = "919450411390";
 
+  // Auto-close FAB after 2.5 seconds
   useEffect(() => {
     if (isOpen) {
       if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        setIsOpen(false);
-      }, 2500);
+      timerRef.current = setTimeout(() => setIsOpen(false), 2500);
     }
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
+    return () => timerRef.current && clearTimeout(timerRef.current);
   }, [isOpen]);
 
+  // Close FAB on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (fabRef.current && !fabRef.current.contains(event.target as Node)) {
@@ -36,39 +34,45 @@ const Index = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-x-hidden">
       <Navigation />
+
       <section id="home">
         <Hero />
       </section>
+
       <section id="practice-areas">
         <PracticeAreas />
       </section>
+
       <section id="about">
         <About />
       </section>
+
       <section id="attorneys">
         <Attorneys />
       </section>
+
       <section id="testimonials">
         <Testimonials />
       </section>
+
       <FAQs />
+
       <section id="contact">
         <Contact />
       </section>
+
       <Footer />
 
       {/* Floating Action Buttons */}
       <div
         ref={fabRef}
-        className="fixed bottom-10 right-8 z-50 flex flex-col items-end space-y-4"
+        className="fixed bottom-6 right-4 z-50 flex flex-col items-end space-y-4 max-w-[100vw]"
       >
         {isOpen && (
           <>

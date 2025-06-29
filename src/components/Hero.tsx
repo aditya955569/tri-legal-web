@@ -60,7 +60,7 @@ const Hero = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center"
+      className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center py-32 md:py-20"
     >
       <div className="absolute inset-0 bg-white/30"></div>
       <div className="container mx-auto px-6 relative z-10">
@@ -151,7 +151,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div
           className="w-6 h-10 border-2 rounded-full flex justify-center"
           style={{ borderColor: Colors.Slate400 }}
@@ -161,7 +161,7 @@ const Hero = () => {
             style={{ backgroundColor: Colors.Slate400 }}
           ></div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
