@@ -13,8 +13,7 @@ const BlogDetailPage = () => {
   const { id } = useParams();
   const location = useLocation();
   const [blog, setBlog] = useState(location.state || null);
-  // const [loading, setLoading] = useState(!location.state);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!location.state);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const shareRef = useRef(null);
 
@@ -39,11 +38,10 @@ const BlogDetailPage = () => {
       } catch (error) {
         console.error("Error fetching blog:", error);
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
     fetchBlog();
-    setLoading(true);
   }, [id, location.state]);
 
   useEffect(() => {
