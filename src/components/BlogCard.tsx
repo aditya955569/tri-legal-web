@@ -19,34 +19,30 @@ const BlogCard = ({ blog }) => {
     navigate(`/blogPost/${blog.id}`, { state: blog });
   };
 
-  const blogUrl = `${window.location.origin}/blogPost/${blog.id}`;
+  const blogUrl = `https://metasharebackend.onrender.com/share/blog/${blog?.id}`;
 
   const handleShare = {
     whatsapp: () => {
-      // Create a more engaging share message
-      const shareMessage = `Check out this blog post: *${blog.title}*\n\n${shortDescription}\n\nRead more: ${blogUrl}`;
-
-      // Detect if mobile or desktop
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-      if (isMobile) {
-        // For mobile devices - opens directly in WhatsApp app
-        window.open(`whatsapp://send?text=${encodeURIComponent(shareMessage)}`);
-      } else {
-        // For desktop - opens web.whatsapp.com
-        window.open(
-          `https://web.whatsapp.com/send?text=${encodeURIComponent(
-            shareMessage
-          )}`
-        );
-      }
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(blogUrl)}`,
+        "_blank"
+      );
       setShowShareMenu(false);
     },
     facebook: () => {
       window.open(
         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
           blogUrl
-        )}&quote=${encodeURIComponent(blog.title)}`,
+        )}`,
+        "_blank"
+      );
+      setShowShareMenu(false);
+    },
+    twitter: () => {
+      window.open(
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          blogUrl
+        )}&text=${encodeURIComponent(blog.title)}`,
         "_blank"
       );
       setShowShareMenu(false);
@@ -57,7 +53,6 @@ const BlogCard = ({ blog }) => {
         toast.success("URL copied to clipboard!");
       } catch (err) {
         console.error("Failed to copy:", err);
-        toast.error("Failed to copy URL");
       }
       setShowShareMenu(false);
     },

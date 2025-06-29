@@ -10,12 +10,22 @@ import Footer from "@/components/Footer";
 import { Phone, Plus, X, MessageCircle } from "lucide-react";
 import { Colors } from "@/styles/global";
 import FAQs from "@/components/FAQs";
+import DisclaimerModal from "@/components/DisclaimerModal";
 
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showDisclaimer, setShowDisclaimer] = useState(false); // Initialize as false
   const fabRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const phoneNumber = "919450411390";
+
+  // Check local storage on component mount
+  useEffect(() => {
+    const disclaimerAccepted = localStorage.getItem("disclaimerAccepted");
+    if (disclaimerAccepted !== "true") {
+      setShowDisclaimer(true);
+    }
+  }, []);
 
   // Auto-close FAB after 2.5 seconds
   useEffect(() => {
@@ -36,6 +46,23 @@ const Index = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleDisclaimerResponse = (accept: boolean) => {
+    if (accept) {
+      // Store acceptance in local storage
+      localStorage.setItem("disclaimerAccepted", "true");
+    }
+    setShowDisclaimer(false);
+    if (!accept) {
+      window.location.href = "https://www.google.com";
+    }
+  };
+
+  if (showDisclaimer) {
+    return (
+      <DisclaimerModal handleDisclaimerResponse={handleDisclaimerResponse} />
+    );
+  }
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">

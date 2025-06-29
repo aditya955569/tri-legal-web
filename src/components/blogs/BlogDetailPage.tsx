@@ -13,12 +13,11 @@ const BlogDetailPage = () => {
   const { id } = useParams();
   const location = useLocation();
   const [blog, setBlog] = useState(location.state || null);
-  const [loading, setLoading] = useState(!location.state);
+  // const [loading, setLoading] = useState(!location.state);
+  const [loading, setLoading] = useState(true);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const shareRef = useRef(null);
-  const dummyImage =
-    "https://img.freepik.com/premium-photo/family-law-is-legal-field-that-focuses-matters-related-family-relationships-domestic-issues-legal-rights-responsibilities-family-members_35719-13702.jpg";
-  console.log("blog blog blog : ", blog);
+
   useEffect(() => {
     if (location.state) return;
 
@@ -40,11 +39,11 @@ const BlogDetailPage = () => {
       } catch (error) {
         console.error("Error fetching blog:", error);
       } finally {
-        setLoading(false);
+        setLoading(true);
       }
     };
-
     fetchBlog();
+    setLoading(true);
   }, [id, location.state]);
 
   useEffect(() => {
@@ -57,27 +56,8 @@ const BlogDetailPage = () => {
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
 
-  if (loading) {
-    return (
-      <div className="text-center py-24 bg-slate-100 min-h-[60vh]">
-        <h2 className="text-xl text-slate-500">Loading blog post...</h2>
-      </div>
-    );
-  }
+  const blogUrl = `https://metasharebackend.onrender.com/share/blog/${blog?.id}`;
 
-  if (!blog) {
-    return (
-      <div className="text-center py-24 bg-slate-100 min-h-[60vh]">
-        <h2 className="text-2xl font-semibold text-slate-500">
-          Blog not found
-        </h2>
-      </div>
-    );
-  }
-
-  // const blogUrl = `${window.location.origin}/blogPost/${blog.id}`;
-
-  const blogUrl = `https://metasharebackend.onrender.com/share/blog/${blog.id}`; // Use your real backend URL
   const handleShare = {
     whatsapp: () => {
       window.open(
@@ -114,38 +94,9 @@ const BlogDetailPage = () => {
       setShowShareMenu(false);
     },
   };
-
+  console.log("loading loading : ", loading);
   return (
     <>
-      <Helmet>
-        <title>{blog.title}</title>
-        <meta property="og:title" content={blog.title} />
-        <meta property="og:description" content={blog.content.slice(0, 100)} />
-        <meta
-          property="og:image"
-          content={
-            blog.image?.startsWith("http")
-              ? blog.image
-              : `${window.location.origin}${blog.image || dummyImage}`
-          }
-        />
-        <meta property="og:url" content={blogUrl} />
-        <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Tri Legal" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={blog.title} />
-        <meta name="twitter:description" content={blog.content.slice(0, 100)} />
-        <meta
-          name="twitter:image"
-          content={
-            blog.image?.startsWith("http")
-              ? blog.image
-              : `${window.location.origin}${blog.image || dummyImage}`
-          }
-        />
-      </Helmet>
-
       <CustomizedNavigation />
 
       <section
@@ -156,68 +107,122 @@ const BlogDetailPage = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h1
-              className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-4"
-              style={{ color: Colors.Slate700 }}
-            >
-              {blog.title}
-            </h1>
+            {loading ? (
+              <>
+                <div className="animate-pulse">
+                  {/* Title Skeleton */}
+                  <div className="h-10 sm:h-12 bg-slate-300 rounded w-3/4 mb-6"></div>
 
-            {/* Author and Share Row */}
-            <div className="flex items-center justify-between flex-wrap mb-6">
-              <div className="text-sm sm:text-base text-slate-500 flex items-center gap-2">
-                <span>
-                  By <span className="font-medium">{blog.authorName}</span>
-                </span>
-                <span className="mx-2">•</span>
-                <span>{blog.date}</span>
-              </div>
-
-              <div className="relative mt-2 sm:mt-0" ref={shareRef}>
-                <button
-                  onClick={() => setShowShareMenu(!showShareMenu)}
-                  className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium border rounded-md shadow bg-white hover:bg-gray-100 transition"
-                >
-                  <FaShareAlt size={14} />
-                </button>
-
-                {showShareMenu && (
-                  <div className="absolute top-10 right-0 bg-white border rounded-md shadow-md z-30 p-2 min-w-[160px]">
-                    <div
-                      onClick={handleShare.whatsapp}
-                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      <FaWhatsapp size={16} color="#25D366" />
-                      <span>WhatsApp</span>
+                  {/* Author & Date Row */}
+                  <div className="flex items-center justify-between flex-wrap mb-6">
+                    <div className="flex gap-2">
+                      <div className="h-4 w-24 bg-slate-300 rounded"></div>
+                      <div className="h-4 w-16 bg-slate-300 rounded"></div>
                     </div>
-                    <div
-                      onClick={handleShare.facebook}
-                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      <FaFacebook size={16} color="#1877F2" />
-                      <span>Facebook</span>
-                    </div>
-                    <div
-                      onClick={handleShare.copy}
-                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      <FaRegCopy size={16} color="#555" />
-                      <span>Copy URL</span>
-                    </div>
+                    <div className="h-8 w-8 bg-slate-300 rounded-full"></div>
                   </div>
-                )}
-              </div>
-            </div>
 
-            <hr className="border-t border-slate-300 mb-8" />
+                  <hr className="border-t border-slate-300 mb-8" />
 
-            <article
-              className="prose prose-lg sm:prose-xl max-w-none"
-              style={{ color: Colors.Slate700 }}
-              dangerouslySetInnerHTML={{ __html: marked(blog.content) }}
-            />
+                  {/* Paragraph Skeleton Lines */}
+                  <div className="space-y-4">
+                    {[...Array(4)].map((_, i) => (
+                      <div
+                        key={`line-top-${i}`}
+                        className="h-4 bg-slate-200 rounded w-full"
+                      ></div>
+                    ))}
 
-            <hr className="border-t border-slate-200 mt-12" />
+                    <br />
+
+                    {[...Array(2)].map((_, i) => (
+                      <div
+                        key={`line-mid-${i}`}
+                        className="h-4 bg-slate-200 rounded w-full"
+                      ></div>
+                    ))}
+
+                    {/* Varying Width Lines */}
+                    {["w-5/6", "w-2/3", "w-3/4", "w-2/4"].map((width, i) => (
+                      <div
+                        key={`line-bottom-${i}`}
+                        className={`h-4 bg-slate-200 rounded ${width}`}
+                      ></div>
+                    ))}
+                  </div>
+
+                  <hr className="border-t border-slate-200 mt-12" />
+                </div>
+              </>
+            ) : blog ? (
+              <>
+                <h1
+                  className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight mb-4"
+                  style={{ color: Colors.Slate700 }}
+                >
+                  {blog.title}
+                </h1>
+
+                <div className="flex items-center justify-between flex-wrap mb-6">
+                  <div className="text-sm sm:text-base text-slate-500 flex items-center gap-2">
+                    <span>
+                      By <span className="font-medium">{blog.authorName}</span>
+                    </span>
+                    <span className="mx-2">•</span>
+                    <span>{blog.date}</span>
+                  </div>
+
+                  <div className="relative mt-2 sm:mt-0" ref={shareRef}>
+                    <button
+                      onClick={() => setShowShareMenu(!showShareMenu)}
+                      className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium border rounded-md shadow bg-white hover:bg-gray-100 transition"
+                    >
+                      <FaShareAlt size={14} />
+                    </button>
+
+                    {showShareMenu && (
+                      <div className="absolute top-10 right-0 bg-white border rounded-md shadow-md z-30 p-2 min-w-[160px]">
+                        <div
+                          onClick={handleShare.whatsapp}
+                          className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                        >
+                          <FaWhatsapp size={16} color="#25D366" />
+                          <span>WhatsApp</span>
+                        </div>
+                        <div
+                          onClick={handleShare.facebook}
+                          className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                        >
+                          <FaFacebook size={16} color="#1877F2" />
+                          <span>Facebook</span>
+                        </div>
+                        <div
+                          onClick={handleShare.copy}
+                          className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
+                        >
+                          <FaRegCopy size={16} color="#555" />
+                          <span>Copy URL</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <hr className="border-t border-slate-300 mb-8" />
+
+                <article
+                  className="prose prose-lg sm:prose-xl max-w-none"
+                  style={{ color: Colors.Slate700 }}
+                  dangerouslySetInnerHTML={{ __html: marked(blog.content) }}
+                />
+
+                <hr className="border-t border-slate-200 mt-12" />
+              </>
+            ) : (
+              <h2 className="text-2xl font-semibold text-center text-slate-500 py-24">
+                Blog not found
+              </h2>
+            )}
           </div>
         </div>
       </section>
