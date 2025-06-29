@@ -16,7 +16,9 @@ const BlogDetailPage = () => {
   const [loading, setLoading] = useState(!location.state);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const shareRef = useRef(null);
-
+  const dummyImage =
+    "https://img.freepik.com/premium-photo/family-law-is-legal-field-that-focuses-matters-related-family-relationships-domestic-issues-legal-rights-responsibilities-family-members_35719-13702.jpg";
+  console.log("blog blog blog : ", blog);
   useEffect(() => {
     if (location.state) return;
 
@@ -109,15 +111,28 @@ const BlogDetailPage = () => {
         <title>{blog.title}</title>
         <meta property="og:title" content={blog.title} />
         <meta property="og:description" content={blog.content.slice(0, 100)} />
-        <meta property="og:image" content={blog.image || "/default-blog.jpg"} />
+        <meta
+          property="og:image"
+          content={
+            blog.image?.startsWith("http")
+              ? blog.image
+              : `${window.location.origin}${blog.image || dummyImage}`
+          }
+        />
         <meta property="og:url" content={blogUrl} />
         <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Tri Legal" />
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={blog.title} />
         <meta name="twitter:description" content={blog.content.slice(0, 100)} />
         <meta
           name="twitter:image"
-          content={blog.image || "/default-blog.jpg"}
+          content={
+            blog.image?.startsWith("http")
+              ? blog.image
+              : `${window.location.origin}${blog.image || dummyImage}`
+          }
         />
       </Helmet>
 

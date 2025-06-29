@@ -60,7 +60,7 @@ const Hero = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center py-32 md:py-20"
+      className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center py-28 md:py-20"
     >
       <div className="absolute inset-0 bg-white/30"></div>
       <div className="container mx-auto px-6 relative z-10">

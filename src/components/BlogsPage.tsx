@@ -234,7 +234,7 @@ const BlogsPage = () => {
     <div className="relative overflow-x-hidden">
       <CustomizedNavigation />
       <section
-        className="py-10 sm:py-20"
+        className="py-20 sm:py-28"
         style={{
           background: `linear-gradient(to bottom right, ${Colors.LightGrayBackground}, #eff6ff, #e0e7ff)`,
         }}
