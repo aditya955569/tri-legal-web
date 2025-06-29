@@ -98,7 +98,7 @@ const BlogDetailPage = () => {
       <CustomizedNavigation />
 
       <section
-        className="py-20"
+        className="py-28"
         style={{
           background: `linear-gradient(to bottom right, ${Colors.LightGrayBackground}, ${Colors.White}, ${Colors.Slate400}11)`,
         }}
@@ -160,7 +160,6 @@ const BlogDetailPage = () => {
                 >
                   {blog.title}
                 </h1>
-
                 <div className="flex items-center justify-between flex-wrap mb-6">
                   <div className="text-sm sm:text-base text-slate-500 flex items-center gap-2">
                     <span>
@@ -205,12 +204,20 @@ const BlogDetailPage = () => {
                     )}
                   </div>
                 </div>
-
                 <hr className="border-t border-slate-300 mb-8" />
-
+                {/* <img
+                  src={blog.image || "/default-blog.jpg"}
+                  alt={blog.title}
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <br />
+                <hr className="border-t border-slate-300 mb-8" /> <br /> */}
                 <article
                   className="prose prose-lg sm:prose-xl max-w-none"
-                  style={{ color: Colors.Slate700 }}
+                  style={{
+                    color: Colors.Slate700,
+                    lineHeight: "1.4", // Smaller line spacing (default is ~1.75)
+                  }}
                   dangerouslySetInnerHTML={{ __html: marked(blog.content) }}
                 />
 

@@ -77,7 +77,13 @@ const BlogCard = ({ blog }) => {
       >
         {/* Image Section with Share Button */}
         <CardHeader className="p-0 relative">
-          <div className="relative w-full h-52 sm:h-60 md:h-64 overflow-hidden">
+          <div
+            className="relative w-full h-52 sm:h-60 md:h-64 overflow-hidden"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClick();
+            }}
+          >
             <img
               src={blog.image || "/default-blog.jpg"}
               alt={blog.title}
