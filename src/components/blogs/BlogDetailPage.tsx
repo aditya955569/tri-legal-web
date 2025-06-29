@@ -75,8 +75,9 @@ const BlogDetailPage = () => {
     );
   }
 
-  const blogUrl = `${window.location.origin}/blogPost/${blog.id}`;
+  // const blogUrl = `${window.location.origin}/blogPost/${blog.id}`;
 
+  const blogUrl = `https://metasharebackend.onrender.com/share/blog/${blog.id}`; // Use your real backend URL
   const handleShare = {
     whatsapp: () => {
       window.open(
@@ -90,6 +91,15 @@ const BlogDetailPage = () => {
         `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
           blogUrl
         )}`,
+        "_blank"
+      );
+      setShowShareMenu(false);
+    },
+    twitter: () => {
+      window.open(
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          blogUrl
+        )}&text=${encodeURIComponent(blog.title)}`,
         "_blank"
       );
       setShowShareMenu(false);
