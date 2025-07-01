@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Colors } from "@/styles/global";
+import { inputFields } from "@/mockData/contactUsFields";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -68,85 +69,51 @@ const Contact = () => {
     if (!validateForm()) return;
 
     setSending(true);
-
+    console.log(
+      "import.meta.env.VITE_EMAIL_URL : ",
+      import.meta.env.VITE_EMAIL_URL
+    );
     try {
-      if (
-        !import.meta.env.VITE_EMAILJS_SERVICE_KEY ||
-        !import.meta.env.VITE_EMAILJS_TEMPLATE_KEY ||
-        !import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      ) {
-        toast.error("Email service is not configured correctly.");
-        setSending(false);
-        return;
-      }
-
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_KEY,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_KEY,
+      const response = await fetch(
+        import.meta.env.VITE_EMAIL_URL + "/api/schedule-consultation",
         {
-          from_name: `${formData.firstName} ${formData.lastName}`,
-          from_email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          to_email: "ahzamnaseem@gmail.com",
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
       );
 
-      toast.success("Message sent successfully!");
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Message sent successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        if (data.errors) {
+          Object.values(data.errors).forEach((errMsg: any) =>
+            toast.error(errMsg)
+          );
+        } else {
+          toast.error(
+            data.message || "Failed to send message. Please try again."
+          );
+        }
+      }
     } catch (error) {
-      console.error("EmailJS error:", error);
-      toast.error("Failed to send message. Please try again.");
+      console.error("API error:", error);
+      toast.error("Something went wrong. Please try again later.");
     } finally {
       setSending(false);
     }
   };
-
-  const inputFields = [
-    {
-      id: "firstName",
-      name: "firstName",
-      label: "First Name",
-      type: "text",
-      placeholder: "First Name",
-      required: true,
-      colSpan: "sm:col-span-1",
-    },
-    {
-      id: "lastName",
-      name: "lastName",
-      label: "Last Name",
-      type: "text",
-      placeholder: "Last Name",
-      required: true,
-      colSpan: "sm:col-span-1",
-    },
-    {
-      id: "email",
-      name: "email",
-      label: "Email Address",
-      type: "email",
-      placeholder: "Email Address",
-      required: true,
-      colSpan: "sm:col-span-2",
-    },
-    {
-      id: "phone",
-      name: "phone",
-      label: "Phone Number",
-      type: "tel",
-      placeholder: "Phone Number",
-      required: true,
-      colSpan: "sm:col-span-2",
-    },
-  ];
 
   return (
     <section className="py-16" style={{ backgroundColor: Colors.White }}>
