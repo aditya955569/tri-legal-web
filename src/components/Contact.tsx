@@ -75,7 +75,7 @@ const Contact = () => {
     );
     try {
       const response = await fetch(
-        import.meta.env.VITE_EMAIL_URL + "/api/schedule-consultation",
+        "https://metasharebackend.onrender.com/api/schedule-consultation",
         {
           method: "POST",
           headers: {
