@@ -81,9 +81,9 @@ const Index = () => {
         <About />
       </section>
 
-      <section id="patron">
+      {/* <section id="patron">
         <Patron />
-      </section>
+      </section> */}
 
       <section id="attorneys">
         <Attorneys />

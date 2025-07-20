@@ -1,6 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/components/ui/button";
 import { Colors } from "@/styles/global";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -8,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const About = () => {
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
-
+  const [hovered, setHovered] = useState(false);
   useEffect(() => {
     if (leftRef.current) {
       gsap.fromTo(
@@ -48,24 +49,27 @@ const About = () => {
   }, []);
 
   return (
-    <section className="py-20" style={{ backgroundColor: Colors.White }}>
+    <section
+      className="py-20"
+      style={{ backgroundColor: Colors.PrimaryBgColor }}
+    >
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content Block */}
           <div ref={leftRef}>
             <h2
               className="text-4xl md:text-5xl font-bold mb-6"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor4 }}
             >
               Committed to{" "}
-              <span style={{ color: Colors.PrimaryColor }}>
+              <span style={{ color: Colors.TextColor3 }}>
                 Justice & Excellence
               </span>
             </h2>
 
             <p
               className="text-lg mb-6 leading-relaxed"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor4 }}
             >
               For over two decades, our firm has been at the forefront of legal
               excellence, providing unparalleled representation to clients
@@ -76,7 +80,7 @@ const About = () => {
 
             <p
               className="text-lg mb-8 leading-relaxed"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor4 }}
             >
               Our commitment extends beyond individual cases to strengthening
               the fabric of justice in our community. We believe that
@@ -85,19 +89,20 @@ const About = () => {
               for our clients.
             </p>
 
-            {/* Example Button */}
-            {/* 
             <Button
               size="lg"
-              className="text-white px-8 shadow-md"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
               style={{
-                backgroundColor: Colors.DarkGray,
-                hover: { backgroundColor: Colors.DarkGrayHover },
+                color: Colors.TextColor2,
+                backgroundColor: hovered
+                  ? Colors.HoverButtonColor1
+                  : Colors.SecondaryBgColor,
               }}
+              className={`font-semibold px-8 shadow-md transition-colors`}
             >
               Learn More About Us
-            </Button> 
-            */}
+            </Button>
           </div>
 
           {/* Right Image Block */}
@@ -105,10 +110,16 @@ const About = () => {
             <div
               className="rounded-2xl p-8 transform rotate-3"
               style={{
-                background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}, ${Colors.PrimaryColor})`,
+                background: `linear-gradient(to bottom right, #CBA14A, #b98d37)`,
               }}
             >
-              <div className="bg-white rounded-xl p-6 transform -rotate-3">
+              <div
+                style={{
+                  backgroundColor: Colors.CardBgPrimaryColor,
+                  borderColor: Colors.BorderLineColor2,
+                }}
+                className=" rounded-xl p-6 transform -rotate-3 border"
+              >
                 <img
                   src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80"
                   alt="Law firm office"
@@ -116,12 +127,12 @@ const About = () => {
                 />
                 <div className="mt-4 text-center">
                   <h3
+                    style={{ color: Colors.TextColor1 }}
                     className="font-bold text-lg"
-                    style={{ color: Colors.Slate700 }}
                   >
                     Our Downtown Office
                   </h3>
-                  <p style={{ color: Colors.Slate600 }}>
+                  <p style={{ color: Colors.TextColor5 }}>
                     Where excellence meets accessibility
                   </p>
                 </div>

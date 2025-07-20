@@ -4,7 +4,6 @@ import { testimonials } from "@/mockData/testimonials";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Colors } from "@/styles/global";
 
 const Testimonials = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -76,29 +75,22 @@ const Testimonials = () => {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="py-20 relative overflow-hidden"
-      style={{ backgroundColor: Colors.LightGrayBackground }}
+      className="py-20 relative overflow-hidden bg-[#0B1C2C]"
     >
-      {/* Background pattern */}
+      {/* Gold pattern dots */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjIwIiBjeT0iMjAiIHI9IjEiLz48L2c+PC9zdmc+")`,
+          backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgZmlsbD0iI0NCQTE0QSIgY3g9IjIwIiBjeT0iMjAiIHI9IjEiLz48L2c+PC9zdmc+")`,
         }}
       />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: Colors.Slate700 }}
-          >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Client Testimonials
           </h2>
-          <p
-            className="text-xl max-w-3xl mx-auto"
-            style={{ color: Colors.Slate600 }}
-          >
+          <p className="text-xl max-w-3xl mx-auto text-gray-300">
             Don't just take our word for it. Here's what our clients say about
             their experience working with our legal team.
           </p>
@@ -112,14 +104,10 @@ const Testimonials = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: Colors.White }}
+              className="absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl bg-[#CBA14A] hover:bg-[#b98d37]"
               aria-label="Scroll testimonials left"
             >
-              <ChevronLeft
-                className="h-6 w-6"
-                style={{ color: Colors.Slate700 }}
-              />
+              <ChevronLeft className="h-6 w-6 text-[#0B1C2C]" />
             </motion.button>
           )}
 
@@ -130,14 +118,10 @@ const Testimonials = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl"
-              style={{ backgroundColor: Colors.White }}
+              className="absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl bg-[#CBA14A] hover:bg-[#b98d37]"
               aria-label="Scroll testimonials right"
             >
-              <ChevronRight
-                className="h-6 w-6"
-                style={{ color: Colors.Slate700 }}
-              />
+              <ChevronRight className="h-6 w-6 text-[#0B1C2C]" />
             </motion.button>
           )}
 
@@ -154,34 +138,25 @@ const Testimonials = () => {
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Card
-                  className="w-[300px] sm:w-[350px] h-full transition-all duration-300 group shadow-md hover:shadow-xl"
-                  style={{ backgroundColor: Colors.White }}
-                >
+                <Card className="w-[300px] sm:w-[350px] h-full transition-all duration-300 group shadow-md hover:shadow-xl bg-[#14283c] border border-[#1F2D3A]">
                   <CardContent className="p-8 h-full flex flex-col">
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i} className="text-amber-400 text-xl">
+                        <span key={i} className="text-[#CBA14A] text-xl">
                           ★
                         </span>
                       ))}
                     </div>
 
-                    <blockquote
-                      className="mb-6 leading-relaxed italic flex-grow"
-                      style={{ color: Colors.Slate600 }}
-                    >
+                    <blockquote className="mb-6 leading-relaxed italic flex-grow text-gray-300">
                       "{testimonial.quote}"
                     </blockquote>
 
-                    <div className="border-t pt-4">
-                      <h4
-                        className="font-bold"
-                        style={{ color: Colors.Slate700 }}
-                      >
+                    <div className="border-t border-[#1F2D3A] pt-4">
+                      <h4 className="font-bold text-white">
                         {testimonial.client}
                       </h4>
-                      <p className="text-sm" style={{ color: Colors.Slate600 }}>
+                      <p className="text-sm text-gray-300">
                         {testimonial.position}
                       </p>
                     </div>

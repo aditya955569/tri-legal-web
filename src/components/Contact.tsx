@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import emailjs from "emailjs-com";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Colors } from "@/styles/global";
 import { inputFields } from "@/mockData/contactUsFields";
 
 const Contact = () => {
@@ -69,10 +67,6 @@ const Contact = () => {
     if (!validateForm()) return;
 
     setSending(true);
-    console.log(
-      "import.meta.env.VITE_EMAIL_URL : ",
-      import.meta.env.VITE_EMAIL_URL
-    );
     try {
       const response = await fetch(
         "https://metasharebackend.onrender.com/api/schedule-consultation",
@@ -116,20 +110,14 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-16" style={{ backgroundColor: Colors.White }}>
+    <section className="py-16 bg-[#0B1C2C]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: Colors.Slate700 }}
-          >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             Schedule Your Consultation
           </h2>
-          <p
-            className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto"
-            style={{ color: Colors.Slate600 }}
-          >
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-300">
             Ready to discuss your legal needs? Contact us today for a
             confidential consultation with one of our experienced attorneys.
           </p>
@@ -138,12 +126,9 @@ const Contact = () => {
         {/* Grid Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Contact Form Card */}
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-[#1F2D3A] shadow-lg bg-[#14283c]">
             <CardHeader>
-              <CardTitle
-                className="text-2xl"
-                style={{ color: Colors.Slate700 }}
-              >
+              <CardTitle className="text-2xl text-white">
                 Get In Touch
               </CardTitle>
             </CardHeader>
@@ -154,8 +139,7 @@ const Contact = () => {
                     <div key={field.id} className={field.colSpan}>
                       <label
                         htmlFor={field.id}
-                        className="block mb-1 text-sm"
-                        style={{ color: Colors.Slate600 }}
+                        className="block mb-1 text-sm text-gray-300"
                       >
                         {field.label}
                       </label>
@@ -169,8 +153,7 @@ const Contact = () => {
                         onInput={
                           field.name === "phone" ? handlePhoneInput : undefined
                         }
-                        className="border"
-                        style={{ borderColor: Colors.Slate400 }}
+                        className="border border-[#1F2D3A] bg-[#0B1C2C] text-white placeholder-gray-400 focus:border-[#CBA14A] focus:ring-1 focus:ring-[#CBA14A]"
                         required={field.required}
                         inputMode={
                           field.name === "phone" ? "numeric" : undefined
@@ -185,8 +168,7 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block mb-1 text-sm"
-                    style={{ color: Colors.Slate600 }}
+                    className="block mb-1 text-sm text-gray-300"
                   >
                     Message
                   </label>
@@ -196,8 +178,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell us about your legal matter..."
-                    className="border min-h-32"
-                    style={{ borderColor: Colors.Slate400 }}
+                    className="border border-[#1F2D3A] bg-[#0B1C2C] text-white placeholder-gray-400 min-h-32 focus:border-[#CBA14A] focus:ring-1 focus:ring-[#CBA14A]"
                     required
                   />
                 </div>
@@ -206,32 +187,20 @@ const Contact = () => {
                   type="submit"
                   size="lg"
                   disabled={sending}
-                  className="w-full font-semibold shadow-md"
-                  style={{
-                    backgroundColor: Colors.PrimaryColor,
-                    color: Colors.White,
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      Colors.PrimaryColorHover)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      Colors.PrimaryColor)
-                  }
+                  className="w-full font-semibold shadow-md bg-[#CBA14A] hover:bg-[#b98d37] text-[#0B1C2C] hover:text-[#0B1C2C]"
                 >
                   {sending ? "Sending..." : "Schedule Consultation"}
                 </Button>
               </form>
 
               {status && (
-                <p className="text-center text-sm text-gray-500">{status}</p>
+                <p className="text-center text-sm text-gray-400">{status}</p>
               )}
             </CardContent>
           </Card>
 
           {/* Google Map */}
-          <div className="w-full h-[300px] sm:h-[400px] lg:h-auto rounded-xl overflow-hidden shadow-lg">
+          <div className="w-full h-[300px] sm:h-[400px] lg:h-auto rounded-xl overflow-hidden shadow-lg border-2 border-[#CBA14A]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d392.6962701265033!2d80.95103768216521!3d26.870655947951146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd72fa2eae05%3A0x76513c6666d645e5!2sLal%20Kothi!5e0!3m2!1sen!2sin!4v1749842249358!5m2!1sen!2sin"
               width="100%"

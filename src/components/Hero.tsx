@@ -60,19 +60,20 @@ const Hero = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center py-28 md:py-20"
+      style={{ backgroundColor: Colors.PrimaryBgColor }}
+      className="relative min-h-screen flex items-center py-28 md:py-20"
     >
-      <div className="absolute inset-0 bg-white/30"></div>
+      <div className="absolute inset-0 bg-[#0B1C2C]/30"></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl">
           <div className="flex items-center gap-3 mb-6">
             <Shield
+              style={{ color: Colors.SecondaryBgColor }}
               className="h-8 w-8"
-              style={{ color: Colors.PrimaryColor }}
             />
             <span
-              className="font-semibold tracking-wide"
-              style={{ color: Colors.PrimaryColor }}
+              style={{ color: Colors.SecondaryBgColor }}
+              className="font-semibold tracking-wide "
             >
               TRUSTED LEGAL COUNSEL
             </span>
@@ -80,13 +81,13 @@ const Hero = () => {
 
           <h1
             ref={headlineRef}
-            className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-lg font-serif"
-            style={{ color: Colors.Slate700 }}
+            style={{ color: Colors.MainHeadingColor1 }}
+            className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-lg font-serif "
           >
             VidhiVidh
             <span
+              style={{ color: Colors.MainHeadingColor2 }}
               className="block font-sans"
-              style={{ color: Colors.PrimaryColor }}
             >
               Empowering Justice with Experience and Integrity.
             </span>
@@ -94,8 +95,8 @@ const Hero = () => {
 
           <p
             ref={subRef}
-            className="text-xl mb-8 max-w-2xl leading-relaxed prose prose-slate prose-lg font-light"
-            style={{ color: Colors.Slate600 }}
+            style={{ color: Colors.TextColor1 }}
+            className="text-xl mb-8 max-w-2xl leading-relaxed prose prose-lg font-light"
           >
             With over 20 years of experience and a legacy rooted in legal
             excellence, we deliver strategic, commercial, and client-focused
@@ -105,24 +106,32 @@ const Hero = () => {
           <div ref={btnRef} className="flex flex-col sm:flex-row gap-4">
             <Button
               size="lg"
-              className="text-white font-semibold px-8 py-4 text-lg shadow-xl transition-transform duration-300 hover:scale-105"
-              style={{ backgroundColor: Colors.PrimaryColor }}
+              className="font-semibold px-8 py-4 text-lg shadow-xl transition-transform duration-300 hover:scale-105"
+              style={{
+                backgroundColor: Colors.SecondaryBgColor,
+                color: Colors.TextColor2,
+              }}
               onMouseEnter={(e) =>
                 (e.currentTarget.style.backgroundColor =
-                  Colors.PrimaryColorHover)
+                  Colors.HoverButtonColor1)
               }
               onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = Colors.PrimaryColor)
+                (e.currentTarget.style.backgroundColor =
+                  Colors.TextButtonColor2)
               }
               onClick={() => scrollToSection("#contact")}
             >
               Schedule Consultation
             </Button>
+
             <Button
               size="lg"
               variant="outline"
-              className="border text-slate-600 hover:bg-slate-100 px-8 py-4 text-lg transition-transform duration-300 hover:scale-105"
-              style={{ borderColor: Colors.Slate400 }}
+              style={{
+                borderColor: Colors.BorderLineColor1,
+                color: Colors.TextColor3,
+              }}
+              className="border-2 px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:bg-[#CBA14A1A] hover:text-white"
               onClick={() => scrollToSection("#practice-areas")}
             >
               Our Practice Areas
@@ -131,37 +140,22 @@ const Hero = () => {
 
           <div
             className="flex items-center gap-8 mt-12"
-            style={{ color: Colors.Slate600 }}
+            style={{ color: Colors.TextColor4 }}
           >
             <div className="flex items-center gap-2">
-              <Gavel
-                className="h-5 w-5"
-                style={{ color: Colors.PrimaryColor }}
-              />
+              <Gavel className="h-5 w-5" style={{ color: Colors.TextColor3 }} />
               <span>20+ Years Experience</span>
             </div>
             <div className="flex items-center gap-2">
               <Handshake
                 className="h-5 w-5"
-                style={{ color: Colors.PrimaryColor }}
+                style={{ color: Colors.IconsColor }}
               />
               <span>Built on Trust & Integrity</span>
             </div>
           </div>
         </div>
       </div>
-
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div
-          className="w-6 h-10 border-2 rounded-full flex justify-center"
-          style={{ borderColor: Colors.Slate400 }}
-        >
-          <div
-            className="w-1 h-3 rounded-full mt-2 animate-pulse"
-            style={{ backgroundColor: Colors.Slate400 }}
-          ></div>
-        </div>
-      </div> */}
     </section>
   );
 };

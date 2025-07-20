@@ -7,7 +7,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Colors } from "@/styles/global";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,7 +34,7 @@ const faqData = [
   {
     question: "How long will my case take to resolve?",
     answer:
-      "The duration varies depending on the nature of the case, court schedules, and legal procedures involved. During your consultation, we can give you an estimate based on similar cases we’ve handled.",
+      "The duration varies depending on the nature of the case, court schedules, and legal procedures involved. During your consultation, we can give you an estimate based on similar cases we've handled.",
   },
   {
     question: "Will my personal information remain confidential?",
@@ -68,27 +67,14 @@ const FAQs = () => {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-20"
-      style={{
-        background: `linear-gradient(to bottom right, ${Colors.White}, ${Colors.Slate100})`,
-      }}
-    >
+    <section ref={sectionRef} className="py-20 bg-[#0B1C2C]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-10">
-          <h2
-            className="text-3xl md:text-4xl font-bold"
-            style={{ color: Colors.Slate700 }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
             Frequently Asked Questions
           </h2>
-          <p
-            className="mt-2 text-base md:text-lg"
-            style={{ color: Colors.Slate600 }}
-          >
-            {/* Clear answers to commonly asked legal and service-related questions. */}
-            Brief answer to common queries.
+          <p className="mt-2 text-base md:text-lg text-gray-300">
+            Brief answers to common queries
           </p>
         </div>
 
@@ -101,12 +87,12 @@ const FAQs = () => {
             <AccordionItem
               key={index}
               value={`faq-${index}`}
-              className="rounded-lg border border-slate-200 bg-white transition-shadow hover:shadow-md"
+              className="rounded-lg border border-[#1F2D3A] bg-[#14283c] transition-all hover:shadow-lg"
             >
-              <AccordionTrigger className="px-5 py-4 text-left text-base md:text-lg font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+              <AccordionTrigger className="px-5 py-4 text-left text-base md:text-lg font-medium text-white hover:bg-[#1F2D3A]/50 transition-colors">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="px-5 pb-5 pt-1 text-slate-600 text-sm md:text-base leading-relaxed">
+              <AccordionContent className="px-5 pb-5 pt-1 text-gray-300 text-sm md:text-base leading-relaxed">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

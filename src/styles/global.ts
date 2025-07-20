@@ -1,37 +1,35 @@
-export const Colors = {
-    // Primary (Blue Theme)
-    PrimaryColor: "#2563EB",           // blue-600
-    PrimaryColorLight: "#3B82F6",      // blue-500
-    PrimaryColorHover: "#1D4ED8",      // blue-700
+// export const Colors = {
+//     // Primary (Blue Theme)
+//     PrimaryColor: "#2563EB",           // blue-600
+//     PrimaryColorLight: "#3B82F6",      // blue-500
+//     PrimaryColorHover: "#1D4ED8",      // blue-700
 
-    // WhatsApp (Green Theme)
-    WhatsAppColor: "#22C55E",          // green-500
-    WhatsAppHoverColor: "#16A34A",     // green-600
+//     // WhatsApp (Green Theme)
+//     WhatsAppColor: "#22C55E",          // green-500
+//     WhatsAppHoverColor: "#16A34A",     // green-600
 
-    // Dark Gray Buttons / Backgrounds
-    DarkGray: "#1F2937",               // gray-800
-    DarkGrayHover: "#111827",          // gray-900
+//     // Dark Gray Buttons / Backgrounds
+//     DarkGray: "#1F2937",               // gray-800
+//     DarkGrayHover: "#111827",          // gray-900
 
-    // Slate (for neutral text, borders, etc.)
-    Slate100: "#F1F5F9",               // slate-100 
-    Slate200: "#E2E8F0",               // slate-200 
-    Slate300: "#CBD5E1",               // slate-300
-    Slate400: "#94A3B8",               // slate-400
-    Slate500: "#64748B",               // slate-500
-    Slate600: "#475569",               // slate-600
-    Slate700: "#334155",               // slate-700
-    Slate800: "#1E293B",               // slate-800
+//     // Slate (for neutral text, borders, etc.)
+//     Slate100: "#F1F5F9",               // slate-100
+//     Slate200: "#E2E8F0",               // slate-200
+//     Slate300: "#CBD5E1",               // slate-300
+//     Slate400: "#94A3B8",               // slate-400
+//     Slate500: "#64748B",               // slate-500
+//     Slate600: "#475569",               // slate-600
+//     Slate700: "#334155",               // slate-700
+//     Slate800: "#1E293B",               // slate-800
 
-    // General Purpose
-    White: "#FFFFFF",
-    Black: "#000000",
-    LightGrayBackground: "#F1F5F9",    // same as slate-100
+//     // General Purpose
+//     White: "#FFFFFF",
+//     Black: "#000000",
+//     LightGrayBackground: "#F1F5F9",    // same as slate-100
 
-    // Custom Utility
-    Highlight: "#EAB308",              // amber-500
-};
-
-
+//     // Custom Utility
+//     Highlight: "#EAB308",              // amber-500
+// };
 
 // export const Colors = {
 //     / Primary (Unique Theme)
@@ -82,3 +80,64 @@ export const Colors = {
 //     LightGrayBackground: "#FDF0D5",  // Buttercream beige
 // };
 
+export const Colors = {
+  PrimaryBgColor: "#0B1C2C",
+  SecondaryBgColor: "#CBA14A",
+  TertiaryBgColor: "yellow",
+
+  MainHeadingColor1: "white",
+  MainHeadingColor2: "#CBA14A",
+  ButtonBgColor1: "#CBA14A",
+  ButtonBgColor2: "white",
+
+  TextColor1: "white",
+  TextColor2: "#0B1C2C",
+  TextColor3: "#CBA14A",
+  TextColor4: "#D9E0E8",
+  TextColor5: "#D1D5DB",
+
+  HoverButtonColor1: "#b98d37",
+  HoverButtonColor2: "#CBA14A/10",
+  HoverButtonColor3: "#CBA14A",
+
+  TextButtonColor1: "#0B1C2C",
+  TextButtonColor2: "#CBA14A",
+  TextButtonColor3: "white",
+
+  IconsColor: "#CBA14A",
+  MenuIconColor: "white",
+
+  BorderLineColor1: "#CBA14A",
+  BorderLineColor2: "#1F2D3A",
+
+  CardBgPrimaryColor: "#14283c",
+};
+
+// export const Colors = {
+//   PrimaryBgColor: "#1B3C53",
+//   SecondaryBgColor: "#D2C1B6", // updated to Tertiary
+//   TertiaryBgColor: "#D2C1B6",
+
+//   MainHeadingColor1: "white",
+//   MainHeadingColor2: "#D2C1B6", // updated from Secondary
+//   ButtonBgColor1: "#D2C1B6", // updated from Secondary
+//   ButtonBgColor2: "white",
+
+//   TextColor1: "white",
+//   TextColor2: "#1B3C53",
+//   TextColor3: "#D2C1B6", // updated from Secondary
+//   TextColor4: "#D9E0E8",
+
+//   HoverButtonColor1: "#b8aa9e", // slightly darker version of #D2C1B6
+//   HoverButtonColor2: "#D2C1B6/10",
+
+//   TextButtonColor1: "#1B3C53",
+//   TextButtonColor2: "#D2C1B6", // updated from Secondary
+//   TextButtonColor3: "white",
+
+//   IconsColor: "#D2C1B6", // updated from Secondary
+//   MenuIconColor: "white",
+
+//   BorderLineColor1: "#D2C1B6", // updated from Secondary
+//   BorderLineColor2: "#1F2D3A",
+// };

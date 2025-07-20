@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Card, CardContent } from "@/components/ui/card";
-import { Colors } from "@/styles/global";
 import { Link } from "react-router-dom";
 import { attorneys } from "@/mockData/legalTeamDetails";
 
@@ -75,22 +74,13 @@ const Attorneys = () => {
   }, []);
 
   return (
-    <section
-      className="py-20 relative"
-      style={{ backgroundColor: Colors.LightGrayBackground }}
-    >
+    <section className="py-20 relative bg-[#0B1C2C]">
       <div className="container mx-auto px-6">
         <div ref={titleRef} className="text-center mb-16">
-          <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: Colors.Slate700 }}
-          >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Our Legal Team
           </h2>
-          <p
-            className="text-xl max-w-3xl mx-auto"
-            style={{ color: Colors.Slate600 }}
-          >
+          <p className="text-xl max-w-3xl mx-auto text-gray-300">
             Meet our experienced attorneys who bring decades of combined
             expertise to every case, ensuring the highest quality legal
             representation.
@@ -101,8 +91,7 @@ const Attorneys = () => {
           {attorneys.slice(0, 5).map((attorney, index) => (
             <Card
               key={index}
-              className="attorney-card border-0 overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              style={{ backgroundColor: Colors.White }}
+              className="attorney-card border border-[#1F2D3A] overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-[#14283c]"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -113,29 +102,15 @@ const Attorneys = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <CardContent className="p-6 text-center">
-                <h3
-                  className="text-xl font-bold mb-2"
-                  style={{ color: Colors.Slate700 }}
-                >
+                <h3 className="text-xl font-bold mb-2 text-white">
                   {attorney.name}
                 </h3>
-                <p
-                  className="font-semibold mb-2"
-                  style={{ color: Colors.PrimaryColor }}
-                >
+                <p className="font-semibold mb-2 text-[#CBA14A]">
                   {attorney.title}
                 </p>
-                <p className="mb-3" style={{ color: Colors.Slate600 }}>
-                  {attorney.specialization}
-                </p>
-                <div
-                  className="rounded-full px-4 py-2 inline-block"
-                  style={{ backgroundColor: Colors.LightGrayBackground }}
-                >
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: Colors.Slate600 }}
-                  >
+                <p className="mb-3 text-gray-300">{attorney.specialization}</p>
+                <div className="rounded-full px-4 py-2 inline-block bg-[#1F2D3A]">
+                  <span className="text-sm font-medium text-gray-300">
                     {attorney.experience} Experience
                   </span>
                 </div>
@@ -148,8 +123,7 @@ const Attorneys = () => {
         <div className="text-right mt-10">
           <Link
             to="/attorneys"
-            className="inline-flex items-center gap-2 px-5 py-2 border border-transparent rounded-full bg-white shadow-sm text-sm font-medium transition-all duration-300 hover:bg-gray-100"
-            style={{ color: Colors.PrimaryColor }}
+            className="inline-flex items-center gap-2 px-5 py-2 border border-[#CBA14A] rounded-full bg-transparent text-sm font-medium transition-all duration-300 hover:bg-[#CBA14A]/10 text-[#CBA14A]"
           >
             View More
             <svg
