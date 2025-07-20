@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const quickLinks = [
   { title: "About Us", path: "/about-us" },
-  { title: "Our Team", path: "/team" },
+  { title: "Our Team", path: "/attorneys" },
   { title: "Contact Us", path: "/contact" },
   { title: "Join Us", path: "/join-us" },
   { title: "Internship", path: "/careers-internship" },
@@ -65,7 +65,13 @@ const Footer = () => {
                   key={index}
                   className="cursor-pointer transition-colors"
                   style={{ color: Colors.Slate400 }}
-                  onClick={() => navigate(link.path)}
+                  onClick={() => {
+                    if (window.location.pathname === link.path) {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    } else {
+                      navigate(link.path);
+                    }
+                  }}
                   onMouseOver={(e) =>
                     (e.currentTarget.style.color = Colors.PrimaryColorLight)
                   }
