@@ -11,6 +11,7 @@ import { Phone, Plus, X, MessageCircle } from "lucide-react";
 import { Colors } from "@/styles/global";
 import FAQs from "@/components/FAQs";
 import DisclaimerModal from "@/components/DisclaimerModal";
+import Patron from "@/components/Patron";
 
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +79,10 @@ const Index = () => {
 
       <section id="about">
         <About />
+      </section>
+
+      <section id="patron">
+        <Patron />
       </section>
 
       <section id="attorneys">

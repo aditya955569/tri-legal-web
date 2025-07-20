@@ -18,6 +18,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import LegalDisclaimer from "./components/LegalDisclaimer";
 import TeamWithUs from "./components/TeamWithUs";
 import Internship from "./components/Internship";
+import OurTeam from "./components/OurTeam";
 
 const AppRoutes = () => (
   <Routes>
@@ -48,6 +49,7 @@ const AppRoutes = () => (
     <Route path="/join-us" element={<TeamWithUs />} />
     <Route path="/careers-internship" element={<Internship />} />
 
+    <Route path="/attorneys" element={<OurTeam />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );

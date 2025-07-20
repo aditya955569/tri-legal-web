@@ -3,13 +3,21 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Card, CardContent } from "@/components/ui/card";
 import { Colors } from "@/styles/global";
-import { Link } from "react-router-dom";
-import { attorneys } from "@/mockData/legalTeamDetails";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Attorneys = () => {
-  const cardsRef = useRef<HTMLDivElement>(null);
+const patrons = [
+  {
+    name: "Adv. Amol Kumar",
+    title: "Raj Kumar & Co.",
+    specialization: "Renowned Litigator of Uttar Pradesh",
+    experience: "25 Years",
+    image: "https://example.com/realistic-indian-advocate.jpg",
+  },
+];
+
+const Patron = () => {
+  const cardRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,9 +58,9 @@ const Attorneys = () => {
       );
     }
 
-    if (cardsRef.current) {
+    if (cardRef.current) {
       const cards = gsap.utils.toArray<HTMLDivElement>(
-        cardsRef.current.querySelectorAll(".attorney-card")
+        cardRef.current.querySelectorAll(".attorney-card")
       );
 
       gsap.fromTo(
@@ -65,7 +73,7 @@ const Attorneys = () => {
           ease: "power3.out",
           stagger: 0.2,
           scrollTrigger: {
-            trigger: cardsRef.current,
+            trigger: cardRef.current,
             start: "top 85%",
             toggleActions: "play none none reset",
           },
@@ -76,7 +84,7 @@ const Attorneys = () => {
 
   return (
     <section
-      className="py-20 relative"
+      className="py-20"
       style={{ backgroundColor: Colors.LightGrayBackground }}
     >
       <div className="container mx-auto px-6">
@@ -85,29 +93,36 @@ const Attorneys = () => {
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{ color: Colors.Slate700 }}
           >
-            Our Legal Team
+            Patron
           </h2>
           <p
             className="text-xl max-w-3xl mx-auto"
             style={{ color: Colors.Slate600 }}
           >
-            Meet our experienced attorneys who bring decades of combined
-            expertise to every case, ensuring the highest quality legal
-            representation.
+            Our esteemed patron provides invaluable guidance and leadership to
+            our legal team, setting the benchmark for excellence and dedication
+            in the legal field.
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
-          {attorneys.slice(0, 5).map((attorney, index) => (
+        <div
+          ref={cardRef}
+          className={`grid gap-8 ${
+            patrons.length === 1
+              ? "grid-cols-1 place-items-center"
+              : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+          }`}
+        >
+          {patrons.map((patron, index) => (
             <Card
               key={index}
-              className="attorney-card border-0 overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="attorney-card border-0 overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 w-full max-w-sm"
               style={{ backgroundColor: Colors.White }}
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={attorney.image}
-                  alt={attorney.name}
+                  src={patron.image}
+                  alt={patron.name}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -117,16 +132,16 @@ const Attorneys = () => {
                   className="text-xl font-bold mb-2"
                   style={{ color: Colors.Slate700 }}
                 >
-                  {attorney.name}
+                  {patron.name}
                 </h3>
                 <p
                   className="font-semibold mb-2"
                   style={{ color: Colors.PrimaryColor }}
                 >
-                  {attorney.title}
+                  {patron.title}
                 </p>
                 <p className="mb-3" style={{ color: Colors.Slate600 }}>
-                  {attorney.specialization}
+                  {patron.specialization}
                 </p>
                 <div
                   className="rounded-full px-4 py-2 inline-block"
@@ -136,41 +151,16 @@ const Attorneys = () => {
                     className="text-sm font-medium"
                     style={{ color: Colors.Slate600 }}
                   >
-                    {attorney.experience} Experience
+                    {patron.experience} Experience
                   </span>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
-
-        {/* View More link */}
-        <div className="text-right mt-10">
-          <Link
-            to="/attorneys"
-            className="inline-flex items-center gap-2 px-5 py-2 border border-transparent rounded-full bg-white shadow-sm text-sm font-medium transition-all duration-300 hover:bg-gray-100"
-            style={{ color: Colors.PrimaryColor }}
-          >
-            View More
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
-        </div>
       </div>
     </section>
   );
 };
 
-export default Attorneys;
+export default Patron;
