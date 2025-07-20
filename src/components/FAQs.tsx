@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -7,44 +7,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { faqData } from "@/mockData/dummyFAQs";
+import { Colors } from "@/styles/global";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const faqData = [
-  {
-    question: "What types of cases does your law firm handle?",
-    answer:
-      "We handle a wide range of legal matters including civil litigation, criminal defense, family law, property disputes, corporate law, and more. Our experienced team is equipped to guide you through complex legal processes.",
-  },
-  {
-    question: "How do I schedule a consultation with your firm?",
-    answer:
-      "You can schedule a consultation by filling out the contact form on our website, calling us directly, or visiting our office during business hours. We offer both in-person and virtual consultations.",
-  },
-  {
-    question: "What documents should I bring to my first legal consultation?",
-    answer:
-      "Please bring any relevant documents such as ID proof, case-related papers, legal notices, contracts, or any correspondence related to your legal issue. This helps us assess your case effectively.",
-  },
-  {
-    question: "How are legal fees structured?",
-    answer:
-      "Our fees depend on the type and complexity of the case. We offer transparent pricing and will provide a clear fee structure during your initial consultation. In certain cases, we may offer flexible payment plans.",
-  },
-  {
-    question: "How long will my case take to resolve?",
-    answer:
-      "The duration varies depending on the nature of the case, court schedules, and legal procedures involved. During your consultation, we can give you an estimate based on similar cases we've handled.",
-  },
-  {
-    question: "Will my personal information remain confidential?",
-    answer:
-      "Absolutely. Client confidentiality is a top priority. All information shared with us is treated with the utmost discretion and protected under attorney-client privilege.",
-  },
-];
-
 const FAQs = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -67,13 +37,23 @@ const FAQs = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-[#0B1C2C]">
+    <section
+      ref={sectionRef}
+      className="py-20"
+      style={{ backgroundColor: Colors.PrimaryBgColor }}
+    >
       <div className="container mx-auto px-6">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2
+            className="text-3xl md:text-4xl font-bold"
+            style={{ color: Colors.TextColor1 }}
+          >
             Frequently Asked Questions
           </h2>
-          <p className="mt-2 text-base md:text-lg text-gray-300">
+          <p
+            className="mt-2 text-base md:text-lg"
+            style={{ color: Colors.TextColor5 }}
+          >
             Brief answers to common queries
           </p>
         </div>
@@ -87,12 +67,35 @@ const FAQs = () => {
             <AccordionItem
               key={index}
               value={`faq-${index}`}
-              className="rounded-lg border border-[#1F2D3A] bg-[#14283c] transition-all hover:shadow-lg"
+              style={{
+                borderColor: Colors.BorderLineColor2,
+                backgroundColor: Colors.CardBgPrimaryColor,
+              }}
+              className="rounded-lg border transition-all hover:shadow-lg"
             >
-              <AccordionTrigger className="px-5 py-4 text-left text-base md:text-lg font-medium text-white hover:bg-[#1F2D3A]/50 transition-colors">
+              {/* <AccordionTrigger
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{
+                  color: Colors.TextColor1,
+                  backgroundColor: isHovered
+                    ? "rgba(31, 45, 58, 0.5)"
+                    : "transparent",
+                }}
+                className="px-5 py-4 text-left text-base md:text-lg font-medium transition-colors"
+              > */}
+              <AccordionTrigger
+                style={{
+                  color: Colors.TextColor1,
+                }}
+                className="px-5 py-4 text-left text-base md:text-lg font-medium transition-colors hover:bg-[rgba(31,45,58,0.05)]"
+              >
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="px-5 pb-5 pt-1 text-gray-300 text-sm md:text-base leading-relaxed">
+              <AccordionContent
+                className="px-5 pb-5 pt-1text-sm md:text-base leading-relaxed"
+                style={{ color: Colors.TextColor5 }}
+              >
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

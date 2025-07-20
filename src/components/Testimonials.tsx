@@ -4,11 +4,13 @@ import { testimonials } from "@/mockData/testimonials";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Colors } from "@/styles/global";
 
 const Testimonials = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -75,7 +77,8 @@ const Testimonials = () => {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="py-20 relative overflow-hidden bg-[#0B1C2C]"
+      className="py-20 relative overflow-hidden "
+      style={{ backgroundColor: Colors.PrimaryBgColor }}
     >
       {/* Gold pattern dots */}
       <div
@@ -87,10 +90,16 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: Colors.TextColor1 }}
+          >
             Client Testimonials
           </h2>
-          <p className="text-xl max-w-3xl mx-auto text-gray-300">
+          <p
+            className="text-xl max-w-3xl mx-auto"
+            style={{ color: Colors.TextColor5 }}
+          >
             Don't just take our word for it. Here's what our clients say about
             their experience working with our legal team.
           </p>
@@ -104,10 +113,20 @@ const Testimonials = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl bg-[#CBA14A] hover:bg-[#b98d37]"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              style={{
+                backgroundColor: isHovered
+                  ? Colors.HoverButtonColor1
+                  : Colors.HoverButtonColor3,
+              }}
+              className="absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl"
               aria-label="Scroll testimonials left"
             >
-              <ChevronLeft className="h-6 w-6 text-[#0B1C2C]" />
+              <ChevronLeft
+                className="h-6 w-6"
+                style={{ color: Colors.IconsColor2 }}
+              />
             </motion.button>
           )}
 
@@ -118,10 +137,20 @@ const Testimonials = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl bg-[#CBA14A] hover:bg-[#b98d37]"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              style={{
+                backgroundColor: isHovered
+                  ? Colors.HoverButtonColor1
+                  : Colors.HoverButtonColor3,
+              }}
+              className="absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all duration-300 active:scale-95 shadow-lg hover:shadow-xl"
               aria-label="Scroll testimonials right"
             >
-              <ChevronRight className="h-6 w-6 text-[#0B1C2C]" />
+              <ChevronRight
+                className="h-6 w-6"
+                style={{ color: Colors.IconsColor2 }}
+              />
             </motion.button>
           )}
 
@@ -138,25 +167,47 @@ const Testimonials = () => {
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Card className="w-[300px] sm:w-[350px] h-full transition-all duration-300 group shadow-md hover:shadow-xl bg-[#14283c] border border-[#1F2D3A]">
+                <Card
+                  className="w-[300px] sm:w-[350px] h-full transition-all duration-300 group shadow-md hover:shadow-xl border"
+                  style={{
+                    backgroundColor: Colors.CardBgPrimaryColor,
+                    borderColor: Colors.CardBgSecondaryColor,
+                  }}
+                >
                   <CardContent className="p-8 h-full flex flex-col">
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i} className="text-[#CBA14A] text-xl">
+                        <span
+                          key={i}
+                          className="text-xl"
+                          style={{ color: Colors.TextColor3 }}
+                        >
                           ★
                         </span>
                       ))}
                     </div>
 
-                    <blockquote className="mb-6 leading-relaxed italic flex-grow text-gray-300">
+                    <blockquote
+                      className="mb-6 leading-relaxed italic flex-grow"
+                      style={{ color: Colors.TextColor5 }}
+                    >
                       "{testimonial.quote}"
                     </blockquote>
 
-                    <div className="border-t border-[#1F2D3A] pt-4">
-                      <h4 className="font-bold text-white">
+                    <div
+                      className="border-t pt-4"
+                      style={{ color: Colors.CardBgSecondaryColor }}
+                    >
+                      <h4
+                        className="font-bold"
+                        style={{ color: Colors.TextColor1 }}
+                      >
                         {testimonial.client}
                       </h4>
-                      <p className="text-sm text-gray-300">
+                      <p
+                        className="text-sm"
+                        style={{ color: Colors.TextColor5 }}
+                      >
                         {testimonial.position}
                       </p>
                     </div>

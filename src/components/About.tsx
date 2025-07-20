@@ -110,7 +110,7 @@ const About = () => {
             <div
               className="rounded-2xl p-8 transform rotate-3"
               style={{
-                background: `linear-gradient(to bottom right, #CBA14A, #b98d37)`,
+                background: `linear-gradient(to bottom right, ${Colors.HoverButtonColor3}, ${Colors.HoverButtonColor1})`,
               }}
             >
               <div
