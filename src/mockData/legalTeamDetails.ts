@@ -11,32 +11,29 @@ export const attorneys: Attorney[] = [
     name: "Adv. Sanjay Shukla",
     title: "Revenue Law, Banking Law & Civil Law",
     // specialization: "Revenue Law, Banking Law & Civil Law",
-    image:
-      "https://images.unsplash.com/photo-1593878934638-c280c318675f?auto=format&fit=crop&w=400&q=80",
+    image: "/public/images/advocates/adv1.jpeg",
   },
   {
     name: "Adv. Padmakar Nath Tripathi",
     title: "Civil Law & Criminal Law",
     // specialization: "Civil Law & Criminal Law",
-    image:
-      "https://images.unsplash.com/photo-1617957746797-0c7d2ae18d69?auto=format&fit=crop&w=400&q=80",
+    image: "/public/images/advocates/adv2.jpeg",
   },
   {
     name: "Adv. Rekha Rawat",
     title: "Matrimonial Law & Civil Law",
     // specialization: "Constitutional Law",
-    image:
-      "https://images.unsplash.com/photo-1616077168078-e91fa22492f1?auto=format&fit=crop&w=400&q=80",
+    image: "/public/images/advocates/adv3.jpeg",
   },
   {
     name: "Adv. Mohd. Israil",
     title: "Insurance & Claim",
     // specialization: "Insurance & Claim",
     image:
-      "https://images.unsplash.com/photo-1600275669437-b3a9e0fddffb?auto=format&fit=crop&w=400&q=80",
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
   },
   {
-    name: "Adv. Jatin Gajhani",
+    name: "Adv. Jatin Gajwani",
     title:
       "Commercial Law, Arbitrations & Industrial Law, Service Matters & DRT Matters",
     // specialization: "Commercial Law, Arbitrations & Industrial Law, Service Matters & DRT Matters",

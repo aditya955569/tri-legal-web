@@ -110,7 +110,12 @@ const Attorneys = () => {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={attorney.image}
+                  src={
+                    attorney.image?.startsWith("http") ||
+                    attorney.image?.startsWith("/")
+                      ? attorney.image
+                      : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                  }
                   alt={attorney.name}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />

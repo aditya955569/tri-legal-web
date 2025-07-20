@@ -80,40 +80,40 @@
 //     LightGrayBackground: "#FDF0D5",  // Buttercream beige
 // };
 
-// export const Colors = {
-//   PrimaryBgColor: "#0B1C2C",
-//   SecondaryBgColor: "#CBA14A",
-//   TertiaryBgColor: "yellow",
+export const Colors = {
+  PrimaryBgColor: "#0B1C2C",
+  SecondaryBgColor: "#CBA14A",
+  TertiaryBgColor: "yellow",
 
-//   MainHeadingColor1: "white",
-//   MainHeadingColor2: "#CBA14A",
-//   ButtonBgColor1: "#CBA14A",
-//   ButtonBgColor2: "white",
+  MainHeadingColor1: "white",
+  MainHeadingColor2: "#CBA14A",
+  ButtonBgColor1: "#CBA14A",
+  ButtonBgColor2: "white",
 
-//   TextColor1: "white",
-//   TextColor2: "#0B1C2C",
-//   TextColor3: "#CBA14A",
-//   TextColor4: "#D9E0E8",
-//   TextColor5: "#D1D5DB",
+  TextColor1: "white",
+  TextColor2: "#0B1C2C",
+  TextColor3: "#CBA14A",
+  TextColor4: "#D9E0E8",
+  TextColor5: "#D1D5DB",
 
-//   HoverButtonColor1: "#b98d37",
-//   HoverButtonColor2: "#CBA14A/10",
-//   HoverButtonColor3: "#CBA14A",
+  HoverButtonColor1: "#b98d37",
+  HoverButtonColor2: "#CBA14A/10",
+  HoverButtonColor3: "#CBA14A",
 
-//   TextButtonColor1: "#0B1C2C",
-//   TextButtonColor2: "#CBA14A",
-//   TextButtonColor3: "white",
+  TextButtonColor1: "#0B1C2C",
+  TextButtonColor2: "#CBA14A",
+  TextButtonColor3: "white",
 
-//   IconsColor: "#CBA14A",
-//   IconsColor2: "#0B1C2C",
-//   MenuIconColor: "white",
+  IconsColor: "#CBA14A",
+  IconsColor2: "#0B1C2C",
+  MenuIconColor: "white",
 
-//   BorderLineColor1: "#CBA14A",
-//   BorderLineColor2: "#1F2D3A",
+  BorderLineColor1: "#CBA14A",
+  BorderLineColor2: "#1F2D3A",
 
-//   CardBgPrimaryColor: "#14283c",
-//   CardBgSecondaryColor: "#1F2D3A",
-// };
+  CardBgPrimaryColor: "#14283c",
+  CardBgSecondaryColor: "#1F2D3A",
+};
 
 // export const Colors = {
 //   PrimaryBgColor: "#1B3C53",
@@ -180,38 +180,38 @@
 //   CardBgSecondaryColor: "#334155", // Slightly lighter slate
 // };
 
-export const Colors = {
-  PrimaryBgColor: "#F5F3EF", // Warm light beige
-  SecondaryBgColor: "#A36A4F", // Soft terracotta
-  TertiaryBgColor: "#E1DCD7", // Muted stone (used for cards)
+// export const Colors = {
+//   PrimaryBgColor: "#F5F3EF", // Warm light beige
+//   SecondaryBgColor: "#A36A4F", // Soft terracotta
+//   TertiaryBgColor: "#E1DCD7", // Muted stone (used for cards)
 
-  MainHeadingColor1: "#2D2A26", // Deep espresso (main heading)
-  MainHeadingColor2: "#A36A4F", // Accent terracotta
+//   MainHeadingColor1: "#2D2A26", // Deep espresso (main heading)
+//   MainHeadingColor2: "#A36A4F", // Accent terracotta
 
-  ButtonBgColor1: "#A36A4F", // Terracotta button
-  ButtonBgColor2: "#FFFFFF", // White button (secondary)
+//   ButtonBgColor1: "#A36A4F", // Terracotta button
+//   ButtonBgColor2: "#FFFFFF", // White button (secondary)
 
-  TextColor1: "#2D2A26", // Dark neutral text
-  TextColor2: "#FFFFFF", // Light text on dark background
-  TextColor3: "#A36A4F", // Highlight/accent text
-  TextColor4: "#7B726B", // Muted gray-brown for body
-  TextColor5: "#A0A29E", // Subtle muted secondary text
+//   TextColor1: "#2D2A26", // Dark neutral text
+//   TextColor2: "#FFFFFF", // Light text on dark background
+//   TextColor3: "#A36A4F", // Highlight/accent text
+//   TextColor4: "#7B726B", // Muted gray-brown for body
+//   TextColor5: "#A0A29E", // Subtle muted secondary text
 
-  HoverButtonColor1: "#8E5943", // Slightly darker terracotta
-  HoverButtonColor2: "rgba(163, 106, 79, 0.1)", // Transparent hover
-  HoverButtonColor3: "#A36A4F", // Default hover fallback
+//   HoverButtonColor1: "#8E5943", // Slightly darker terracotta
+//   HoverButtonColor2: "rgba(163, 106, 79, 0.1)", // Transparent hover
+//   HoverButtonColor3: "#A36A4F", // Default hover fallback
 
-  TextButtonColor1: "#2D2A26", // Espresso text
-  TextButtonColor2: "#A36A4F", // Terracotta
-  TextButtonColor3: "#FFFFFF", // White
+//   TextButtonColor1: "#2D2A26", // Espresso text
+//   TextButtonColor2: "#A36A4F", // Terracotta
+//   TextButtonColor3: "#FFFFFF", // White
 
-  IconsColor: "#A36A4F", // Accent icons
-  IconsColor2: "#2D2A26", // Dark icons
-  MenuIconColor: "#2D2A26", // Neutral icon color
+//   IconsColor: "#A36A4F", // Accent icons
+//   IconsColor2: "#2D2A26", // Dark icons
+//   MenuIconColor: "#2D2A26", // Neutral icon color
 
-  BorderLineColor1: "#A36A4F", // Accent border
-  BorderLineColor2: "#DDD6CF", // Soft light border
+//   BorderLineColor1: "#A36A4F", // Accent border
+//   BorderLineColor2: "#DDD6CF", // Soft light border
 
-  CardBgPrimaryColor: "#FAF8F5", // Light cream card
-  CardBgSecondaryColor: "#EDEAE6", // Slightly deeper neutral card
-};
+//   CardBgPrimaryColor: "#FAF8F5", // Light cream card
+//   CardBgSecondaryColor: "#EDEAE6", // Slightly deeper neutral card
+// };
