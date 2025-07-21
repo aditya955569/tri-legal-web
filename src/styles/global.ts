@@ -114,6 +114,9 @@ export const Colors = {
 
   CardBgPrimaryColor: "#14283c",
   CardBgSecondaryColor: "#1F2D3A",
+
+  InputFieldBgColor: "white",
+  InputFieldPlaceholderTextColor: "#9CA3AF",
 };
 
 // export const Colors = {

@@ -21,6 +21,7 @@ const TeamWithUs = () => {
     registration: "",
     district: "",
     domain: "",
+    state: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -57,34 +58,34 @@ const TeamWithUs = () => {
       if (name === "pincode" && (value.length > 6 || /\D/.test(value))) return;
     }
 
-    if (name === "registration") {
-      // Remove anything not A-Z or 0-9, force uppercase
-      let input = value.toUpperCase().replace(/[^A-Z0-9]/g, "");
-      let formatted = "";
+    // if (name === "registration") {
+    //   // Remove anything not A-Z or 0-9, force uppercase
+    //   let input = value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+    //   let formatted = "";
 
-      // Only allow 2 letters first
-      const prefix = input.slice(0, 2);
-      if (!/^[A-Z]{0,2}$/.test(prefix)) return;
+    //   // Only allow 2 letters first
+    //   const prefix = input.slice(0, 2);
+    //   if (!/^[A-Z]{0,2}$/.test(prefix)) return;
 
-      if (input.length <= 2) {
-        formatted = prefix;
-      } else if (input.length <= 6) {
-        const digits1 = input.slice(2, 6);
-        if (!/^\d*$/.test(digits1)) return;
-        formatted = `${prefix}/${digits1}`;
-      } else if (input.length <= 10) {
-        const digits1 = input.slice(2, 6);
-        const digits2 = input.slice(6, 10);
-        if (!/^\d{4}$/.test(digits1) || !/^\d*$/.test(digits2)) return;
-        formatted = `${prefix}/${digits1}/${digits2}`;
-      } else {
-        return; // Prevent input longer than pattern
-      }
+    //   if (input.length <= 2) {
+    //     formatted = prefix;
+    //   } else if (input.length <= 6) {
+    //     const digits1 = input.slice(2, 6);
+    //     if (!/^\d*$/.test(digits1)) return;
+    //     formatted = `${prefix}/${digits1}`;
+    //   } else if (input.length <= 10) {
+    //     const digits1 = input.slice(2, 6);
+    //     const digits2 = input.slice(6, 10);
+    //     if (!/^\d{4}$/.test(digits1) || !/^\d*$/.test(digits2)) return;
+    //     formatted = `${prefix}/${digits1}/${digits2}`;
+    //   } else {
+    //     return; // Prevent input longer than pattern
+    //   }
 
-      setFormData((prev) => ({ ...prev, [name]: formatted }));
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-      return;
-    }
+    //   setFormData((prev) => ({ ...prev, [name]: formatted }));
+    //   setErrors((prev) => ({ ...prev, [name]: "" }));
+    //   return;
+    // }
 
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
@@ -163,6 +164,7 @@ const TeamWithUs = () => {
         registration: "",
         district: "",
         domain: "",
+        state: "",
       });
       setOtherDomain("");
       setErrors({});
@@ -177,45 +179,46 @@ const TeamWithUs = () => {
     <>
       <CustomizedNavigation />
 
-      <section
-        className="min-h-screen px-6 py-28 flex items-center justify-center"
-        style={{
-          background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}11, ${Colors.White})`,
-        }}
-      >
+      <section className="min-h-screen px-6 py-28 flex items-center justify-center">
         <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10">
           <div className="w-full lg:w-1/2 space-y-6">
             <h2
               className="text-4xl font-bold"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Connect With VidhiVidh – Advocate Network
             </h2>
-            <p className="text-base" style={{ color: Colors.Slate600 }}>
+            <p className="text-base" style={{ color: Colors.TextColor6 }}>
               VidhiVidh is building a trusted and professional legal network of
               advocates across Uttar Pradesh. If you're practicing law and want
               to contribute, collaborate, and grow, join our professional
               advocate community today.
             </p>
-            <p className="text-base" style={{ color: Colors.Slate600 }}>
+            <p className="text-base" style={{ color: Colors.TextColor6 }}>
               Your verified information helps us create a strong legal community
               where trust and transparency thrive. All fields below are
               mandatory and must follow the required format.
             </p>
           </div>
 
-          <div className="w-full lg:w-1/2 flex justify-center items-center">
-            <Card className="w-full max-w-lg border-0 shadow-xl">
+          <div
+            className="w-full lg:w-1/2 flex justify-center items-center"
+            // style={{ backgroundColor: Colors.CardBgPrimaryColor }}
+          >
+            <Card
+              className="w-full max-w-lg border-0 shadow-xl"
+              style={{ backgroundColor: Colors.CardBgPrimaryColor }}
+            >
               <CardHeader className="text-center">
                 <CardTitle
                   className="text-3xl font-bold"
-                  style={{ color: Colors.Slate700 }}
+                  style={{ color: Colors.TextColor3 }}
                 >
                   Join Our Advocate Network
                 </CardTitle>
                 <p
                   className="text-base mt-2"
-                  style={{ color: Colors.Slate600 }}
+                  style={{ color: Colors.TextColor5 }}
                 >
                   All fields are mandatory.
                 </p>
@@ -227,7 +230,7 @@ const TeamWithUs = () => {
                       <label
                         htmlFor={field.name}
                         className="block text-sm font-medium mb-1"
-                        style={{ color: Colors.Slate600 }}
+                        style={{ color: Colors.TextColor5 }}
                       >
                         {field.label}
                       </label>
@@ -259,10 +262,10 @@ const TeamWithUs = () => {
 
                   {/* Domain Dropdown */}
 
-                  <div>
+                  {/* <div>
                     <label
                       className="block text-sm font-medium mb-1"
-                      style={{ color: Colors.Slate600 }}
+                      style={{ color: Colors.TextColor5 }}
                     >
                       District
                     </label>
@@ -297,12 +300,84 @@ const TeamWithUs = () => {
                         {errors.district}
                       </p>
                     )}
+                  </div> */}
+
+                  <div>
+                    {/* District Input Field */}
+                    <label
+                      className="block text-sm font-medium mb-1"
+                      style={{ color: Colors.TextColor5 }}
+                    >
+                      District
+                    </label>
+                    <input
+                      type="text"
+                      name="district"
+                      value={formData.district}
+                      onChange={(e) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          district: e.target.value,
+                        }));
+                        setErrors((prev) => ({ ...prev, district: "" }));
+                      }}
+                      required
+                      className={`w-full px-3 py-[0.625rem] rounded-md text-sm font-normal
+    ${errors.district ? "border-red-500" : "border-slate-400"}
+    border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200`}
+                      style={{
+                        color: Colors.TextColor6,
+                        fontSize: "0.875rem",
+                        backgroundColor: Colors.InputFieldBgColor,
+                      }}
+                      placeholder="Enter District"
+                    />
+                    {errors.district && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {errors.district}
+                      </p>
+                    )}
+
+                    {/* State Input Field */}
+                    <label
+                      className="block text-sm font-medium mb-1 mt-4"
+                      style={{ color: Colors.TextColor5 }}
+                    >
+                      State
+                    </label>
+                    <input
+                      type="text"
+                      name="state"
+                      value={formData.state}
+                      onChange={(e) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          state: e.target.value,
+                        }));
+                        setErrors((prev) => ({ ...prev, state: "" }));
+                      }}
+                      required
+                      className={`w-full px-3 py-[0.625rem] rounded-md text-sm font-normal
+    ${errors.state ? "border-red-500" : "border-slate-400"}
+    border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200`}
+                      style={{
+                        color: Colors.TextColor6,
+                        fontSize: "0.875rem",
+                        backgroundColor: Colors.InputFieldBgColor,
+                      }}
+                      placeholder="Enter State"
+                    />
+                    {errors.state && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {errors.state}
+                      </p>
+                    )}
                   </div>
 
                   <div>
                     <label
                       className="block text-sm font-medium mb-1"
-                      style={{ color: Colors.Slate600 }}
+                      style={{ color: Colors.TextColor5 }}
                     >
                       Domain
                     </label>
@@ -317,17 +392,24 @@ const TeamWithUs = () => {
                         setErrors((prev) => ({ ...prev, domain: "" }));
                       }}
                       required
-                      className={`w-full px-3 py-[0.625rem] rounded-md bg-white text-sm font-normal
+                      className={`w-full px-3 py-[0.625rem] rounded-md text-sm font-normal
       ${errors.domain ? "border-red-500" : "border-slate-400"}
       border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200`}
                       style={{
-                        color: Colors.Slate700,
+                        color: Colors.InputFieldPlaceholderTextColor,
                         fontSize: "0.875rem", // same as text-sm
+                        backgroundColor: Colors.InputFieldBgColor,
                       }}
                     >
-                      <option value="">-- Select Domain --</option>
+                      <option value="" style={{ color: Colors.TextColor6 }}>
+                        -- Select Domain --
+                      </option>
                       {domains.map((domain, index) => (
-                        <option key={`domain-${index}`} value={domain}>
+                        <option
+                          key={`domain-${index}`}
+                          value={domain}
+                          style={{ color: Colors.TextColor6 }}
+                        >
                           {domain}
                         </option>
                       ))}
@@ -344,7 +426,7 @@ const TeamWithUs = () => {
                     <div>
                       <label
                         className="block text-sm font-medium mb-1"
-                        style={{ color: Colors.Slate600 }}
+                        style={{ color: Colors.TextColor5 }}
                       >
                         Enter Other Domain
                       </label>
@@ -359,7 +441,7 @@ const TeamWithUs = () => {
                           errors.domain ? "border-red-500" : "border-slate-400"
                         }`}
                         style={{
-                          color: Colors.Slate700,
+                          color: Colors.TextColor5,
                           fontSize: "0.875rem",
                           borderRadius: "0.375rem",
                         }}
@@ -378,16 +460,16 @@ const TeamWithUs = () => {
                     disabled={submitting}
                     className="w-full font-semibold shadow-md"
                     style={{
-                      backgroundColor: Colors.PrimaryColor,
-                      color: Colors.White,
+                      backgroundColor: Colors.ButtonBgColor1,
+                      color: Colors.TextColor2,
                     }}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.backgroundColor =
-                        Colors.PrimaryColorHover)
+                        Colors.HoverButtonColor1)
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.backgroundColor =
-                        Colors.PrimaryColor)
+                        Colors.ButtonBgColor1)
                     }
                   >
                     {submitting ? "Submitting..." : "Submit Details"}

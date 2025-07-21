@@ -121,40 +121,35 @@ const Internship = () => {
     <div>
       <CustomizedNavigation />
 
-      <section
-        className="min-h-screen px-6 py-28 flex items-center justify-center"
-        style={{
-          background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}11, ${Colors.White})`,
-        }}
-      >
+      <section className="min-h-screen px-6 py-28 flex items-center justify-center">
         <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-10">
           {/* LEFT CONTENT */}
           <div className="w-full lg:w-1/2 space-y-6 text-left">
             <h2
               className="text-4xl font-bold"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               VidhiVidh Internship Program – Lucknow
             </h2>
 
-            <p className="text-base" style={{ color: Colors.Slate600 }}>
+            <p className="text-base" style={{ color: Colors.TextColor6 }}>
               At <strong>VidhiVidh</strong>, we are committed to mentoring and
               developing future legal professionals...
             </p>
 
-            <p className="text-base" style={{ color: Colors.Slate600 }}>
+            <p className="text-base" style={{ color: Colors.TextColor6 }}>
               Each intern is paired with a mentor who guides their learning...
             </p>
 
             <h4
               className="font-semibold text-lg mt-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Post-Internship Requirements
             </h4>
             <ul
               className="list-disc pl-6 text-sm"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor6 }}
             >
               <li>Two-page internship report</li>
               <li>Mandatory presentation (topic provided by mentor)</li>
@@ -165,13 +160,13 @@ const Internship = () => {
 
             <h4
               className="font-semibold text-lg mt-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Dress Code
             </h4>
             <ul
               className="list-disc pl-6 text-sm"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor6 }}
             >
               <li>Females: Semi-formal western or Indian wear</li>
               <li>Males: Trousers, collared shirts, and jackets</li>
@@ -180,23 +175,23 @@ const Internship = () => {
 
             <h4
               className="font-semibold text-lg mt-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Office Timings
             </h4>
-            <p className="text-sm" style={{ color: Colors.Slate600 }}>
+            <p className="text-sm" style={{ color: Colors.TextColor6 }}>
               10:00 AM to 7:00 PM | Saturdays working (except 2nd and 4th)
             </p>
 
             <h4
               className="font-semibold text-lg mt-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Do's & Don'ts
             </h4>
             <ul
               className="list-disc pl-6 text-sm"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor6 }}
             >
               <li>Bring your own laptop</li>
               <li>No pen drives/USBs allowed</li>
@@ -205,29 +200,29 @@ const Internship = () => {
 
             <h4
               className="font-semibold text-lg mt-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Stipend
             </h4>
-            <p className="text-sm" style={{ color: Colors.Slate600 }}>
+            <p className="text-sm" style={{ color: Colors.TextColor6 }}>
               This is an unpaid internship. However, exceptional performance may
               lead to job opportunities at VidhiVidh.
             </p>
 
             <h4
               className="font-semibold text-lg mt-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               What We Offer at VidhiVidh
             </h4>
             <ul
               className="list-disc pl-6 text-sm"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor6 }}
             >
               <li>
                 <span
                   className="font-semibold text-sm mt-4"
-                  style={{ color: Colors.Slate700 }}
+                  style={{ color: Colors.TextColor6 }}
                 >
                   Certificate of Completion:
                 </span>{" "}
@@ -236,7 +231,7 @@ const Internship = () => {
               <li>
                 <span
                   className="font-semibold text-sm mt-4"
-                  style={{ color: Colors.Slate700 }}
+                  style={{ color: Colors.TextColor2 }}
                 >
                   Practical Exposure:{" "}
                 </span>
@@ -246,7 +241,7 @@ const Internship = () => {
               <li>
                 <span
                   className="font-semibold text-sm mt-4"
-                  style={{ color: Colors.Slate700 }}
+                  style={{ color: Colors.TextColor6 }}
                 >
                   Freedom to Choose:
                 </span>{" "}
@@ -259,17 +254,20 @@ const Internship = () => {
 
           {/* RIGHT FORM */}
           <div className="w-full lg:w-1/2 flex justify-center items-start">
-            <Card className="w-full max-w-lg border-0 shadow-xl">
+            <Card
+              className="w-full max-w-lg border-0 shadow-xl"
+              style={{ backgroundColor: Colors.CardBgSecondaryColor }}
+            >
               <CardHeader className="text-center">
                 <CardTitle
                   className="text-3xl font-bold"
-                  style={{ color: Colors.Slate700 }}
+                  style={{ color: Colors.TextColor3 }}
                 >
                   Apply Now
                 </CardTitle>
                 <p
                   className="text-base mt-2 max-w-lg mx-auto"
-                  style={{ color: Colors.Slate600 }}
+                  style={{ color: Colors.TextColor5 }}
                 >
                   Submit your application for a chance to intern with us.
                 </p>
@@ -282,7 +280,7 @@ const Internship = () => {
                       <label
                         htmlFor={field.name}
                         className="block text-sm font-medium mb-1"
-                        style={{ color: Colors.Slate600 }}
+                        style={{ color: Colors.TextColor5 }}
                       >
                         {field.label}
                       </label>
@@ -294,7 +292,7 @@ const Internship = () => {
                         placeholder={field.placeholder}
                         required
                         className="border"
-                        style={{ borderColor: Colors.Slate400 }}
+                        style={{ borderColor: Colors.TextColor6 }}
                       />
                     </div>
                   ))}
@@ -304,7 +302,7 @@ const Internship = () => {
                     <label
                       htmlFor="year"
                       className="block text-sm font-medium mb-1"
-                      style={{ color: Colors.Slate600 }}
+                      style={{ color: Colors.TextColor5 }}
                     >
                       Year of Study
                     </label>
@@ -316,8 +314,8 @@ const Internship = () => {
                       required
                       className="w-full px-3 py-[0.625rem] rounded-md bg-white text-sm font-normal border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200"
                       style={{
-                        color: Colors.Slate700,
-                        borderColor: Colors.Slate400,
+                        color: Colors.TextColor6,
+                        borderColor: Colors.TextColor5,
                       }}
                     >
                       <option value="">-- Select Year --</option>
@@ -335,16 +333,16 @@ const Internship = () => {
                     disabled={submitting}
                     className="w-full font-semibold shadow-md"
                     style={{
-                      backgroundColor: Colors.PrimaryColor,
-                      color: Colors.White,
+                      backgroundColor: Colors.ButtonBgColor1,
+                      color: Colors.TextColor2,
                     }}
                     onMouseEnter={(e) =>
                       (e.currentTarget.style.backgroundColor =
-                        Colors.PrimaryColorHover)
+                        Colors.HoverButtonColor1)
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.backgroundColor =
-                        Colors.PrimaryColor)
+                        Colors.HoverButtonColor3)
                     }
                   >
                     {submitting ? "Submitting..." : "Submit Application"}
