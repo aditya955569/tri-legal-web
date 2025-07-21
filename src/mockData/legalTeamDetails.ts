@@ -11,19 +11,19 @@ export const attorneys: Attorney[] = [
     name: "Adv. Sanjay Shukla",
     title: "Revenue Law, Banking Law & Civil Law",
     // specialization: "Revenue Law, Banking Law & Civil Law",
-    image: "/public/images/advocates/adv1.jpeg",
+    image: "/images/advocates/adv1.jpeg",
   },
   {
     name: "Adv. Padmakar Nath Tripathi",
     title: "Civil Law & Criminal Law",
     // specialization: "Civil Law & Criminal Law",
-    image: "/public/images/advocates/adv2.jpeg",
+    image: "/images/advocates/adv2.jpeg",
   },
   {
     name: "Adv. Rekha Rawat",
     title: "Matrimonial Law & Civil Law",
     // specialization: "Constitutional Law",
-    image: "/public/images/advocates/adv3.jpeg",
+    image: "/images/advocates/adv3.jpeg",
   },
   {
     name: "Adv. Mohd. Israil",

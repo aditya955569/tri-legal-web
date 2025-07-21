@@ -53,7 +53,7 @@ const CustomizedNavigation = () => {
           >
             <div className="flex items-center gap-2">
               <img
-                src="/public/images/newLogo.jpeg"
+                src="/images/newLogo.jpeg"
                 alt="VidhiVidh Logo"
                 className="h-16 w-auto object-contain"
               />
