@@ -315,7 +315,7 @@ const Internship = () => {
                       className="w-full px-3 py-[0.625rem] rounded-md bg-white text-sm font-normal border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200"
                       style={{
                         color: Colors.TextColor6,
-                        borderColor: Colors.TextColor5,
+                        borderColor: Colors.TextColor6,
                       }}
                     >
                       <option value="">-- Select Year --</option>

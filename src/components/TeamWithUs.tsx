@@ -8,7 +8,11 @@ import { toast } from "sonner";
 import { Colors } from "@/styles/global";
 import CustomizedNavigation from "./customized/CustomizedNavigation";
 import Footer from "./Footer";
-import { domains, upDistricts } from "@/mockData/teamWithUs";
+import {
+  domains,
+  indianStatesAndUTs,
+  upDistricts,
+} from "@/mockData/teamWithUs";
 import { createAdvocateDetails } from "@/services/joinUs";
 
 const TeamWithUs = () => {
@@ -251,6 +255,7 @@ const TeamWithUs = () => {
                             ? "numeric"
                             : "text"
                         }
+                        style={{ borderColor: Colors.TextColor6 }}
                       />
                       {errors[field.name] && (
                         <p className="text-sm text-red-500 mt-1">
@@ -329,6 +334,7 @@ const TeamWithUs = () => {
                         color: Colors.TextColor6,
                         fontSize: "0.875rem",
                         backgroundColor: Colors.InputFieldBgColor,
+                        borderColor: Colors.TextColor6,
                       }}
                       placeholder="Enter District"
                     />
@@ -345,8 +351,7 @@ const TeamWithUs = () => {
                     >
                       State
                     </label>
-                    <input
-                      type="text"
+                    <select
                       name="state"
                       value={formData.state}
                       onChange={(e) => {
@@ -357,16 +362,23 @@ const TeamWithUs = () => {
                         setErrors((prev) => ({ ...prev, state: "" }));
                       }}
                       required
-                      className={`w-full px-3 py-[0.625rem] rounded-md text-sm font-normal
-    ${errors.state ? "border-red-500" : "border-slate-400"}
-    border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200`}
+                      className={`w-full px-3 py-[0.625rem] rounded-md bg-white text-sm font-normal
+      ${errors.state ? "border-red-500" : "border-slate-400"}
+      border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200`}
                       style={{
                         color: Colors.TextColor6,
                         fontSize: "0.875rem",
                         backgroundColor: Colors.InputFieldBgColor,
+                        borderColor: Colors.TextColor6,
                       }}
-                      placeholder="Enter State"
-                    />
+                    >
+                      <option value="">-- Select State/UT --</option>
+                      {indianStatesAndUTs.map((state) => (
+                        <option key={state} value={state}>
+                          {state}
+                        </option>
+                      ))}
+                    </select>
                     {errors.state && (
                       <p className="text-sm text-red-500 mt-1">
                         {errors.state}
@@ -399,6 +411,7 @@ const TeamWithUs = () => {
                         color: Colors.InputFieldPlaceholderTextColor,
                         fontSize: "0.875rem", // same as text-sm
                         backgroundColor: Colors.InputFieldBgColor,
+                        borderColor: Colors.TextColor6,
                       }}
                     >
                       <option value="" style={{ color: Colors.TextColor6 }}>
