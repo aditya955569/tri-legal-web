@@ -83,29 +83,16 @@ const CriminalLaw = () => {
         ref={sectionRef}
         className="relative py-20"
         style={{
-          background: `linear-gradient(to bottom right, ${Colors.Slate100}, ${Colors.White}, ${Colors.Slate200})`,
+          background: `linear-gradient(to bottom right, ${Colors.TextColor1}, ${Colors.TextColor1}, ${Colors.TextColor1})`,
         }}
       >
-        {/* Background Scales of Justice SVG */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke={Colors.Slate300}
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <path d="M7 20h10M6 6h12M12 6v14M9 6l-3 6 3 6M15 6l3 6-3 6" />
-        </svg>
-
         <div className="relative z-10 container mx-auto px-6">
-          <div className="mb-16 px-4 md:px-0">
+          <div className="mb-16 px-4 md:px-0 mt-6">
             <div
-              className="relative bg-white shadow-xl rounded-2xl p-8 md:p-10 z-10 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+              className="relative shadow-xl rounded-2xl p-8 md:p-10 z-10 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
               style={{
-                borderLeft: `6px solid ${Colors.PrimaryColor}`,
+                borderLeft: `6px solid ${Colors.TextColor2}`,
+                backgroundColor: Colors.TextColor2,
               }}
             >
               {/* Heading with icon */}
@@ -115,7 +102,7 @@ const CriminalLaw = () => {
                   height="36"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke={Colors.PrimaryColor}
+                  stroke={Colors.TextColor3}
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -125,7 +112,7 @@ const CriminalLaw = () => {
                 </svg>
                 <h2
                   className="text-3xl md:text-4xl font-bold"
-                  style={{ color: Colors.Slate700 }}
+                  style={{ color: Colors.TextColor3 }}
                 >
                   Criminal Law
                 </h2>
@@ -134,7 +121,7 @@ const CriminalLaw = () => {
               {/* Description paragraphs */}
               <p
                 className="text-base md:text-lg leading-relaxed mb-4"
-                style={{ color: Colors.Slate600 }}
+                style={{ color: Colors.TextColor5 }}
               >
                 At <strong>VidhiVidh</strong>, we recognize the life-altering
                 impact that criminal charges can have. Our dedicated Criminal
@@ -147,7 +134,7 @@ const CriminalLaw = () => {
 
               <p
                 className="text-base md:text-lg leading-relaxed"
-                style={{ color: Colors.Slate600 }}
+                style={{ color: Colors.TextColor5 }}
               >
                 With extensive experience across white-collar offenses,
                 cybercrime, narcotics cases, domestic disputes, and more — our
@@ -167,37 +154,45 @@ const CriminalLaw = () => {
                 <Card
                   key={index}
                   ref={(el) => (cardsRef.current[index] = el)}
-                  className="group relative bg-white border border-slate-200 rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
+                  className="group relative border rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
                   style={{
                     zIndex: 1,
+                    backgroundColor: Colors.CardBgSecondaryColor,
+                    borderColor: Colors.BorderLineColor2,
                   }}
                 >
                   {/* Gradient glow effect on hover */}
-                  <div className="absolute -inset-1 bg-gradient-to-br from-blue-500 to-blue-300 opacity-0 group-hover:opacity-30 blur-xl rounded-xl transition-opacity duration-500 z-0"></div>
+                  <div
+                    className="absolute -inset-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl z-0"
+                    style={{
+                      background: `radial-gradient(circle at top left, ${Colors.HoverButtonColor1}33, transparent 80%)`,
+                      filter: "blur(20px)",
+                    }}
+                  ></div>
 
                   <div className="relative z-10">
                     <CardHeader className="text-center pb-4">
                       <div
                         className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
                         style={{
-                          background: `linear-gradient(to bottom right, ${Colors.PrimaryColor}, ${Colors.PrimaryColorLight})`,
+                          background: `linear-gradient(to bottom right, ${Colors.TextColor3}, ${Colors.TextColor3})`,
                         }}
                       >
                         <Icon
                           className="h-8 w-8"
-                          style={{ color: Colors.White }}
+                          style={{ color: Colors.TextColor1 }}
                         />
                       </div>
                       <CardTitle
                         className="text-xl font-bold group-hover:transition-colors"
-                        style={{ color: Colors.Slate700 }}
+                        style={{ color: Colors.TextColor3 }}
                       >
                         {item.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="text-center px-4 pb-6">
                       <p
-                        style={{ color: Colors.Slate600 }}
+                        style={{ color: Colors.TextColor5 }}
                         className="leading-relaxed"
                       >
                         {item.description}

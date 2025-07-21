@@ -95,6 +95,7 @@ export const Colors = {
   TextColor3: "#CBA14A",
   TextColor4: "#D9E0E8",
   TextColor5: "#D1D5DB",
+  TextColor6: "black",
 
   HoverButtonColor1: "#b98d37",
   HoverButtonColor2: "#CBA14A/10",

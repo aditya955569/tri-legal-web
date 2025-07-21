@@ -1,19 +1,11 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Only if you're using React Router
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, X, Gavel } from "lucide-react";
+import { Colors } from "@/styles/global";
 
 const CustomizedNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -49,11 +41,8 @@ const CustomizedNavigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-backgroundDark/90 backdrop-blur-md shadow-md"
-          : "bg-backgroundDark backdrop-blur-sm"
-      }`}
+      className="fixed top-0 w-full z-50 shadow-md"
+      style={{ backgroundColor: Colors.PrimaryBgColor }}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
@@ -62,8 +51,13 @@ const CustomizedNavigation = () => {
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <Gavel className="h-8 w-8 text-highlight" />
-            <span className="text-xl font-bold text-textLight">VidhiVidh</span>
+            <div className="flex items-center gap-2">
+              <img
+                src="/public/images/newLogo.jpeg"
+                alt="VidhiVidh Logo"
+                className="h-16 w-auto object-contain"
+              />
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -72,7 +66,16 @@ const CustomizedNavigation = () => {
               <button
                 key={item.name}
                 onClick={() => handleNavClick(item)}
-                className="text-sm font-medium text-textLight hover:text-highlight transition-colors"
+                className="text-sm font-medium transition-colors"
+                style={{
+                  color: Colors.TextColor1,
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.color = Colors.SecondaryBgColor)
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.color = Colors.TextColor1)
+                }
               >
                 {item.name}
               </button>
@@ -85,22 +88,40 @@ const CustomizedNavigation = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6 text-textLight" />
+              <X className="h-6 w-6" style={{ color: Colors.MenuIconColor }} />
             ) : (
-              <Menu className="h-6 w-6 text-textLight" />
+              <Menu
+                className="h-6 w-6"
+                style={{ color: Colors.MenuIconColor }}
+              />
             )}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-backgroundDark border-t border-borderDark shadow-lg">
+          <div
+            className="md:hidden border-t shadow-lg"
+            style={{
+              backgroundColor: Colors.PrimaryBgColor,
+              borderColor: Colors.BorderLineColor2,
+            }}
+          >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => handleNavClick(item)}
-                  className="block w-full text-left px-3 py-2 text-textLight hover:text-highlight hover:bg-backgroundDarkSoft transition-colors"
+                  className="block w-full text-left px-3 py-2 transition-colors"
+                  style={{
+                    color: Colors.TextColor1,
+                  }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.color = Colors.SecondaryBgColor)
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.color = Colors.TextColor1)
+                  }
                 >
                   {item.name}
                 </button>

@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
 import { Colors } from "@/styles/global";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +11,8 @@ const About = () => {
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (leftRef.current) {
       gsap.fromTo(
@@ -100,6 +103,9 @@ const About = () => {
                   : Colors.SecondaryBgColor,
               }}
               className={`font-semibold px-8 shadow-md transition-colors`}
+              onClick={() => {
+                navigate("/about-us");
+              }}
             >
               Learn More About Us
             </Button>

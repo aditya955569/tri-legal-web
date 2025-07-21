@@ -61,20 +61,20 @@ const ProBono = () => {
         ref={sectionRef}
         className="py-20"
         style={{
-          background: `linear-gradient(to bottom right, ${Colors.PrimaryColorLight}11, ${Colors.White}, ${Colors.Slate400}11)`,
+          background: `linear-gradient(to bottom right, ${Colors.CardBgSecondaryColor}11, ${Colors.TextColor1}, ${Colors.TextColor3}11)`,
         }}
       >
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2
               className="text-4xl md:text-5xl font-bold mb-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Pro Bono Commitment
             </h2>
             <p
               className="text-xl max-w-3xl mx-auto"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor6 }}
             >
               At VidhiVidh, we believe justice should be accessible to everyone.
               Our Pro Bono initiatives serve those in need and reflect our
@@ -89,24 +89,25 @@ const ProBono = () => {
                 <Card
                   key={index}
                   ref={(el) => (cardsRef.current[index] = el)}
-                  className="group bg-white border-0 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                  style={{ backgroundColor: Colors.CardBgSecondaryColor }}
+                  className="group border-0 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                   <CardHeader className="text-center pb-4">
                     <div
                       className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
                       style={{
-                        background: `linear-gradient(to bottom right, ${Colors.PrimaryColor}, ${Colors.PrimaryColorLight})`,
+                        background: `linear-gradient(to bottom right, ${Colors.HoverButtonColor3}, ${Colors.HoverButtonColor1})`,
                       }}
                     >
                       <Icon
                         className="h-8 w-8"
-                        style={{ color: Colors.White }}
+                        style={{ color: Colors.TextColor1 }}
                       />
                     </div>
                     <CardTitle
                       className="text-xl font-bold group-hover:transition-colors"
                       style={{
-                        color: Colors.Slate700,
+                        color: Colors.TextColor3,
                       }}
                     >
                       {item.title}
@@ -114,7 +115,7 @@ const ProBono = () => {
                   </CardHeader>
                   <CardContent className="text-center">
                     <p
-                      style={{ color: Colors.Slate600 }}
+                      style={{ color: Colors.TextColor5 }}
                       className="leading-relaxed"
                     >
                       {item.description}
