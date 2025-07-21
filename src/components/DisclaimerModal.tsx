@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { Colors } from "@/styles/global";
 
 interface DisclaimerModalProps {
   handleDisclaimerResponse: (accepted: boolean) => void;
@@ -45,14 +46,20 @@ const DisclaimerModal = ({
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
       <div
         ref={modalRef}
-        className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-scroll px-8 py-6 space-y-5 relative scrollbar-hide"
+        style={{ backgroundColor: Colors.PrimaryBgColor }}
+        className="rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-scroll px-8 py-6 space-y-5 relative scrollbar-hide"
       >
-        {/* Law Firm Name */}
-        <h1 className="text-center text-blue-700 font-bold text-lg mb-2 uppercase tracking-wider">
-          Vidhividh Law Firm
-        </h1>
-
-        <h2 className="text-2xl text-center font-semibold text-gray-800">
+        <div className="flex items-center gap-2 justify-center">
+          <img
+            src="/images/newLogo.jpeg"
+            alt="VidhiVidh Logo"
+            className="h-14 w-auto object-contain"
+          />
+        </div>
+        <h2
+          className="text-2xl text-center font-semibold"
+          style={{ color: Colors.TextColor5 }}
+        >
           Legal Disclaimer
         </h2>
 
@@ -60,9 +67,15 @@ const DisclaimerModal = ({
           {disclaimerPoints.map((point, index) => (
             <li
               key={index}
-              className="flex items-start text-gray-700 leading-relaxed"
+              className="flex items-start leading-relaxed"
+              style={{ color: Colors.TextColor1 }}
             >
-              <span className="text-blue-600 font-bold mr-2">•</span>
+              <span
+                className="font-bold mr-2"
+                style={{ color: Colors.TextColor3 }}
+              >
+                •
+              </span>
               <span>{point}</span>
             </li>
           ))}
@@ -71,13 +84,21 @@ const DisclaimerModal = ({
         <div className="flex justify-end gap-4 pt-4 border-t border-gray-200 mt-4">
           <button
             onClick={() => handleClose(false)}
-            className="px-5 py-2 rounded-md border border-gray-400 text-gray-700 hover:bg-gray-100 transition"
+            className="px-5 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition"
+            style={{
+              backgroundColor: Colors.CardBgSecondaryColor,
+              color: Colors.ButtonBgColor1,
+            }}
           >
             Decline
           </button>
           <button
             onClick={() => handleClose(true)}
-            className="px-5 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
+            className="px-5 py-2 rounded-md  hover:bg-blue-700 transition"
+            style={{
+              backgroundColor: Colors.ButtonBgColor1,
+              color: Colors.TextColor2,
+            }}
           >
             Accept
           </button>

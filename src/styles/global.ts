@@ -117,6 +117,9 @@ export const Colors = {
 
   InputFieldBgColor: "white",
   InputFieldPlaceholderTextColor: "#9CA3AF",
+
+  WhatsAppColor: "#22C55E",
+  PrimaryColorLight: "#3B82F6",
 };
 
 // export const Colors = {

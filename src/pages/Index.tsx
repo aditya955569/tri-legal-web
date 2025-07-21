@@ -135,11 +135,21 @@ const Index = () => {
         {/* Main Toggle Button */}
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          style={{ backgroundColor: Colors.DarkGray }}
+          style={{ backgroundColor: Colors.SecondaryBgColor }}
           className="hover:scale-110 hover:brightness-90 text-white p-4 rounded-full shadow-lg transition-transform"
           title="Contact Options"
         >
-          {isOpen ? <X className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+          {isOpen ? (
+            <X
+              className="w-5 h-5"
+              style={{ color: Colors.CardBgSecondaryColor }}
+            />
+          ) : (
+            <Plus
+              className="w-5 h-5"
+              style={{ color: Colors.CardBgSecondaryColor }}
+            />
+          )}
         </button>
       </div>
     </div>
