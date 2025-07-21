@@ -73,7 +73,7 @@ const BlogCard = ({ blog }) => {
     <div className="relative group w-full cursor-pointer">
       <Card
         className="h-full flex flex-col bg-white border transition-all duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1 rounded-2xl overflow-hidden"
-        style={{ borderColor: Colors.Slate300 }}
+        style={{ borderColor: Colors.CardBgPrimaryColor }}
       >
         {/* Image Section with Share Button */}
         <CardHeader className="p-0 relative">
@@ -97,10 +97,11 @@ const BlogCard = ({ blog }) => {
                   e.stopPropagation();
                   setShowShareMenu(!showShareMenu);
                 }}
-                className="p-2 rounded-full bg-white hover:bg-gray-100 shadow"
+                className="p-2 rounded-full hover:bg-gray-100 shadow"
+                style={{ backgroundColor: Colors.PrimaryBgColor }}
                 aria-label="Share"
               >
-                <FaShareAlt size={18} color="#6366F1" />
+                <FaShareAlt size={18} color={Colors.HoverButtonColor3} />
               </button>
 
               {/* Share Menu */}
@@ -143,17 +144,20 @@ const BlogCard = ({ blog }) => {
         </CardHeader>
 
         {/* Content Section */}
-        <CardContent className="p-4 sm:p-6 flex-grow flex flex-col relative">
+        <CardContent
+          className="p-4 sm:p-6 flex-grow flex flex-col relative"
+          style={{ backgroundColor: Colors.CardBgSecondaryColor }}
+        >
           <CardTitle
             className="text-lg sm:text-xl font-bold mb-2 leading-snug"
-            style={{ color: Colors.Slate800 }}
+            style={{ color: Colors.TextColor3 }}
           >
             {blog.title}
           </CardTitle>
 
           <p
             className="text-sm sm:text-base text-justify mb-10"
-            style={{ color: Colors.Slate600 }}
+            style={{ color: Colors.TextColor5 }}
           >
             {shortDescription}
           </p>
@@ -161,7 +165,7 @@ const BlogCard = ({ blog }) => {
           {/* Author Info */}
           <div
             className="text-xs sm:text-sm pt-2 mt-auto"
-            style={{ color: Colors.Slate500 }}
+            style={{ color: Colors.TextColor1 }}
           >
             <span className="block font-medium">{blog.authorName}</span>
             <span>
@@ -182,17 +186,19 @@ const BlogCard = ({ blog }) => {
               }}
               className="text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-md border transition-all duration-300"
               style={{
-                backgroundColor: Colors.PrimaryColor,
-                color: Colors.White,
-                borderColor: Colors.PrimaryColor,
+                backgroundColor: Colors.TextColor1,
+                color: Colors.TextColor2,
+                borderColor: Colors.TextColor1,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = Colors.White;
-                e.currentTarget.style.color = Colors.PrimaryColor;
+                e.currentTarget.style.backgroundColor = Colors.TextColor3;
+                e.currentTarget.style.color = Colors.TextColor1;
+                e.currentTarget.style.borderColor = Colors.TextColor3;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = Colors.PrimaryColor;
-                e.currentTarget.style.color = Colors.White;
+                e.currentTarget.style.backgroundColor = Colors.TextColor1;
+                e.currentTarget.style.color = Colors.TextColor2;
+                e.currentTarget.style.borderColor = Colors.TextColor1;
               }}
             >
               Read More

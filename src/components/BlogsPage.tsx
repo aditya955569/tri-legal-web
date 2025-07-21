@@ -98,7 +98,7 @@ const BlogsPage = () => {
     `min-w-[36px] h-9 px-2 py-1 rounded-md mx-0.5 text-xs sm:text-sm font-medium ${
       active
         ? "text-white"
-        : `bg-white border border-gray-300 text-[${Colors.Slate700}] hover:bg-gray-100`
+        : `bg-white border border-gray-300 text-[${Colors.TextColor6}] hover:bg-gray-100`
     }`;
 
   const renderPaginationButtons = () => {
@@ -112,7 +112,8 @@ const BlogsPage = () => {
         className={pageButtonClass(currentPage === page)}
         style={{
           backgroundColor:
-            currentPage === page ? Colors.PrimaryColor : undefined,
+            currentPage === page ? Colors.SecondaryBgColor : undefined,
+          color: currentPage === page ? Colors.TextColor2 : undefined,
         }}
       >
         {page}
@@ -150,8 +151,10 @@ const BlogsPage = () => {
     if (totalPages <= 1) return null;
 
     const navButtonStyle = (disabled: boolean) => ({
-      color: disabled ? Colors.Slate400 : Colors.Slate600,
-      backgroundColor: disabled ? Colors.LightGrayBackground : "white",
+      color: disabled ? Colors.TextColor1 : Colors.TextColor1,
+      backgroundColor: disabled
+        ? Colors.CardBgSecondaryColor
+        : Colors.CardBgSecondaryColor,
       cursor: disabled ? "not-allowed" : "pointer",
     });
 
@@ -191,6 +194,10 @@ const BlogsPage = () => {
             key="prev"
             onClick={() => handlePageChange(currentPage - 1)}
             className={pageButtonClass(false)}
+            style={{
+              backgroundColor: Colors.PrimaryBgColor,
+              color: Colors.TextColor1,
+            }}
           >
             Previous
           </button>
@@ -198,7 +205,10 @@ const BlogsPage = () => {
         <button
           key="current"
           className={pageButtonClass(true)}
-          style={{ backgroundColor: Colors.PrimaryColor }}
+          style={{
+            backgroundColor: Colors.SecondaryBgColor,
+            color: Colors.TextColor2,
+          }}
         >
           {currentPage}
         </button>
@@ -207,6 +217,10 @@ const BlogsPage = () => {
             key="next"
             onClick={() => handlePageChange(currentPage + 1)}
             className={pageButtonClass(false)}
+            style={{
+              backgroundColor: Colors.PrimaryBgColor,
+              color: Colors.TextColor1,
+            }}
           >
             Next
           </button>
@@ -235,21 +249,23 @@ const BlogsPage = () => {
       <CustomizedNavigation />
       <section
         className="py-20 sm:py-28"
-        style={{
-          background: `linear-gradient(to bottom right, ${Colors.LightGrayBackground}, #eff6ff, #e0e7ff)`,
-        }}
+        style={
+          {
+            // background: `linear-gradient(to bottom right, ${Colors.LightGrayBackground}, #eff6ff, #e0e7ff)`,
+          }
+        }
       >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2
               className="text-4xl md:text-5xl font-bold mb-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               VidhiVidh Legal Insights
             </h2>
             <p
               className="text-sm max-w-2xl mx-auto leading-relaxed"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor6 }}
             >
               Stay updated with the latest legal developments, expert case
               breakdowns, and thoughtful insights on evolving laws.
