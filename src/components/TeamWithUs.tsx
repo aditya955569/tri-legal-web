@@ -206,7 +206,7 @@ const TeamWithUs = () => {
             // style={{ backgroundColor: Colors.CardBgPrimaryColor }}
           >
             <Card
-              className="w-full max-w-lg border-0 shadow-xl"
+              className="w-full max-w-lg border-0 shadow-xl pb-4"
               style={{ backgroundColor: Colors.CardBgPrimaryColor }}
             >
               <CardHeader className="text-center">

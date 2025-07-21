@@ -255,7 +255,7 @@ const Internship = () => {
           {/* RIGHT FORM */}
           <div className="w-full lg:w-1/2 flex justify-center items-start">
             <Card
-              className="w-full max-w-lg border-0 shadow-xl"
+              className="w-full max-w-lg border-0 shadow-xl pb-4"
               style={{ backgroundColor: Colors.CardBgSecondaryColor }}
             >
               <CardHeader className="text-center">
