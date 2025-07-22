@@ -1,5 +1,5 @@
 import { Shield, Gavel, Handshake } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ const Hero = () => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
+  const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
     if (headlineRef.current) {
@@ -34,19 +35,6 @@ const Hero = () => {
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, delay: 1, ease: "power3.out" }
       );
-    }
-
-    if (sectionRef.current) {
-      gsap.to(sectionRef.current, {
-        opacity: 0,
-        y: -50,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
     }
   }, []);
 
@@ -87,7 +75,7 @@ const Hero = () => {
             VidhiVidh
             <span
               style={{ color: Colors.MainHeadingColor2 }}
-              className="block font-sans"
+              className="block font-sans text-6xl"
             >
               Empowering Justice with Experience and Integrity.
             </span>
@@ -127,12 +115,22 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              style={{
-                borderColor: Colors.BorderLineColor1,
-                color: Colors.TextColor3,
-              }}
-              className="border-2 px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:bg-[#CBA14A1A] hover:text-white"
+              onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)}
               onClick={() => scrollToSection("#practice-areas")}
+              style={{
+                borderColor: isHover ? "#CBA14A" : "#E2E2E2", // dynamic border color
+                color: isHover
+                  ? Colors.CardBgSecondaryColor
+                  : Colors.SecondaryBgColor, // dynamic text color
+                backgroundColor: isHover
+                  ? Colors.SecondaryBgColor
+                  : Colors.CardBgSecondaryColor, // dynamic bg
+                transition: "all 0.3s ease",
+                padding: "1rem 2rem",
+                fontSize: "1.125rem",
+                borderWidth: 2,
+              }}
             >
               Our Practice Areas
             </Button>

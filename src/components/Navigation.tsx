@@ -14,9 +14,9 @@ const Navigation = () => {
     { name: "About", href: "#about" },
     { name: "Attorneys", href: "#attorneys" },
     { name: "Testimonials", href: "#testimonials" },
-    { name: "Contact", href: "#contact" },
+    // { name: "Contact", href: "#contact" },
     { name: "Blogs", path: "/blogs" },
-    { name: "Probono", path: "/probono" },
+    // { name: "Probono", path: "/probono" },
   ];
 
   const scrollToSection = (href: string) => {
