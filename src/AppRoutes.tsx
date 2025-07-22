@@ -23,12 +23,14 @@ import NRILegalServices from "./components/practiceAreas/NRILegalServices";
 import ProBono from "./components/practiceAreas/ProBono";
 import DetailsPracticeAreas from "./components/DetailsPracticeAreas";
 import ContactUs from "./components/ContactUs";
+import OurPatron from "./components/OurPatron";
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
     <Route path="/blogs" element={<BlogsPage />} />
     <Route path="/probono" element={<ProBono />} />
+    <Route path="/our-patron" element={<OurPatron />} />
     <Route path="/practice-areas" element={<DetailsPracticeAreas />} />
     <Route path="/criminal-law" element={<CriminalLaw />} />
     <Route path="/civil-law" element={<CivilLaw />} />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, X, Gavel } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Colors } from "@/styles/global";
 
 const CustomizedNavigation = () => {
@@ -9,6 +9,7 @@ const CustomizedNavigation = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
+    { name: "Our Patron", path: "/our-patron" },
     { name: "Practice Areas", path: "/practice-areas" },
     { name: "Blogs", path: "/blogs" },
     { name: "Our Team", path: "/attorneys" },

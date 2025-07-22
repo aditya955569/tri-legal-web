@@ -6,10 +6,12 @@ import { Colors } from "@/styles/global";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
 
   const navItems = [
     { name: "Home", href: "#home" },
+    { name: "Our Patron", path: "/our-patron" },
     { name: "Practice Areas", href: "#practice-areas" },
     { name: "About", href: "#about" },
     { name: "Attorneys", href: "#attorneys" },
@@ -59,13 +61,19 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
+
             <Button
               size="sm"
               style={{
-                backgroundColor: Colors.SecondaryBgColor,
-                color: Colors.TextColor2,
+                backgroundColor: isHover
+                  ? Colors.CardBgSecondaryColor
+                  : Colors.SecondaryBgColor,
+                color: isHover ? Colors.TextColor3 : Colors.TextColor2,
+                fontWeight: "600",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
               }}
-              className="hover:bg-[#b98d37] font-semibold shadow-md"
+              onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)}
               onClick={() => scrollToSection("#contact")}
             >
               Schedule a Consultation
