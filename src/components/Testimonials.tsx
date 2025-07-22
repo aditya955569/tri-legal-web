@@ -2,8 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/mockData/testimonials";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { Colors } from "@/styles/global";
 
 const Testimonials = () => {
@@ -11,10 +9,6 @@ const Testimonials = () => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
 
   const checkScrollPosition = () => {
     const container = sliderRef.current;
@@ -49,35 +43,9 @@ const Testimonials = () => {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
-    <motion.section
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={containerVariants}
-      className="py-20 relative overflow-hidden "
+    <section
+      className="py-20 relative overflow-hidden"
       style={{ backgroundColor: Colors.PrimaryBgColor }}
     >
       {/* Gold pattern dots */}
@@ -89,7 +57,7 @@ const Testimonials = () => {
       />
 
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div variants={itemVariants} className="text-center mb-16">
+        <div className="text-center mb-16">
           <h2
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{ color: Colors.TextColor1 }}
@@ -103,15 +71,12 @@ const Testimonials = () => {
             Don't just take our word for it. Here's what our clients say about
             their experience working with our legal team.
           </p>
-        </motion.div>
+        </div>
 
         <div className="relative">
           {/* Left Button */}
           {showLeftArrow && (
-            <motion.button
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+            <button
               onClick={() => scroll("left")}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -127,15 +92,12 @@ const Testimonials = () => {
                 className="h-6 w-6"
                 style={{ color: Colors.IconsColor2 }}
               />
-            </motion.button>
+            </button>
           )}
 
           {/* Right Button */}
           {showRightArrow && (
-            <motion.button
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
+            <button
               onClick={() => scroll("right")}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -151,7 +113,7 @@ const Testimonials = () => {
                 className="h-6 w-6"
                 style={{ color: Colors.IconsColor2 }}
               />
-            </motion.button>
+            </button>
           )}
 
           {/* Testimonial Cards */}
@@ -160,13 +122,7 @@ const Testimonials = () => {
             className="flex gap-8 overflow-x-auto scroll-smooth px-4 pb-6 no-scrollbar"
           >
             {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="flex-shrink-0"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div key={index} className="flex-shrink-0">
                 <Card
                   className="w-[300px] sm:w-[350px] h-full transition-all duration-300 group shadow-md hover:shadow-xl border"
                   style={{
@@ -213,12 +169,12 @@ const Testimonials = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

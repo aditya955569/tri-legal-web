@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -10,35 +8,11 @@ import {
 import { faqData } from "@/mockData/dummyFAQs";
 import { Colors } from "@/styles/global";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const FAQs = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      gsap.fromTo(
-        sectionRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reset",
-          },
-        }
-      );
-    }
-  }, []);
 
   return (
     <section
-      ref={sectionRef}
       className="py-20"
       style={{ backgroundColor: Colors.PrimaryBgColor }}
     >
@@ -73,17 +47,6 @@ const FAQs = () => {
               }}
               className="rounded-lg border transition-all hover:shadow-lg"
             >
-              {/* <AccordionTrigger
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                style={{
-                  color: Colors.TextColor1,
-                  backgroundColor: isHovered
-                    ? "rgba(31, 45, 58, 0.5)"
-                    : "transparent",
-                }}
-                className="px-5 py-4 text-left text-base md:text-lg font-medium transition-colors"
-              > */}
               <AccordionTrigger
                 style={{
                   color: Colors.TextColor1,
@@ -93,7 +56,7 @@ const FAQs = () => {
                 {item.question}
               </AccordionTrigger>
               <AccordionContent
-                className="px-5 pb-5 pt-1text-sm md:text-base leading-relaxed"
+                className="px-5 pb-5 pt-1 text-sm md:text-base leading-relaxed"
                 style={{ color: Colors.TextColor5 }}
               >
                 {item.answer}

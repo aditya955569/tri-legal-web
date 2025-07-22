@@ -10,47 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Attorneys = () => {
   const cardsRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    if (titleRef.current) {
-      const [heading, paragraph] = titleRef.current.children;
-
-      gsap.fromTo(
-        heading,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reset",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        paragraph,
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          delay: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reset",
-          },
-        }
-      );
-    }
-
     if (cardsRef.current) {
       const cards = gsap.utils.toArray<HTMLDivElement>(
         cardsRef.current.querySelectorAll(".attorney-card")
@@ -81,7 +43,7 @@ const Attorneys = () => {
       className="py-20 relative"
     >
       <div className="container mx-auto px-6">
-        <div ref={titleRef} className="text-center mb-16">
+        <div className="text-center mb-16">
           <h2
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{ color: Colors.TextColor1 }}
@@ -102,7 +64,7 @@ const Attorneys = () => {
           {attorneys.slice(0, 5).map((attorney, index) => (
             <Card
               key={index}
-              className="attorney-card border  overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="attorney-card border overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               style={{
                 borderColor: Colors.CardBgSecondaryColor,
                 backgroundColor: Colors.CardBgPrimaryColor,
@@ -162,7 +124,7 @@ const Attorneys = () => {
             style={{
               backgroundColor: isHovered
                 ? Colors.ButtonBgColor1
-                : Colors.CardBgSecondaryColor, // Convert "/10" to rgba
+                : Colors.CardBgSecondaryColor,
               borderColor: Colors.BorderLineColor1,
               color: isHovered
                 ? Colors.CardBgSecondaryColor
