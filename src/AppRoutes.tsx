@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import BlogsPage from "./components/BlogsPage";
-import ProBono from "./components/ProBono";
+
 import BlogDetailPage from "./components/blogs/BlogDetailPage";
 import CriminalLaw from "./components/practiceAreas/CriminalLaw";
 import CivilLaw from "./components/practiceAreas/CivilLaw";
@@ -19,12 +19,16 @@ import LegalDisclaimer from "./components/LegalDisclaimer";
 import TeamWithUs from "./components/TeamWithUs";
 import Internship from "./components/Internship";
 import OurTeam from "./components/OurTeam";
+import NRILegalServices from "./components/practiceAreas/NRILegalServices";
+import ProBono from "./components/practiceAreas/ProBono";
+import DetailsPracticeAreas from "./components/DetailsPracticeAreas";
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
     <Route path="/blogs" element={<BlogsPage />} />
     <Route path="/probono" element={<ProBono />} />
+    <Route path="/practice-areas" element={<DetailsPracticeAreas />} />
     <Route path="/criminal-law" element={<CriminalLaw />} />
     <Route path="/civil-law" element={<CivilLaw />} />
     <Route path="/commercial-law" element={<CommercialLaw />} />
@@ -39,6 +43,7 @@ const AppRoutes = () => (
       path="/intellectual-property-rights"
       element={<IntellectualPropertyRights />}
     />
+    <Route path="/nri-legal-services" element={<NRILegalServices />} />
     <Route path="/blogPost/:id" element={<BlogDetailPage />} />
     <Route path="/about-us" element={<AboutUs />} />
 

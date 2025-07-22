@@ -1,15 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { practiceAreas } from "@/mockData/practiceAreas";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router-dom";
 import { Colors } from "@/styles/global";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PracticeAreas = () => {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     cardsRef.current.forEach((card, index) => {
@@ -58,7 +60,7 @@ const PracticeAreas = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {practiceAreas.map((area, index) => (
+          {practiceAreas.slice(0, 8).map((area, index) => (
             <Card
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
@@ -107,6 +109,40 @@ const PracticeAreas = () => {
               </div>
             </Card>
           ))}
+        </div>
+
+        <div className="text-right mt-10">
+          <Link
+            to="/practice-areas"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{
+              backgroundColor: isHovered
+                ? Colors.ButtonBgColor1
+                : Colors.CardBgSecondaryColor, // Convert "/10" to rgba
+              borderColor: Colors.BorderLineColor1,
+              color: isHovered
+                ? Colors.CardBgSecondaryColor
+                : Colors.IconsColor,
+            }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300"
+          >
+            View More
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

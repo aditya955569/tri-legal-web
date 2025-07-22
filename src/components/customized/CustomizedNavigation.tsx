@@ -9,9 +9,10 @@ const CustomizedNavigation = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
+    { name: "Practice Areas", path: "/practice-areas" },
     { name: "Blogs", path: "/blogs" },
     { name: "Our Team", path: "/attorneys" },
-    { name: "Probono", path: "/probono" },
+    // { name: "Probono", path: "/probono" },
     { name: "Internship", path: "/careers-internship" },
     { name: "Join Us", path: "/join-us" },
   ];
