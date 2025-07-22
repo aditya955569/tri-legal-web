@@ -78,21 +78,18 @@ const OurTeam = () => {
   return (
     <>
       <CustomizedNavigation />
-      <section
-        className="py-20 relative"
-        style={{ backgroundColor: Colors.LightGrayBackground }}
-      >
+      <section className="py-20 relative">
         <div className="container mx-auto px-6">
           <div ref={titleRef} className="text-center mb-16">
             <h2
               className="text-4xl md:text-5xl font-bold mb-4"
-              style={{ color: Colors.Slate700 }}
+              style={{ color: Colors.TextColor2 }}
             >
               Meet the Entire Team
             </h2>
             <p
               className="text-xl max-w-3xl mx-auto"
-              style={{ color: Colors.Slate600 }}
+              style={{ color: Colors.TextColor6 }}
             >
               A diverse group of legal professionals who are passionate about
               justice and committed to providing the best legal service.
@@ -106,12 +103,20 @@ const OurTeam = () => {
             {attorneys.map((attorney, index) => (
               <Card
                 key={index}
-                className="attorney-card border-0 overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                style={{ backgroundColor: Colors.White }}
+                className="attorney-card border overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  // borderColor: Colors.CardBgSecondaryColor,
+                  backgroundColor: Colors.CardBgSecondaryColor,
+                }}
               >
                 <div className="relative overflow-hidden">
                   <img
-                    src={attorney.image}
+                    src={
+                      attorney.image?.startsWith("http") ||
+                      attorney.image?.startsWith("/")
+                        ? attorney.image
+                        : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                    }
                     alt={attorney.name}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -120,30 +125,30 @@ const OurTeam = () => {
                 <CardContent className="p-6 text-center">
                   <h3
                     className="text-xl font-bold mb-2"
-                    style={{ color: Colors.Slate700 }}
+                    style={{ color: Colors.TextColor1 }}
                   >
                     {attorney.name}
                   </h3>
                   <p
                     className="font-semibold mb-2"
-                    style={{ color: Colors.PrimaryColor }}
+                    style={{ color: Colors.TextColor3 }}
                   >
                     {attorney.title}
                   </p>
-                  <p className="mb-3" style={{ color: Colors.Slate600 }}>
+                  <p className="mb-3" style={{ color: Colors.TextColor5 }}>
                     {attorney.specialization}
                   </p>
-                  <div
-                    className="rounded-full px-4 py-2 inline-block"
-                    style={{ backgroundColor: Colors.LightGrayBackground }}
+                  {/* <div
+                  className="rounded-full px-4 py-2 inline-block"
+                  style={{ backgroundColor: Colors.CardBgSecondaryColor }}
+                >
+                  <span
+                    className="text-sm font-medium"
+                    style={{ color: Colors.TextColor5 }}
                   >
-                    <span
-                      className="text-sm font-medium"
-                      style={{ color: Colors.Slate600 }}
-                    >
-                      {attorney.experience} Experience
-                    </span>
-                  </div>
+                    {attorney.experience} Experience
+                  </span>
+                </div> */}
                 </CardContent>
               </Card>
             ))}

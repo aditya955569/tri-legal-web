@@ -22,6 +22,7 @@ import OurTeam from "./components/OurTeam";
 import NRILegalServices from "./components/practiceAreas/NRILegalServices";
 import ProBono from "./components/practiceAreas/ProBono";
 import DetailsPracticeAreas from "./components/DetailsPracticeAreas";
+import ContactUs from "./components/ContactUs";
 
 const AppRoutes = () => (
   <Routes>
@@ -55,6 +56,7 @@ const AppRoutes = () => (
     <Route path="/careers-internship" element={<Internship />} />
 
     <Route path="/attorneys" element={<OurTeam />} />
+    <Route path="/contact" element={<ContactUs />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );

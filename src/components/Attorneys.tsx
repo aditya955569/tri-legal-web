@@ -61,7 +61,7 @@ const Attorneys = () => {
         </div>
 
         <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
-          {attorneys.slice(0, 5).map((attorney, index) => (
+          {attorneys.slice(0, 3).map((attorney, index) => (
             <Card
               key={index}
               className="attorney-card border overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
@@ -99,7 +99,7 @@ const Attorneys = () => {
                 <p className="mb-3" style={{ color: Colors.TextColor5 }}>
                   {attorney.specialization}
                 </p>
-                <div
+                {/* <div
                   className="rounded-full px-4 py-2 inline-block"
                   style={{ backgroundColor: Colors.CardBgSecondaryColor }}
                 >
@@ -109,7 +109,7 @@ const Attorneys = () => {
                   >
                     {attorney.experience} Experience
                   </span>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
           ))}
