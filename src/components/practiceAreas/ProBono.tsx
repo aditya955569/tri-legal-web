@@ -116,7 +116,10 @@ const ProBono = () => {
                   </CardHeader>
                   <CardContent className="text-center">
                     <p
-                      style={{ color: Colors.TextColor5 }}
+                      style={{
+                        color: Colors.TextColor5,
+                        textAlign: "justify",
+                      }}
                       className="leading-relaxed"
                     >
                       {item.description}

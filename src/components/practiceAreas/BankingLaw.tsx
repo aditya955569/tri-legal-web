@@ -185,7 +185,10 @@ const BankingLaw = () => {
                     </CardHeader>
                     <CardContent className="text-center px-4 pb-6">
                       <p
-                        style={{ color: Colors.TextColor5 }}
+                        style={{
+                          color: Colors.TextColor5,
+                          textAlign: "justify",
+                        }}
                         className="leading-relaxed"
                       >
                         {item.description}

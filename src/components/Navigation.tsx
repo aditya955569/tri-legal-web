@@ -11,10 +11,10 @@ const Navigation = () => {
 
   const navItems = [
     { name: "Home", href: "#home" },
-    { name: "Our Patron", path: "/our-patron" },
-    { name: "Practice Areas", href: "#practice-areas" },
     { name: "About", href: "#about" },
+    { name: "Our Patron", path: "/our-patron" },
     { name: "Attorneys", href: "#attorneys" },
+    { name: "Practice Areas", href: "#practice-areas" },
     { name: "Testimonials", href: "#testimonials" },
     // { name: "Contact", href: "#contact" },
     { name: "Blogs", path: "/blogs" },

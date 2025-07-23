@@ -80,7 +80,7 @@ export const attorneys: Attorney[] = [
   },
   {
     name: "Adv. Shifat Husain",
-    title: "Legal Search Report & Contract Drafting",
+    title: "Legal research & Contract Drafting",
     specialization: "Associate",
     image: "/images/advocates/adv8.jpeg",
   },
@@ -89,6 +89,6 @@ export const attorneys: Attorney[] = [
     // title: "Legal Search Report & Contract Drafting",
     // title: "Student",
     specialization: "Paralegal",
-    image: "/images/advocates/adv10.jpg",
+    image: "/images/advocates/adv11.jpeg",
   },
 ];

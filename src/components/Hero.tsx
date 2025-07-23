@@ -75,7 +75,7 @@ const Hero = () => {
             VidhiVidh
             <span
               style={{ color: Colors.MainHeadingColor2 }}
-              className="block font-sans text-6xl"
+              className="block font-sans text-5xl"
             >
               Empowering Justice with Experience and Integrity.
             </span>

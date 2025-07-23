@@ -121,7 +121,7 @@ const CriminalLaw = () => {
               {/* Description paragraphs */}
               <p
                 className="text-base md:text-lg leading-relaxed mb-4"
-                style={{ color: Colors.TextColor5 }}
+                style={{ color: Colors.TextColor5, textAlign: "justify" }}
               >
                 At <strong>VidhiVidh</strong>, we recognize the life-altering
                 impact that criminal charges can have. Our dedicated Criminal
@@ -134,7 +134,7 @@ const CriminalLaw = () => {
 
               <p
                 className="text-base md:text-lg leading-relaxed"
-                style={{ color: Colors.TextColor5 }}
+                style={{ color: Colors.TextColor5, textAlign: "justify" }}
               >
                 With extensive experience across white-collar offenses,
                 cybercrime, narcotics cases, domestic disputes, and more — our
@@ -192,7 +192,10 @@ const CriminalLaw = () => {
                     </CardHeader>
                     <CardContent className="text-center px-4 pb-6">
                       <p
-                        style={{ color: Colors.TextColor5 }}
+                        style={{
+                          color: Colors.TextColor5,
+                          textAlign: "justify",
+                        }}
                         className="leading-relaxed"
                       >
                         {item.description}

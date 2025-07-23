@@ -77,19 +77,19 @@ export const practiceAreas = [
     href: "/service-law",
   },
   {
-    title: "Pro Bono Services",
-    description:
-      "Free legal assistance for underserved and economically weaker sections, promoting access to justice for all.",
-    icon: HelpingHand,
-    cases: "120+ Cases",
-    href: "/probono",
-  },
-  {
     title: "NRI Legal Services",
     description:
       "Specialized legal support for Non-Resident Indians including property disputes, inheritance, and power of attorney.",
     icon: Globe,
     cases: "200+ Cases",
     href: "/nri-legal-services",
+  },
+  {
+    title: "Pro Bono Services",
+    description:
+      "Free legal assistance for underserved and economically weaker sections, promoting access to justice for all.",
+    icon: HelpingHand,
+    cases: "120+ Cases",
+    href: "/probono",
   },
 ];
