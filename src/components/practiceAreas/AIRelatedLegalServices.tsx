@@ -2,35 +2,35 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Colors } from "@/styles/global";
-import { ShieldAlert, Gavel, Scale } from "lucide-react";
+import { Brain, ShieldCheck, Scale } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import CustomizedNavigation from "../customized/CustomizedNavigation";
 import Footer from "../Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const criminalLawHighlights = [
+const aiLegalHighlights = [
   {
-    icon: ShieldAlert,
-    title: "Defending Your Rights",
+    icon: Brain,
+    title: "AI Compliance & Governance",
     description:
-      "We provide strategic and aggressive defense representation in all criminal matters, from minor infractions to serious felony charges. Our goal is to protect your rights and secure the best possible outcome.",
+      "Guidance on aligning AI development and deployment with global regulatory frameworks, ensuring transparency, accountability, and ethical practices.",
   },
   {
-    icon: Gavel,
-    title: "Comprehensive Legal Guidance",
+    icon: ShieldCheck,
+    title: "Data Privacy & Security",
     description:
-      "From the very beginning of your case through to its conclusion, we’re by your side every step of the way. Our team is dedicated to helping you understand your rights, explore your options, and stay informed about what to expect throughout the entire legal process.",
+      "Legal expertise in protecting sensitive data used in AI systems, ensuring GDPR and data protection compliance while mitigating cybersecurity risks.",
   },
   {
     icon: Scale,
-    title: "Justice with Integrity",
+    title: "AI Liability & Intellectual Property",
     description:
-      "We uphold the principle of fairness and equality under the law. Our team is dedicated to providing ethical, transparent, and effective legal advice to those facing criminal allegations.",
+      "Advisory on ownership of AI-generated works, liability in case of AI errors or misuse, and protecting intellectual property in AI innovations.",
   },
 ];
 
-const CriminalLaw = () => {
+const AIRelatedLegalServices = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -87,82 +87,65 @@ const CriminalLaw = () => {
         }}
       >
         <div className="relative z-10 container mx-auto px-6">
-          <div className="mb-16 px-4 md:px-0 mt-6">
+          <div className="mb-16 px-4 md:px-0">
             <div
-              className="relative shadow-xl rounded-2xl p-8 md:p-10 z-10 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+              className="relative bg-white shadow-xl rounded-2xl p-8 md:p-10 z-10 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
               style={{
                 borderLeft: `6px solid ${Colors.TextColor2}`,
                 backgroundColor: Colors.TextColor2,
               }}
             >
-              {/* Heading with icon */}
               <div className="flex items-center gap-4 mb-6">
-                <svg
-                  width="36"
-                  height="36"
-                  viewBox="0 0 24 24"
-                  fill="none"
+                <Brain
+                  width={36}
+                  height={36}
                   stroke={Colors.TextColor3}
                   strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M6 21v-2a4 4 0 014-4h0a4 4 0 014 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
+                />
                 <h2
                   className="text-3xl md:text-4xl font-bold"
                   style={{ color: Colors.TextColor3 }}
                 >
-                  Criminal Law
+                  AI Related Legal Services
                 </h2>
               </div>
 
-              {/* Description paragraphs */}
               <p
                 className="text-base md:text-lg leading-relaxed mb-4"
-                style={{ color: Colors.TextColor5, textAlign: "justify" }}
+                style={{ color: Colors.TextColor5 }}
               >
-                At <strong>VidhiVidh</strong>, we recognize the life-altering
-                impact that criminal charges can have. Our dedicated Criminal
-                Law practice is committed to defending your rights, upholding
-                justice, and guiding you through every stage of the legal
-                process with clarity and confidence. Whether it’s a misdemeanor
-                or a serious felony, we are by your side to offer strategic
-                counsel and unwavering support.
+                At <strong>VidhiVidh</strong>, we provide expert legal guidance
+                on the fast-evolving landscape of Artificial Intelligence (AI).
+                Our services ensure compliance, protect innovation, and manage
+                legal risks associated with AI technologies.
               </p>
 
               <p
                 className="text-base md:text-lg leading-relaxed"
-                style={{ color: Colors.TextColor5, textAlign: "justify" }}
+                style={{ color: Colors.TextColor5 }}
               >
-                {/* With extensive experience across white-collar offenses, */}
-                With extensive experience across white and blue collar offenses,
-                cybercrime, narcotics cases, domestic disputes, and more — our
-                legal team crafts powerful, personalized defense strategies. We
-                believe in meticulous investigation, sharp courtroom advocacy,
-                and above all, protecting your future with integrity and
-                dedication.
+                From regulatory compliance to liability issues and IP
+                protection, we help businesses and innovators navigate the
+                challenges and opportunities AI brings to the legal domain.
               </p>
             </div>
           </div>
 
-          {/* Cards */}
+          {/* Highlight Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {criminalLawHighlights.map((item, index) => {
+            {aiLegalHighlights.map((item, index) => {
               const Icon = item.icon;
               return (
                 <Card
                   key={index}
                   ref={(el) => (cardsRef.current[index] = el)}
-                  className="group relative border rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
+                  className="group relative rounded-xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
                   style={{
                     zIndex: 1,
                     backgroundColor: Colors.CardBgSecondaryColor,
                     borderColor: Colors.BorderLineColor2,
                   }}
                 >
-                  {/* Gradient glow effect on hover */}
                   <div
                     className="absolute -inset-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl z-0"
                     style={{
@@ -215,4 +198,4 @@ const CriminalLaw = () => {
   );
 };
 
-export default CriminalLaw;
+export default AIRelatedLegalServices;

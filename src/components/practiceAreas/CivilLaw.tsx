@@ -122,10 +122,11 @@ const CivilLaw = () => {
                 style={{ color: Colors.TextColor5 }}
               >
                 At <strong>VidhiVidh</strong>, our Civil Law practice handles
-                disputes with diligence and deep legal insight. Whether it's a
-                breach of contract, property litigation, or family-related civil
-                matters, our legal team is here to navigate the complexities and
-                protect your rights.
+                disputes with diligence with deep legal insight with over 20
+                years of diverse legal experience. Whether it's a breach of
+                contract, property litigation, or family-related civil matters,
+                our legal team is here to navigate the complexities and protect
+                your rights.
               </p>
 
               <p

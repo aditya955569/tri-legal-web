@@ -24,6 +24,7 @@ import ProBono from "./components/practiceAreas/ProBono";
 import DetailsPracticeAreas from "./components/DetailsPracticeAreas";
 import ContactUs from "./components/ContactUs";
 import OurPatron from "./components/OurPatron";
+import AIRelatedLegalServices from "./components/practiceAreas/AIRelatedLegalServices";
 
 const AppRoutes = () => (
   <Routes>
@@ -47,6 +48,7 @@ const AppRoutes = () => (
       element={<IntellectualPropertyRights />}
     />
     <Route path="/nri-legal-services" element={<NRILegalServices />} />
+    <Route path="/ai-legal-services" element={<AIRelatedLegalServices />} />
     <Route path="/blogPost/:id" element={<BlogDetailPage />} />
     <Route path="/about-us" element={<AboutUs />} />
 

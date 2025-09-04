@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 const bankingLawHighlights = [
   {
     icon: Banknote,
-    title: "Regulatory Compliance",
+    title: "Legal Research Compliance",
     description:
       "We assist banks, NBFCs, and financial institutions with compliance related to RBI guidelines, SEBI norms, and other financial regulations to ensure lawful operations.",
   },
@@ -20,7 +20,7 @@ const bankingLawHighlights = [
     icon: CreditCard,
     title: "Banking & Finance Disputes",
     description:
-      "Our legal experts handle loan recovery, debt restructuring, cheque bounce cases, and disputes related to banking frauds and credit facilities.",
+      "Our legal experts handle loan recovery, DRT (Debts Recovery Tribunal) matters, cheque bounce cases, and disputes related to banking frauds and credit facilities.",
   },
   {
     icon: ShieldCheck,

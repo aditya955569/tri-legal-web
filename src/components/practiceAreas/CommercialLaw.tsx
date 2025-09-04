@@ -22,11 +22,17 @@ const commercialLawHighlights = [
     description:
       "Our team ensures every commercial agreement—be it vendor contracts, Non-Disclosure Agreements (NDAs), or partnership deeds—is precise, enforceable, and protects your interests.",
   },
+  // {
+  //   icon: Handshake,
+  //   title: "Transactional Support",
+  //   description:
+  //     "From Mergers & Acquisitions (M&A) to joint ventures (JVs), we guide businesses through critical transactions with strategic advice, due diligence, and full-cycle legal support.",
+  // },
   {
     icon: Handshake,
-    title: "Transactional Support",
+    title: "Arbitration & Dispute Resolution",
     description:
-      "From Mergers & Acquisitions (M&A) to joint ventures (JVs), we guide businesses through critical transactions with strategic advice, due diligence, and full-cycle legal support.",
+      "We assist businesses in resolving conflicts efficiently through arbitration, mediation, and dispute resolution strategies, ensuring fair outcomes while minimizing litigation risks.",
   },
 ];
 

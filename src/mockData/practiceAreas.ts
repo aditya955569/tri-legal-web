@@ -1,6 +1,7 @@
 import {
   BadgeCheck,
   Banknote,
+  Brain,
   BriefcaseBusiness,
   Gavel,
   Globe,
@@ -83,6 +84,14 @@ export const practiceAreas = [
     icon: Globe,
     cases: "200+ Cases",
     href: "/nri-legal-services",
+  },
+  {
+    title: "AI Related Legal Services",
+    description:
+      "Expert guidance on AI compliance, data privacy, liability, and intellectual property rights to help businesses navigate the evolving legal landscape of Artificial Intelligence.",
+    icon: Brain,
+    cases: "75+ Cases",
+    href: "/ai-legal-services",
   },
   {
     title: "Pro Bono Services",

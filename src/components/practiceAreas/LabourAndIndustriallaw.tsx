@@ -26,7 +26,7 @@ const labourLawHighlights = [
     icon: BadgeCheck,
     title: "Regulatory Filings & Audits",
     description:
-      "We assist with Provident Fund (PF), Employees' State Insurance (ESI), gratuity, maternity, and wage filings. Our team also ensures readiness for statutory audits and inspections.",
+      "We help in cases relating to Provident Fund (PF), Employees' State Insurance (ESI), gratuity, maternity, and wage filings. Our team also ensures readiness for statutory audits and inspections.",
   },
 ];
 

@@ -32,7 +32,7 @@ const nriLegalHighlights = [
     icon: Globe,
     title: "Cross-Border Legal Assistance",
     description:
-      "End-to-end legal support for international documentation, visa & immigration issues, and coordination with Indian embassies abroad.",
+      "End-to-end legal support for international documentation, visa & immigration issues, Title Search Report (TSR), and coordination with Indian embassies abroad.",
   },
 ];
 
