@@ -127,7 +127,7 @@ const About = () => {
                 className=" rounded-xl p-6 transform -rotate-3 border"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80"
+                  src="/images/law2.jpg"
                   alt="Law firm office"
                   className="w-full h-64 object-cover rounded-lg"
                 />
@@ -136,7 +136,7 @@ const About = () => {
                     style={{ color: Colors.TextColor1 }}
                     className="font-bold text-lg"
                   >
-                    Our Downtown Office
+                    {/* Our Downtown Office */}
                   </h3>
                   <p style={{ color: Colors.TextColor5 }}>
                     Where excellence meets accessibility

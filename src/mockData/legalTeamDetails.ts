@@ -4,6 +4,7 @@ export type Attorney = {
   specialization?: string;
   experience?: string;
   image?: string;
+  role?: string;
 };
 
 export const attorneys: Attorney[] = [
@@ -12,24 +13,28 @@ export const attorneys: Attorney[] = [
     title: "Revenue Law, Banking Law & Civil Law",
     // specialization: "Associate",
     image: "/images/advocates/adv1.jpeg",
+    specialization: "CEO, FOUNDER",
   },
   {
     name: "Adv. Padmakar Nath Tripathi",
     title: "Civil Law & Criminal Law",
     // specialization: "Associate",
     image: "/images/advocates/adv2.jpeg",
+    specialization: "Founder, Managing Partner",
   },
   {
     name: "Adv. Rekha Rawat",
     title: "Matrimonial Law & Civil Law",
     // specialization: "Associate",
     image: "/images/advocates/adv3.jpeg",
+    specialization: "Co-Founder",
   },
   {
     name: "Adv. Mohd. Israil",
     title: "Insurance & Claim",
     // specialization: "Associate",
     image: "/images/advocates/adv4.jpeg",
+    specialization: "Co-Founder",
   },
   {
     name: "Adv. Jatin Gajwani",
@@ -90,5 +95,12 @@ export const attorneys: Attorney[] = [
     // title: "Student",
     specialization: "Paralegal",
     image: "/images/advocates/adv11.jpeg",
+  },
+  {
+    name: "Tushar Yadav",
+    // title: "Legal Search Report & Contract Drafting",
+    // title: "Student",
+    specialization: "Paralegal",
+    image: "/images/advocates/adv12.jpg",
   },
 ];

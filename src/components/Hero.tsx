@@ -12,6 +12,7 @@ const Hero = () => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
   const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
@@ -36,6 +37,13 @@ const Hero = () => {
         { y: 0, opacity: 1, duration: 0.8, delay: 1, ease: "power3.out" }
       );
     }
+    if (imgRef.current) {
+      gsap.fromTo(
+        imgRef.current,
+        { x: 100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.3 }
+      );
+    }
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -48,10 +56,21 @@ const Hero = () => {
   return (
     <section
       ref={sectionRef}
-      style={{ backgroundColor: Colors.PrimaryBgColor }}
-      className="relative min-h-screen flex items-center py-28 md:py-20"
+      className="relative min-h-screen flex items-center py-28 md:py-20 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[#0B1C2C]/30"></div>
+      {/* Background Image with fade overlay */}
+      <div
+        ref={imgRef}
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: "url('/images/law1.jpg')", // 🔹 Replace with your image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30"></div>
+
+      {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl">
           <div className="flex items-center gap-3 mb-6">
@@ -119,13 +138,13 @@ const Hero = () => {
               onMouseLeave={() => setIsHover(false)}
               onClick={() => scrollToSection("#practice-areas")}
               style={{
-                borderColor: isHover ? "#CBA14A" : "#E2E2E2", // dynamic border color
+                borderColor: isHover ? "#CBA14A" : "#E2E2E2",
                 color: isHover
                   ? Colors.CardBgSecondaryColor
-                  : Colors.SecondaryBgColor, // dynamic text color
+                  : Colors.SecondaryBgColor,
                 backgroundColor: isHover
                   ? Colors.SecondaryBgColor
-                  : Colors.CardBgSecondaryColor, // dynamic bg
+                  : Colors.CardBgSecondaryColor,
                 transition: "all 0.3s ease",
                 padding: "1rem 2rem",
                 fontSize: "1.125rem",

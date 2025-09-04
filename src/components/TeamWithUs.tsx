@@ -62,75 +62,81 @@ const TeamWithUs = () => {
       if (name === "pincode" && (value.length > 6 || /\D/.test(value))) return;
     }
 
-    // if (name === "registration") {
-    //   // Remove anything not A-Z or 0-9, force uppercase
-    //   let input = value.toUpperCase().replace(/[^A-Z0-9]/g, "");
-    //   let formatted = "";
-
-    //   // Only allow 2 letters first
-    //   const prefix = input.slice(0, 2);
-    //   if (!/^[A-Z]{0,2}$/.test(prefix)) return;
-
-    //   if (input.length <= 2) {
-    //     formatted = prefix;
-    //   } else if (input.length <= 6) {
-    //     const digits1 = input.slice(2, 6);
-    //     if (!/^\d*$/.test(digits1)) return;
-    //     formatted = `${prefix}/${digits1}`;
-    //   } else if (input.length <= 10) {
-    //     const digits1 = input.slice(2, 6);
-    //     const digits2 = input.slice(6, 10);
-    //     if (!/^\d{4}$/.test(digits1) || !/^\d*$/.test(digits2)) return;
-    //     formatted = `${prefix}/${digits1}/${digits2}`;
-    //   } else {
-    //     return; // Prevent input longer than pattern
-    //   }
-
-    //   setFormData((prev) => ({ ...prev, [name]: formatted }));
-    //   setErrors((prev) => ({ ...prev, [name]: "" }));
-    //   return;
-    // }
-
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  // const validateForm = () => {
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   const phoneRegex = /^[6-9]\d{9}$/;
+  //   const pincodeRegex = /^\d{6}$/;
+  //   const registrationRegex = /^UP\/\d{4}\/\d{4}$/;
+
+  //   const newErrors: Record<string, string> = {};
+
+  //   Object.entries(formData).forEach(([key, value]) => {
+  //     if (!value.trim()) {
+  //       newErrors[key] = "This field is required";
+  //     }
+  //   });
+
+  //   if (!emailRegex.test(formData.email)) {
+  //     newErrors.email = "Invalid email format";
+  //   }
+
+  //   if (!phoneRegex.test(formData.phone)) {
+  //     newErrors.phone = "Phone number must be 10 digits starting with 6-9";
+  //   }
+
+  //   if (!pincodeRegex.test(formData.pincode)) {
+  //     newErrors.pincode = "Pincode must be exactly 6 digits";
+  //   }
+
+  //   if (!registrationRegex.test(formData.registration)) {
+  //     newErrors.registration = "Format should be UP/1234/2020";
+  //   }
+
+  //   if (formData.domain === "Others" && !otherDomain.trim()) {
+  //     newErrors.domain = "Please enter your domain";
+  //   }
+
+  //   if (!formData.district.trim()) {
+  //     newErrors.district = "Please select your district";
+  //   }
+
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
+
   const validateForm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[6-9]\d{9}$/;
-    const pincodeRegex = /^\d{6}$/;
-    const registrationRegex = /^UP\/\d{4}\/\d{4}$/;
 
     const newErrors: Record<string, string> = {};
 
-    Object.entries(formData).forEach(([key, value]) => {
-      if (!value.trim()) {
-        newErrors[key] = "This field is required";
-      }
-    });
-
-    if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+    // Mandatory fields
+    if (!formData.name.trim()) {
+      newErrors.name = "This field is required";
     }
 
     if (!phoneRegex.test(formData.phone)) {
       newErrors.phone = "Phone number must be 10 digits starting with 6-9";
     }
 
-    if (!pincodeRegex.test(formData.pincode)) {
-      newErrors.pincode = "Pincode must be exactly 6 digits";
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Invalid email format";
     }
 
-    if (!registrationRegex.test(formData.registration)) {
-      newErrors.registration = "Format should be UP/1234/2020";
-    }
-
-    if (formData.domain === "Others" && !otherDomain.trim()) {
-      newErrors.domain = "Please enter your domain";
+    if (!formData.address.trim()) {
+      newErrors.address = "This field is required";
     }
 
     if (!formData.district.trim()) {
       newErrors.district = "Please select your district";
+    }
+
+    if (!formData.state.trim()) {
+      newErrors.state = "Please select your state";
     }
 
     setErrors(newErrors);
@@ -264,48 +270,6 @@ const TeamWithUs = () => {
                       )}
                     </div>
                   ))}
-
-                  {/* Domain Dropdown */}
-
-                  {/* <div>
-                    <label
-                      className="block text-sm font-medium mb-1"
-                      style={{ color: Colors.TextColor5 }}
-                    >
-                      District
-                    </label>
-                    <select
-                      name="district"
-                      value={formData.district}
-                      onChange={(e) => {
-                        setFormData((prev) => ({
-                          ...prev,
-                          district: e.target.value,
-                        }));
-                        setErrors((prev) => ({ ...prev, district: "" }));
-                      }}
-                      required
-                      className={`w-full px-3 py-[0.625rem] rounded-md bg-white text-sm font-normal
-      ${errors.district ? "border-red-500" : "border-slate-400"}
-      border outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary transition duration-200`}
-                      style={{
-                        color: Colors.Slate700,
-                        fontSize: "0.875rem",
-                      }}
-                    >
-                      <option value="">-- Select District --</option>
-                      {upDistricts.map((d) => (
-                        <option key={d} value={d}>
-                          {d}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.district && (
-                      <p className="text-sm text-red-500 mt-1">
-                        {errors.district}
-                      </p>
-                    )}
-                  </div> */}
 
                   <div>
                     {/* District Input Field */}
