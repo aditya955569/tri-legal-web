@@ -178,7 +178,7 @@ const Attorneys = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ height: "440px" }} // fixed height so image remains clear / consistent
+          style={{ height: "480px" }} // fixed height so image remains clear / consistent
         >
           {/* <div
             ref={sliderTrackRef}
