@@ -21,6 +21,7 @@ const Attorneys = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideWidth, setSlideWidth] = useState(0);
   const autoSlideTimerRef = useRef<number | null>(null);
+  const isTransitioningRef = useRef(false); // Prevent rapid transitions
 
   // touch tracking
   const touchStartX = useRef<number | null>(null);
@@ -65,14 +66,50 @@ const Attorneys = () => {
     }
   }, []);
 
-  // autoplay functions
+  // limit attorneys list for mobile
+  const mobileAttorneys = attorneys.slice(0, 3);
 
+  // Helper function to navigate to next slide with loop
+  const goToNextSlide = () => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+
+    setCurrentIndex((prev) => {
+      if (prev >= mobileAttorneys.length - 1) {
+        return 0; // Loop back to first slide
+      }
+      return prev + 1;
+    });
+
+    // Reset the transitioning flag after a short delay
+    setTimeout(() => {
+      isTransitioningRef.current = false;
+    }, 700); // Match the transition duration
+  };
+
+  // Helper function to navigate to previous slide with loop
+  const goToPrevSlide = () => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+
+    setCurrentIndex((prev) => {
+      if (prev <= 0) {
+        return mobileAttorneys.length - 1; // Loop to last slide
+      }
+      return prev - 1;
+    });
+
+    // Reset the transitioning flag after a short delay
+    setTimeout(() => {
+      isTransitioningRef.current = false;
+    }, 700); // Match the transition duration
+  };
+
+  // autoplay functions
   const startAutoSlide = () => {
     stopAutoSlide();
     autoSlideTimerRef.current = window.setInterval(() => {
-      setCurrentIndex(
-        (prev) => (prev < mobileAttorneys.length - 1 ? prev + 1 : prev) // stop at last slide
-      );
+      goToNextSlide();
     }, AUTO_SLIDE_DELAY);
   };
 
@@ -83,9 +120,6 @@ const Attorneys = () => {
     }
   };
 
-  // limit attorneys list for mobile
-  const mobileAttorneys = attorneys.slice(0, 3);
-
   // start autoplay when slideWidth available
   useEffect(() => {
     if (slideWidth > 0 && mobileAttorneys.length > 1) {
@@ -93,11 +127,6 @@ const Attorneys = () => {
     }
     return () => stopAutoSlide();
   }, [slideWidth]);
-
-  // restart autoplay when index changes (keeps loop)
-  useEffect(() => {
-    // nothing special needed here because startAutoSlide uses interval that cycles
-  }, [currentIndex]);
 
   // touch handlers for manual swipe (pauses autoplay while dragging)
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -108,7 +137,6 @@ const Attorneys = () => {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchCurrentX.current = e.touches[0].clientX;
-    // optional: you could update visual drag offset here for interactive dragging
   };
 
   const handleTouchEnd = () => {
@@ -120,13 +148,11 @@ const Attorneys = () => {
 
     if (Math.abs(dx) > SWIPE_THRESHOLD) {
       if (dx > 0) {
-        // swipe left → next (only if not last slide)
-        setCurrentIndex((prev) =>
-          prev < mobileAttorneys.length - 1 ? prev + 1 : prev
-        );
+        // swipe left → next
+        goToNextSlide();
       } else {
-        // swipe right → prev (only if not first slide)
-        setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
+        // swipe right → prev
+        goToPrevSlide();
       }
     }
 
@@ -136,11 +162,6 @@ const Attorneys = () => {
   };
 
   // helper to compute transform style (pixel-based -> crisp)
-  // const trackTransformStyle =
-  //   slideWidth > 0
-  //     ? { transform: `translateX(-${currentIndex * slideWidth}px)` }
-  //     : {};
-
   const trackTransformStyle =
     slideWidth > 0
       ? { transform: `translateX(-${currentIndex * slideWidth}px)` }
@@ -178,17 +199,50 @@ const Attorneys = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ height: "480px" }} // fixed height so image remains clear / consistent
+          style={{ height: "480px" }}
         >
-          {/* <div
-            ref={sliderTrackRef}
-            className="flex h-full transition-transform duration-700 ease-in-out"
-            style={{
-              ...trackTransformStyle,
-              width:
-                slideWidth > 0 ? `${attorneys.length * slideWidth}px` : "100%",
-            }}
-          > */}
+          {/* Left Button */}
+          <button
+            onClick={goToPrevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 text-white transition-opacity opacity-100"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          {/* Right Button */}
+          <button
+            onClick={goToNextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 text-white transition-opacity opacity-100"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+
           <div
             ref={sliderTrackRef}
             className="flex h-full transition-transform duration-700 ease-in-out"
@@ -211,7 +265,6 @@ const Attorneys = () => {
               return (
                 <div
                   key={index}
-                  // each slide has fixed width equal to viewport/container width
                   style={{ flex: "0 0 auto", width: slideWidth || "100%" }}
                   className="px-4 box-border"
                 >
@@ -230,9 +283,7 @@ const Attorneys = () => {
                         loading="lazy"
                         decoding="async"
                         className="w-full h-[320px] object-cover"
-                        style={{ imageRendering: "auto" }}
                       />
-                      {/* subtle overlay so image stays visible but text readable */}
                       <div
                         className="absolute inset-0 pointer-events-none"
                         style={{
@@ -241,7 +292,6 @@ const Attorneys = () => {
                         }}
                       />
                     </div>
-
                     <CardContent className="p-6 text-center">
                       <h3
                         className="text-xl font-bold mb-2"
