@@ -130,13 +130,21 @@ const OurTeam = () => {
                     {attorney.name}
                   </h3>
                   <p
+                    className="mb-3"
+                    style={{ color: Colors.TextColor5, fontWeight: 600 }}
+                  >
+                    {attorney.specialization}
+                  </p>
+                  <p
                     className="font-semibold mb-2"
-                    style={{ color: Colors.TextColor3 }}
+                    style={{
+                      color: Colors.TextColor3,
+                      fontFamily: "'Open Sans', sans-serif",
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                    }}
                   >
                     {attorney.title}
-                  </p>
-                  <p className="mb-3" style={{ color: Colors.TextColor5 }}>
-                    {attorney.specialization}
                   </p>
                   {/* <div
                   className="rounded-full px-4 py-2 inline-block"

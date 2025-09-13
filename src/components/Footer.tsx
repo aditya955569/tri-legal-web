@@ -10,6 +10,7 @@ const quickLinks = [
   { title: "Contact Us", path: "/contact" },
   { title: "Join Us", path: "/join-us" },
   { title: "Internship", path: "/careers-internship" },
+  { title: "Technical Team", path: "/technical-team" },
 ];
 
 const Footer = () => {

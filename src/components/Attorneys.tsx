@@ -299,14 +299,27 @@ const Attorneys = () => {
                       >
                         {attorney.name}
                       </h3>
+
+                      {/* Specialization - Slightly bold */}
                       <p
-                        className="font-semibold mb-2"
-                        style={{ color: Colors.TextColor3 }}
+                        className="mb-3 font-medium"
+                        style={{ color: Colors.TextColor5 }}
+                      >
+                        {attorney.specialization}
+                      </p>
+
+                      {/* Title - Enhanced professional font */}
+                      <p
+                        className="mb-2"
+                        style={{
+                          color: Colors.TextColor3,
+                          fontFamily: "'Open Sans', sans-serif",
+                          fontSize: "0.82rem",
+                          fontWeight: 500,
+                          letterSpacing: "0.3px",
+                        }}
                       >
                         {attorney.title}
-                      </p>
-                      <p className="mb-3" style={{ color: Colors.TextColor5 }}>
-                        {attorney.specialization}
                       </p>
                     </CardContent>
                   </Card>
@@ -357,13 +370,21 @@ const Attorneys = () => {
                     {attorney.name}
                   </h3>
                   <p
+                    className="mb-3"
+                    style={{ color: Colors.TextColor5, fontWeight: 600 }}
+                  >
+                    {attorney.specialization}
+                  </p>
+                  <p
                     className="font-semibold mb-2"
-                    style={{ color: Colors.TextColor3 }}
+                    style={{
+                      color: Colors.TextColor3,
+                      fontFamily: "'Open Sans', sans-serif",
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                    }}
                   >
                     {attorney.title}
-                  </p>
-                  <p className="mb-3" style={{ color: Colors.TextColor5 }}>
-                    {attorney.specialization}
                   </p>
                 </CardContent>
               </Card>

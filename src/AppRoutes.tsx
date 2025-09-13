@@ -25,6 +25,7 @@ import DetailsPracticeAreas from "./components/DetailsPracticeAreas";
 import ContactUs from "./components/ContactUs";
 import OurPatron from "./components/OurPatron";
 import AIRelatedLegalServices from "./components/practiceAreas/AIRelatedLegalServices";
+import TechnicalTeam from "./components/TechnicalTeam";
 
 const AppRoutes = () => (
   <Routes>
@@ -58,6 +59,7 @@ const AppRoutes = () => (
 
     <Route path="/join-us" element={<TeamWithUs />} />
     <Route path="/careers-internship" element={<Internship />} />
+    <Route path="/technical-team" element={<TechnicalTeam />} />
 
     <Route path="/attorneys" element={<OurTeam />} />
     <Route path="/contact" element={<ContactUs />} />
