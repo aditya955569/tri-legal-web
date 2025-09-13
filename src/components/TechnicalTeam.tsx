@@ -56,58 +56,58 @@ const TechnicalTeam = () => {
 
       <section
         ref={sectionRef}
-        className="py-20"
+        className="py-16 sm:py-20 lg:py-24"
         style={{
           background: `linear-gradient(to bottom right, ${Colors.CardBgSecondaryColor}11, ${Colors.TextColor1}, ${Colors.TextColor3}11)`,
         }}
       >
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-0">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: Colors.TextColor2 }}
           >
             Technical Team
           </h2>
           <p
-            className="text-xl max-w-3xl mx-auto"
-            style={{ color: Colors.TextColor6 }}
+            className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto"
+            style={{ color: Colors.TextColor6, lineHeight: "1.8" }}
           >
             Meet the brilliant minds powering our technology. Together, they
             ensure our digital presence remains innovative and secure.
           </p>
         </div>
 
-        {/* Cards (Dynamic) */}
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-10">
+        {/* Cards */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-0 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {teamMembers.map((member, index) => (
             <Card
               key={index}
               style={{ backgroundColor: Colors.CardBgSecondaryColor }}
-              className="border-0 shadow-lg transition-all duration-300 p-6"
+              className="border-0 shadow-lg transition-transform duration-300 p-6 hover:-translate-y-2"
             >
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 lg:gap-8">
                 {/* Image */}
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-28 h-28 rounded-full object-cover shadow-md"
+                  className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover shadow-md"
                 />
                 {/* Content */}
-                <div>
+                <div className="flex-1 text-center sm:text-left">
                   <CardHeader className="p-0 mb-2">
                     <CardTitle
-                      className="text-2xl font-semibold"
+                      className="text-xl sm:text-2xl font-semibold"
                       style={{ color: Colors.TextColor3 }}
                     >
                       {member.name}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="p-0 space-y-2 text-base">
+                  <CardContent className="p-0 space-y-2">
                     {/* Email */}
                     <a
                       href={`mailto:${member.email}`}
-                      className="flex items-center gap-2 transition-colors duration-300"
+                      className="flex items-center justify-center sm:justify-start gap-2 transition-colors duration-300 break-all text-sm md:text-base lg:text-lg xl:text-lg"
                       style={{ color: Colors.TextColor5 }}
                       onMouseEnter={(e) =>
                         (e.currentTarget.style.color = Colors.TextColor3)
@@ -116,7 +116,8 @@ const TechnicalTeam = () => {
                         (e.currentTarget.style.color = Colors.TextColor5)
                       }
                     >
-                      <Mail size={18} /> {member.email}
+                      <Mail className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5" />{" "}
+                      {member.email}
                     </a>
 
                     {/* LinkedIn */}
@@ -124,7 +125,7 @@ const TechnicalTeam = () => {
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 transition-colors duration-300"
+                      className="flex items-center justify-center sm:justify-start gap-2 transition-colors duration-300 break-all text-sm md:text-base lg:text-lg xl:text-lg"
                       style={{ color: Colors.TextColor5 }}
                       onMouseEnter={(e) =>
                         (e.currentTarget.style.color = Colors.TextColor3)
@@ -133,7 +134,8 @@ const TechnicalTeam = () => {
                         (e.currentTarget.style.color = Colors.TextColor5)
                       }
                     >
-                      <Linkedin size={18} /> LinkedIn Profile
+                      <Linkedin className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5" />{" "}
+                      LinkedIn Profile
                     </a>
                   </CardContent>
                 </div>
