@@ -8,7 +8,7 @@ import { Colors } from "@/styles/global";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AUTO_SLIDE_DELAY = 3000; // ms
+const AUTO_SLIDE_DELAY = 2000; // ms
 const SWIPE_THRESHOLD = 50; // px
 
 const Attorneys = () => {
