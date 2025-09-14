@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const teamMembers = [
   {
     name: "Aditya Kandpal",
-    email: "john.doe@example.com",
+    email: "aditya.kandpal2016@gmail.com",
     linkedin: "https://in.linkedin.com/in/aditya-kandpal-1959681b8",
     image:
       "https://media.licdn.com/dms/image/v2/D5603AQE-esvHw6vZOA/profile-displayphoto-shrink_200_200/B56ZZUHwMsHQAY-/0/1745168041277?e=2147483647&v=beta&t=dxSvCqw0Pt8lg345iuQ1eQC3W0PFxycart7V5saivt8",
